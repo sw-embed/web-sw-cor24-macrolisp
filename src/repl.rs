@@ -238,15 +238,7 @@ impl Component for Repl {
 
             Msg::LoadDemo(index) => {
                 if let Some(demo) = DEMOS.get(index) {
-                    // Strip comment-only lines from demo source
-                    let source: String = demo.source
-                        .lines()
-                        .filter(|line| !line.starts_with(";;"))
-                        .collect::<Vec<_>>()
-                        .join("\n")
-                        .trim()
-                        .to_string();
-                    self.input = source;
+                    self.input = demo.source.trim().to_string();
 
                     // Auto-select required prelude and stack
                     let needs_reload = demo.prelude != self.prelude
@@ -281,6 +273,7 @@ impl Component for Repl {
                 "bare" => PreludeTier::Bare,
                 "minimal" => PreludeTier::Minimal,
                 "full" => PreludeTier::Full,
+                "scheme" => PreludeTier::Scheme,
                 _ => PreludeTier::Standard,
             };
             Msg::SetPrelude(tier)
@@ -316,6 +309,7 @@ impl Component for Repl {
                                     PreludeTier::Minimal => "minimal",
                                     PreludeTier::Standard => "standard",
                                     PreludeTier::Full => "full",
+                                    PreludeTier::Scheme => "scheme",
                                 };
                                 html! {
                                     <option value={val} selected={*t == self.prelude}>
@@ -345,11 +339,28 @@ impl Component for Repl {
                         {"Demo"}
                         <select onchange={on_demo}>
                             <option value="" selected=true>{"— select —"}</option>
-                            { for DEMOS.iter().enumerate().map(|(i, d)| {
+                            { for PreludeTier::ALL.iter().filter(|tier| {
+                                DEMOS.iter().any(|d| d.prelude == **tier)
+                            }).map(|tier| {
+                                let label = format!("{} prelude", tier.label());
                                 html! {
-                                    <option value={i.to_string()}>
-                                        { format!("{} ({})", d.title, d.prelude.label()) }
-                                    </option>
+                                    <optgroup label={label}>
+                                        { for DEMOS.iter().enumerate()
+                                            .filter(move |(_, d)| d.prelude == *tier)
+                                            .map(|(i, d)| {
+                                                let stack_note = if d.stack == StackSize::EightKb {
+                                                    " [8K]"
+                                                } else {
+                                                    ""
+                                                };
+                                                html! {
+                                                    <option value={i.to_string()}>
+                                                        { format!("{}{}", d.title, stack_note) }
+                                                    </option>
+                                                }
+                                            })
+                                        }
+                                    </optgroup>
                                 }
                             })}
                         </select>

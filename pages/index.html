@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tiny Macro Lisp — COR24</title>
-    <link data-trunk rel="rust" data-bin="web-tml24c" />
+    
+<script type="module">
+import init, * as bindings from '/web-tml24c/web-tml24c-ccf4145b8e7f7e0b.js';
+const wasm = await init({ module_or_path: '/web-tml24c/web-tml24c-ccf4145b8e7f7e0b_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
     <style>
         :root {
             --bg: #1e1e2e;
@@ -91,7 +102,7 @@
             40%, 80% { transform: rotate(10deg); }
         }
     </style>
-</head>
+<link rel="modulepreload" href="/web-tml24c/web-tml24c-ccf4145b8e7f7e0b.js" crossorigin="anonymous" integrity="sha384-3RTVzvq9hHTWk2KgJItX0OHu6yeShrHSA0nIrc/UaTv75NAJiXkDZ2Vq7vMnEuah"><link rel="preload" href="/web-tml24c/web-tml24c-ccf4145b8e7f7e0b_bg.wasm" crossorigin="anonymous" integrity="sha384-HNX7H0RVnQJ/ucJwxflvPI7NR/KaexvQuCeyl3Z9xf5bEnQeQJ9REnC5xTUJ8+XF" as="fetch" type="application/wasm"></head>
 <body>
     <div id="app"></div>
 </body>
