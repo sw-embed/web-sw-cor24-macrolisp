@@ -190,18 +190,22 @@ impl Component for Repl {
                     return false;
                 }
 
-                // Feed queued bytes: poll-before-feed (match cor24-run)
-                let mut bytes_fed = 0u32;
-                while !self.uart_tx_queue.is_empty() && bytes_fed < 256 {
+                // Feed queued bytes: poll-before-feed (match cor24-run).
+                // Budget limits total instructions to avoid blocking the
+                // browser when the interpreter is busy evaluating.
+                let mut feed_budget: u32 = 10_000;
+                while !self.uart_tx_queue.is_empty() && feed_budget > 0 {
                     let status = self.emulator.read_byte(0xFF0101);
                     if status & 0x01 != 0 {
+                        // CPU hasn't consumed previous byte — run a bit more
                         self.emulator.run_batch(50);
+                        feed_budget = feed_budget.saturating_sub(50);
                         continue;
                     }
                     let byte = self.uart_tx_queue.pop_front().unwrap();
                     self.emulator.send_uart_byte(byte);
                     self.emulator.run_batch(50);
-                    bytes_fed += 1;
+                    feed_budget = feed_budget.saturating_sub(50);
                     if byte == b'\n' {
                         break;
                     }
