@@ -12,13 +12,14 @@
 .toolbar {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
+    flex-shrink: 0;
 }
 .toolbar-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     font-size: 14px;
     font-weight: 600;
     color: var(--text);
@@ -56,74 +57,16 @@
     margin-left: auto;
 }
 
-/* Main layout */
-.repl-main {
-    display: flex;
+/* Main area — relative for floating overlays */
+.main-area {
+    position: relative;
     flex: 1;
-    gap: 12px;
     min-height: 0;
-    overflow: hidden;
-}
-.repl-io {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    gap: 8px;
-    min-width: 0;
-    min-height: 0;
 }
 
-/* Sidebar */
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 120px;
-    flex-shrink: 0;
-}
-
-/* Hardware widgets */
-.hw-widget {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.hw-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--dim);
-    min-width: 24px;
-}
-
-.led {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    transition: all 0.15s;
-}
-.led-off {
-    background: #333;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-}
-.led-on {
-    background: radial-gradient(circle at 30% 30%, #ff5555, #ff0000, #cc0000);
-    box-shadow: 0 0 15px #ff0000, 0 0 30px rgba(255,0,0,0.3);
-}
-
-/* Panels */
-.panel-header {
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--dim);
-    margin-bottom: 6px;
-}
-.output-panel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-}
+/* Output — always full size */
 .output {
     flex: 1;
     background: var(--surface);
@@ -137,42 +80,157 @@
     white-space: pre-wrap;
     word-break: break-all;
     margin: 0;
+    min-height: 0;
 }
-.input-panel {
-    display: flex;
-    flex-direction: column;
-}
-.input {
-    background: var(--surface);
+
+/* ─── Floating hardware panel (top-right) ─── */
+.hw-float {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+    background: rgba(30, 30, 46, 0.85);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 12px;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.hw-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.hw-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dim);
+    min-width: 22px;
+}
+
+.led {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    transition: all 0.15s;
+}
+.led-off {
+    background: #333;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+.led-on {
+    background: radial-gradient(circle at 30% 30%, #ff5555, #ff0000, #cc0000);
+    box-shadow: 0 0 12px #ff0000, 0 0 24px rgba(255,0,0,0.3);
+}
+
+.switch {
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.switch-off {
+    background: linear-gradient(to bottom, #444, #222);
+    border: 1px solid #555;
+}
+.switch-on {
+    background: linear-gradient(to bottom, #00d9ff, #0099cc);
+    border: 1px solid #00d9ff;
+    box-shadow: 0 0 8px rgba(0, 217, 255, 0.4);
+}
+.switch:hover {
+    transform: scale(1.1);
+}
+.switch:active {
+    transform: scale(0.95);
+}
+
+/* ─── CLI view: single-line input bar at bottom ─── */
+.cli-input-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 0;
+    flex-shrink: 0;
+}
+.cli-prompt {
+    font-size: 15px;
+    color: var(--green);
+    font-weight: 600;
+}
+.cli-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
     color: var(--text);
     font-family: var(--mono);
     font-size: 15px;
-    line-height: 1.5;
-    resize: vertical;
-    min-height: 60px;
-    max-height: 200px;
+    padding: 4px 0;
     outline: none;
 }
-.input:focus {
+.cli-input:focus {
+    border-bottom-color: var(--accent);
+}
+.cli-input:disabled {
+    opacity: 0.4;
+}
+.cli-status {
+    font-size: 12px;
+    color: var(--dim);
+    white-space: nowrap;
+}
+
+/* ─── Split view: semi-transparent overlay (bottom-right 1/4) ─── */
+.split-input-overlay {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 50%;
+    height: 50%;
+    z-index: 5;
+    background: rgba(40, 40, 64, 0.88);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 8px;
+    backdrop-filter: blur(4px);
+}
+.split-textarea {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+    min-height: 0;
+}
+.split-textarea:focus {
     border-color: var(--accent);
 }
-.controls {
+.split-controls {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 8px;
+    gap: 10px;
+    flex-shrink: 0;
 }
 .eval-btn {
     background: var(--accent);
     color: var(--bg);
     border: none;
     border-radius: 4px;
-    padding: 6px 20px;
+    padding: 5px 16px;
     font-family: var(--mono);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
 }
@@ -184,6 +242,6 @@
     cursor: not-allowed;
 }
 .status {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--dim);
 }

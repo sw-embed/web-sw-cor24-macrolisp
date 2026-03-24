@@ -2,7 +2,7 @@ use std::collections::VecDeque;
 
 use cor24_emulator::{Assembler, EmulatorCore, StopReason};
 use gloo::timers::callback::Timeout;
-use web_sys::HtmlTextAreaElement;
+use web_sys::{HtmlInputElement, HtmlTextAreaElement, KeyboardEvent};
 use yew::prelude::*;
 
 use crate::config::{PreludeTier, StackSize};
@@ -11,23 +11,26 @@ use crate::demos::DEMOS;
 /// Batch size per animation frame tick
 const BATCH_SIZE: u64 = 50_000;
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub enum ViewMode {
+    Cli,
+    Split,
+}
+
 pub enum Msg {
-    /// Assemble and load the selected binary
     Init,
-    /// Run a batch of CPU instructions
     Tick,
-    /// User typed in the input area
     InputChanged(String),
-    /// User clicked Eval
     Eval,
-    /// User changed prelude tier
     SetPrelude(PreludeTier),
-    /// User changed stack size
     SetStack(StackSize),
-    /// Reset emulator with current config
     Reset,
-    /// Load a demo program
     LoadDemo(usize),
+    ToggleView,
+    ToggleSwitch,
+    ClearOutput,
+    /// Keydown in CLI input (Enter to eval)
+    CliKeyDown(KeyboardEvent),
 }
 
 pub struct Repl {
@@ -42,7 +45,10 @@ pub struct Repl {
     prelude: PreludeTier,
     stack_size: StackSize,
     led_on: bool,
+    switch_pressed: bool,
+    view_mode: ViewMode,
     input_ref: NodeRef,
+    cli_input_ref: NodeRef,
 }
 
 impl Repl {
@@ -62,7 +68,6 @@ impl Repl {
             self.emulator.write_byte(addr as u32, byte);
         }
         self.emulator.set_pc(0);
-        // Configure stack size
         self.emulator.set_reg(4, self.stack_size.initial_sp());
 
         self.output.clear();
@@ -70,8 +75,9 @@ impl Repl {
         self.loaded = true;
         self.waiting_for_input = false;
         self.led_on = false;
+        self.switch_pressed = false;
         self.status = format!(
-            "Loaded {} bytes ({}, {} stack). Running...",
+            "Loaded {} bytes ({}, {} stack).",
             result.bytes.len(),
             self.prelude.label(),
             self.stack_size.label(),
@@ -79,6 +85,18 @@ impl Repl {
 
         self.emulator.resume();
         self.running = true;
+    }
+
+    fn send_input(&mut self) {
+        for line in self.input.lines() {
+            if line.trim().is_empty() {
+                continue;
+            }
+            for byte in line.bytes() {
+                self.uart_tx_queue.push_back(byte);
+            }
+            self.uart_tx_queue.push_back(b'\n');
+        }
     }
 }
 
@@ -101,7 +119,10 @@ impl Component for Repl {
             prelude: PreludeTier::Standard,
             stack_size: StackSize::ThreeKb,
             led_on: false,
+            switch_pressed: false,
+            view_mode: ViewMode::Cli,
             input_ref: NodeRef::default(),
+            cli_input_ref: NodeRef::default(),
         }
     }
 
@@ -120,12 +141,9 @@ impl Component for Repl {
                     return false;
                 }
 
-                // Feed queued bytes to UART using poll-before-feed:
-                // check RX ready bit is clear before sending next byte
-                // (matching cor24-run CLI behavior)
+                // Feed queued bytes: poll-before-feed (match cor24-run)
                 let mut bytes_fed = 0u32;
                 while !self.uart_tx_queue.is_empty() && bytes_fed < 256 {
-                    // Check if previous byte was consumed
                     let status = self.emulator.read_byte(0xFF0101);
                     if status & 0x01 != 0 {
                         self.emulator.run_batch(50);
@@ -142,12 +160,10 @@ impl Component for Repl {
 
                 let result = self.emulator.run_batch(BATCH_SIZE);
 
-                // Update LED state
                 if result.led_changed {
                     self.led_on = self.emulator.get_led() & 1 != 0;
                 }
 
-                // Capture UART output
                 let uart = self.emulator.get_uart_output().to_string();
                 if uart != self.output {
                     self.output = uart;
@@ -163,7 +179,6 @@ impl Component for Repl {
                             self.waiting_for_input = true;
                             self.status = "Ready.".into();
                         } else {
-                            // Yield to browser render thread
                             let link = ctx.link().clone();
                             Timeout::new(10, move || link.send_message(Msg::Tick)).forget();
                         }
@@ -200,21 +215,9 @@ impl Component for Repl {
 
             Msg::Eval => {
                 if !self.loaded {
-                    self.status = "Interpreter not loaded yet.".into();
                     return true;
                 }
-
-                // Send input line by line (runtime handles ;; comments)
-                for line in self.input.lines() {
-                    if line.trim().is_empty() {
-                        continue;
-                    }
-                    for byte in line.bytes() {
-                        self.uart_tx_queue.push_back(byte);
-                    }
-                    self.uart_tx_queue.push_back(b'\n');
-                }
-
+                self.send_input();
                 self.status = "Evaluating...".into();
                 self.waiting_for_input = false;
                 if !self.running {
@@ -222,7 +225,19 @@ impl Component for Repl {
                     self.running = true;
                     ctx.link().send_message(Msg::Tick);
                 }
+                // In CLI mode, clear the input after sending
+                if self.view_mode == ViewMode::Cli {
+                    self.input.clear();
+                }
                 true
+            }
+
+            Msg::CliKeyDown(e) => {
+                if e.key() == "Enter" && !e.shift_key() {
+                    e.prevent_default();
+                    ctx.link().send_message(Msg::Eval);
+                }
+                false
             }
 
             Msg::SetPrelude(tier) => {
@@ -261,13 +276,10 @@ impl Component for Repl {
             Msg::LoadDemo(index) => {
                 if let Some(demo) = DEMOS.get(index) {
                     self.input = demo.source.trim().to_string();
-
-                    // Auto-select required prelude and stack
                     let needs_reload = demo.prelude != self.prelude
                         || demo.stack != self.stack_size;
                     self.prelude = demo.prelude;
                     self.stack_size = demo.stack;
-
                     if needs_reload {
                         self.running = false;
                         self.load_binary();
@@ -275,19 +287,40 @@ impl Component for Repl {
                             ctx.link().send_message(Msg::Tick);
                         }
                     }
+                    // Switch to Split view for demos (multi-line code)
+                    self.view_mode = ViewMode::Split;
                 }
+                true
+            }
+
+            Msg::ToggleView => {
+                self.view_mode = match self.view_mode {
+                    ViewMode::Cli => ViewMode::Split,
+                    ViewMode::Split => ViewMode::Cli,
+                };
+                true
+            }
+
+            Msg::ToggleSwitch => {
+                self.switch_pressed = !self.switch_pressed;
+                self.emulator.set_button_pressed(self.switch_pressed);
+                true
+            }
+
+            Msg::ClearOutput => {
+                self.emulator.clear_uart_output();
+                self.output.clear();
                 true
             }
         }
     }
 
     fn view(&self, ctx: &Context<Self>) -> Html {
-        let on_input = ctx.link().callback(|e: InputEvent| {
-            let target: HtmlTextAreaElement = e.target_unchecked_into();
-            Msg::InputChanged(target.value())
-        });
         let on_eval = ctx.link().callback(|_| Msg::Eval);
         let on_reset = ctx.link().callback(|_| Msg::Reset);
+        let on_toggle_view = ctx.link().callback(|_| Msg::ToggleView);
+        let on_toggle_switch = ctx.link().callback(|_| Msg::ToggleSwitch);
+        let on_clear = ctx.link().callback(|_| Msg::ClearOutput);
 
         let on_prelude = ctx.link().callback(|e: Event| {
             let target: web_sys::HtmlSelectElement = e.target_unchecked_into();
@@ -317,6 +350,10 @@ impl Component for Repl {
         });
 
         let eval_disabled = (!self.waiting_for_input && self.running) || !self.loaded;
+        let view_label = match self.view_mode {
+            ViewMode::Cli => "Split",
+            ViewMode::Split => "CLI",
+        };
 
         html! {
             <div class="repl-container">
@@ -387,44 +424,81 @@ impl Component for Repl {
                             })}
                         </select>
                     </label>
+                    <button class="toolbar-btn" onclick={on_toggle_view}>{ view_label }</button>
                     <button class="toolbar-btn" onclick={on_reset}>{"Reset"}</button>
+                    <button class="toolbar-btn" onclick={on_clear}>{"Clear"}</button>
                     <span class="toolbar-desc">{ self.prelude.description() }</span>
                 </div>
 
-                // Main content
-                <div class="repl-main">
-                    // Output + Input
-                    <div class="repl-io">
-                        <div class="output-panel">
-                            <div class="panel-header">{"Output"}</div>
-                            <pre class="output">{ &self.output }</pre>
-                        </div>
-                        <div class="input-panel">
-                            <div class="panel-header">{"Input"}</div>
-                            <textarea
-                                ref={self.input_ref.clone()}
-                                class="input"
-                                value={self.input.clone()}
-                                oninput={on_input}
-                                placeholder="(+ 1 2)"
-                                spellcheck="false"
-                            />
-                            <div class="controls">
-                                <button class="eval-btn" onclick={on_eval} disabled={eval_disabled}>
-                                    {"Eval"}
-                                </button>
-                                <span class="status">{ &self.status }</span>
-                            </div>
-                        </div>
-                    </div>
+                // Main area (output is always full-size)
+                <div class="main-area">
+                    // Output panel (full size)
+                    <pre class="output">{ &self.output }</pre>
 
-                    // Sidebar: hardware widgets
-                    <div class="sidebar">
-                        <div class="hw-widget">
+                    // Floating hardware panel (top-right)
+                    <div class="hw-float">
+                        <div class="hw-row">
                             <span class="hw-label">{"D2"}</span>
                             <div class={if self.led_on { "led led-on" } else { "led led-off" }} />
                         </div>
+                        <div class="hw-row">
+                            <span class="hw-label">{"S2"}</span>
+                            <div class={if self.switch_pressed { "switch switch-on" } else { "switch switch-off" }}
+                                 onclick={on_toggle_switch} />
+                        </div>
                     </div>
+
+                    // Input area depends on view mode
+                    { match self.view_mode {
+                        ViewMode::Cli => {
+                            let on_cli_input = ctx.link().callback(|e: InputEvent| {
+                                let target: HtmlInputElement = e.target_unchecked_into();
+                                Msg::InputChanged(target.value())
+                            });
+                            let on_keydown = ctx.link().callback(Msg::CliKeyDown);
+                            html! {
+                                <div class="cli-input-bar">
+                                    <span class="cli-prompt">{"> "}</span>
+                                    <input
+                                        ref={self.cli_input_ref.clone()}
+                                        type="text"
+                                        class="cli-input"
+                                        value={self.input.clone()}
+                                        oninput={on_cli_input}
+                                        onkeydown={on_keydown}
+                                        placeholder="(+ 1 2)"
+                                        spellcheck="false"
+                                        disabled={eval_disabled}
+                                    />
+                                    <span class="cli-status">{ &self.status }</span>
+                                </div>
+                            }
+                        }
+                        ViewMode::Split => {
+                            let on_textarea = ctx.link().callback(|e: InputEvent| {
+                                let target: HtmlTextAreaElement = e.target_unchecked_into();
+                                Msg::InputChanged(target.value())
+                            });
+                            html! {
+                                <div class="split-input-overlay">
+                                    <textarea
+                                        ref={self.input_ref.clone()}
+                                        class="split-textarea"
+                                        value={self.input.clone()}
+                                        oninput={on_textarea}
+                                        placeholder="(+ 1 2)"
+                                        spellcheck="false"
+                                    />
+                                    <div class="split-controls">
+                                        <button class="eval-btn" onclick={on_eval} disabled={eval_disabled}>
+                                            {"Eval"}
+                                        </button>
+                                        <span class="status">{ &self.status }</span>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }}
                 </div>
 
                 <style>{include_str!("repl.css")}</style>
