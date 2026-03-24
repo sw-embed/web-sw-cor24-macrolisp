@@ -49,17 +49,22 @@ pub struct Repl {
     switch_pressed: bool,
     view_mode: ViewMode,
     selected_demo: Option<usize>,
-    /// Address of _heap_next in SRAM (from assembly labels)
-    heap_next_addr: Option<u32>,
-    /// Current heap usage (cells)
+    /// Symbol addresses from assembly labels
+    addr_heap_next: Option<u32>,
+    addr_sym_count: Option<u32>,
+    addr_str_pool_next: Option<u32>,
+    /// Live memory readings
     heap_used: u32,
-    /// Current stack depth (bytes)
+    sym_used: u32,
+    str_pool_used: u32,
     stack_depth: u32,
     input_ref: NodeRef,
     cli_input_ref: NodeRef,
 }
 
-const HEAP_SIZE: u32 = 4096;
+const HEAP_SIZE: u32 = 32768;
+const MAX_SYMBOLS: u32 = 512;
+const STR_POOL_SIZE: u32 = 8192;
 
 impl Repl {
     fn load_binary(&mut self) {
@@ -80,8 +85,10 @@ impl Repl {
         self.emulator.set_pc(0);
         self.emulator.set_reg(4, self.stack_size.initial_sp());
 
-        // Capture heap_next address from symbol table
-        self.heap_next_addr = result.labels.get("_heap_next").copied();
+        // Capture memory pool addresses from symbol table
+        self.addr_heap_next = result.labels.get("_heap_next").copied();
+        self.addr_sym_count = result.labels.get("_sym_count").copied();
+        self.addr_str_pool_next = result.labels.get("_str_pool_next").copied();
 
         self.output.clear();
         self.uart_tx_queue.clear();
@@ -90,6 +97,8 @@ impl Repl {
         self.led_on = false;
         self.switch_pressed = false;
         self.heap_used = 0;
+        self.sym_used = 0;
+        self.str_pool_used = 0;
         self.stack_depth = 0;
         self.status = format!(
             "Loaded {} bytes ({}, {} stack).",
@@ -154,8 +163,12 @@ impl Component for Repl {
             switch_pressed: false,
             view_mode: ViewMode::Cli,
             selected_demo: None,
-            heap_next_addr: None,
+            addr_heap_next: None,
+            addr_sym_count: None,
+            addr_str_pool_next: None,
             heap_used: 0,
+            sym_used: 0,
+            str_pool_used: 0,
             stack_depth: 0,
             input_ref: NodeRef::default(),
             cli_input_ref: NodeRef::default(),
@@ -200,13 +213,18 @@ impl Component for Repl {
                     self.led_on = self.emulator.get_led() & 1 != 0;
                 }
 
-                // Sample memory usage
-                if let Some(addr) = self.heap_next_addr {
+                // Sample memory usage from runtime globals
+                if let Some(addr) = self.addr_heap_next {
                     self.heap_used = self.emulator.read_word(addr);
                 }
+                if let Some(addr) = self.addr_sym_count {
+                    self.sym_used = self.emulator.read_word(addr);
+                }
+                if let Some(addr) = self.addr_str_pool_next {
+                    self.str_pool_used = self.emulator.read_word(addr);
+                }
                 let sp = self.emulator.get_reg(4);
-                let initial_sp = self.stack_size.initial_sp();
-                self.stack_depth = initial_sp.saturating_sub(sp);
+                self.stack_depth = self.stack_size.initial_sp().saturating_sub(sp);
 
                 let uart = self.emulator.get_uart_output().to_string();
                 if uart != self.output {
@@ -513,6 +531,8 @@ impl Component for Repl {
                         </div>
                         <div class="hw-sep" />
                         { self.view_gauge("Heap", self.heap_used, HEAP_SIZE) }
+                        { self.view_gauge("Syms", self.sym_used, MAX_SYMBOLS) }
+                        { self.view_gauge("Strs", self.str_pool_used, STR_POOL_SIZE) }
                         { self.view_gauge("Stack", self.stack_depth, self.stack_size.bytes()) }
                     </div>
 
