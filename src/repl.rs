@@ -188,10 +188,9 @@ impl Component for Repl {
                     return true;
                 }
 
-                // Filter out comment-only and blank lines before sending to UART
+                // Send input line by line (runtime handles ;; comments)
                 for line in self.input.lines() {
-                    let trimmed = line.trim();
-                    if trimmed.is_empty() || trimmed.starts_with(";;") {
+                    if line.trim().is_empty() {
                         continue;
                     }
                     for byte in line.bytes() {
