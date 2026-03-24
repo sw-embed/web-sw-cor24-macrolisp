@@ -1,6 +1,6 @@
 number = 3
 slug = "repl"
-status = "pending"
+status = "in-progress"
 description = "Build interactive REPL component"
 role = "legacy"
 context_files = []

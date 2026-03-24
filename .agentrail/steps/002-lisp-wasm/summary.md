@@ -1,0 +1,1 @@
+Got the Lisp evaluator running in WASM with interactive REPL. Fixed cor24-emulator standalone feature conflict, recompiled tml24c with REPL loop and prelude, implemented byte-at-a-time UART feeding, and prompt-based idle detection. All tests pass, (+ 1 2) => 3 works interactively.

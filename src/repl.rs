@@ -5,21 +5,26 @@ use gloo::timers::callback::Timeout;
 use web_sys::HtmlTextAreaElement;
 use yew::prelude::*;
 
-/// Pre-compiled tml24c COR24 assembly (from tc24r)
-const TML24C_ASM: &str = include_str!("../asm/tml24c.s");
+use crate::config::{PreludeTier, StackSize};
 
 /// Batch size per animation frame tick
 const BATCH_SIZE: u64 = 50_000;
 
 pub enum Msg {
-    /// Initialize: assemble and load the interpreter binary
+    /// Assemble and load the selected binary
     Init,
     /// Run a batch of CPU instructions
     Tick,
     /// User typed in the input area
     InputChanged(String),
-    /// User clicked Eval (send input to UART)
+    /// User clicked Eval
     Eval,
+    /// User changed prelude tier
+    SetPrelude(PreludeTier),
+    /// User changed stack size
+    SetStack(StackSize),
+    /// Reset emulator with current config
+    Reset,
 }
 
 pub struct Repl {
@@ -29,11 +34,49 @@ pub struct Repl {
     status: String,
     running: bool,
     loaded: bool,
-    /// Waiting for UART input (interpreter in getc_uart polling loop)
     waiting_for_input: bool,
-    /// Pending UART input bytes to feed one at a time
     uart_tx_queue: VecDeque<u8>,
+    prelude: PreludeTier,
+    stack_size: StackSize,
+    led_on: bool,
     input_ref: NodeRef,
+}
+
+impl Repl {
+    fn load_binary(&mut self) {
+        let asm_source = self.prelude.assembly();
+        let mut asm = Assembler::new();
+        let result = asm.assemble(asm_source);
+
+        if !result.errors.is_empty() {
+            self.status = format!("Assembly failed: {}", result.errors[0]);
+            self.loaded = false;
+            return;
+        }
+
+        self.emulator.hard_reset();
+        for (addr, &byte) in result.bytes.iter().enumerate() {
+            self.emulator.write_byte(addr as u32, byte);
+        }
+        self.emulator.set_pc(0);
+        // Configure stack size
+        self.emulator.set_reg(4, self.stack_size.initial_sp());
+
+        self.output.clear();
+        self.uart_tx_queue.clear();
+        self.loaded = true;
+        self.waiting_for_input = false;
+        self.led_on = false;
+        self.status = format!(
+            "Loaded {} bytes ({}, {} stack). Running...",
+            result.bytes.len(),
+            self.prelude.label(),
+            self.stack_size.label(),
+        );
+
+        self.emulator.resume();
+        self.running = true;
+    }
 }
 
 impl Component for Repl {
@@ -41,7 +84,6 @@ impl Component for Repl {
     type Properties = ();
 
     fn create(ctx: &Context<Self>) -> Self {
-        // Trigger init on next tick
         ctx.link().send_message(Msg::Init);
 
         Self {
@@ -53,6 +95,9 @@ impl Component for Repl {
             loaded: false,
             waiting_for_input: false,
             uart_tx_queue: VecDeque::new(),
+            prelude: PreludeTier::Standard,
+            stack_size: StackSize::ThreeKb,
+            led_on: false,
             input_ref: NodeRef::default(),
         }
     }
@@ -60,31 +105,10 @@ impl Component for Repl {
     fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
             Msg::Init => {
-                let mut asm = Assembler::new();
-                let result = asm.assemble(TML24C_ASM);
-
-                if !result.errors.is_empty() {
-                    self.status = format!("Assembly failed: {}", result.errors[0]);
-                    return true;
+                self.load_binary();
+                if self.loaded {
+                    ctx.link().send_message(Msg::Tick);
                 }
-
-                // Load assembled binary into emulator
-                self.emulator.hard_reset();
-                for (addr, &byte) in result.bytes.iter().enumerate() {
-                    self.emulator.write_byte(addr as u32, byte);
-                }
-                self.emulator.set_pc(0);
-
-                self.status = format!(
-                    "Loaded {} bytes. Running interpreter...",
-                    result.bytes.len()
-                );
-                self.loaded = true;
-
-                // Start running the interpreter
-                self.emulator.resume();
-                self.running = true;
-                ctx.link().send_message(Msg::Tick);
                 true
             }
 
@@ -93,15 +117,17 @@ impl Component for Repl {
                     return false;
                 }
 
-                // Feed next queued byte to UART if CPU is ready for it
-                if !self.uart_tx_queue.is_empty() {
-                    if let Some(&byte) = self.uart_tx_queue.front() {
-                        self.emulator.send_uart_byte(byte);
-                        self.uart_tx_queue.pop_front();
-                    }
+                // Feed next queued byte to UART if available
+                if let Some(byte) = self.uart_tx_queue.pop_front() {
+                    self.emulator.send_uart_byte(byte);
                 }
 
                 let result = self.emulator.run_batch(BATCH_SIZE);
+
+                // Update LED state
+                if result.led_changed {
+                    self.led_on = self.emulator.get_led() & 1 != 0;
+                }
 
                 // Capture UART output
                 let uart = self.emulator.get_uart_output().to_string();
@@ -111,7 +137,6 @@ impl Component for Repl {
 
                 match result.reason {
                     StopReason::CycleLimit => {
-                        // Detect REPL prompt ">" at end of output = waiting for input
                         let at_prompt = self.uart_tx_queue.is_empty()
                             && self.output.ends_with("> ");
 
@@ -120,14 +145,14 @@ impl Component for Repl {
                             self.waiting_for_input = true;
                             self.status = "Ready.".into();
                         } else {
-                            // More work to do — schedule next tick
                             let link = ctx.link().clone();
                             Timeout::new(0, move || link.send_message(Msg::Tick)).forget();
                         }
                     }
                     StopReason::Halted => {
                         self.running = false;
-                        self.status = "Halted.".into();
+                        self.waiting_for_input = false;
+                        self.status = "Program finished.".into();
                     }
                     StopReason::InvalidInstruction(byte) => {
                         self.running = false;
@@ -160,7 +185,6 @@ impl Component for Repl {
                     return true;
                 }
 
-                // Queue input bytes for feeding one at a time during ticks
                 for byte in self.input.bytes() {
                     self.uart_tx_queue.push_back(byte);
                 }
@@ -175,6 +199,39 @@ impl Component for Repl {
                 }
                 true
             }
+
+            Msg::SetPrelude(tier) => {
+                if tier != self.prelude {
+                    self.prelude = tier;
+                    self.running = false;
+                    self.load_binary();
+                    if self.loaded {
+                        ctx.link().send_message(Msg::Tick);
+                    }
+                }
+                true
+            }
+
+            Msg::SetStack(size) => {
+                if size != self.stack_size {
+                    self.stack_size = size;
+                    self.running = false;
+                    self.load_binary();
+                    if self.loaded {
+                        ctx.link().send_message(Msg::Tick);
+                    }
+                }
+                true
+            }
+
+            Msg::Reset => {
+                self.running = false;
+                self.load_binary();
+                if self.loaded {
+                    ctx.link().send_message(Msg::Tick);
+                }
+                true
+            }
         }
     }
 
@@ -183,119 +240,110 @@ impl Component for Repl {
             let target: HtmlTextAreaElement = e.target_unchecked_into();
             Msg::InputChanged(target.value())
         });
-
         let on_eval = ctx.link().callback(|_| Msg::Eval);
+        let on_reset = ctx.link().callback(|_| Msg::Reset);
+
+        let on_prelude = ctx.link().callback(|e: Event| {
+            let target: web_sys::HtmlSelectElement = e.target_unchecked_into();
+            let tier = match target.value().as_str() {
+                "bare" => PreludeTier::Bare,
+                "minimal" => PreludeTier::Minimal,
+                "full" => PreludeTier::Full,
+                _ => PreludeTier::Standard,
+            };
+            Msg::SetPrelude(tier)
+        });
+
+        let on_stack = ctx.link().callback(|e: Event| {
+            let target: web_sys::HtmlSelectElement = e.target_unchecked_into();
+            let size = match target.value().as_str() {
+                "8" => StackSize::EightKb,
+                _ => StackSize::ThreeKb,
+            };
+            Msg::SetStack(size)
+        });
+
+        let eval_disabled = (!self.waiting_for_input && self.running) || !self.loaded;
 
         html! {
-            <div class="repl">
-                <div class="output-panel">
-                    <div class="panel-header">{"Output"}</div>
-                    <pre class="output">{ &self.output }</pre>
+            <div class="repl-container">
+                // Toolbar
+                <div class="toolbar">
+                    <label class="toolbar-item">
+                        {"Prelude"}
+                        <select onchange={on_prelude}>
+                            { for PreludeTier::ALL.iter().map(|t| {
+                                let val = match t {
+                                    PreludeTier::Bare => "bare",
+                                    PreludeTier::Minimal => "minimal",
+                                    PreludeTier::Standard => "standard",
+                                    PreludeTier::Full => "full",
+                                };
+                                html! {
+                                    <option value={val} selected={*t == self.prelude}>
+                                        { t.label() }
+                                    </option>
+                                }
+                            })}
+                        </select>
+                    </label>
+                    <label class="toolbar-item">
+                        {"Stack"}
+                        <select onchange={on_stack}>
+                            { for StackSize::ALL.iter().map(|s| {
+                                let val = match s {
+                                    StackSize::ThreeKb => "3",
+                                    StackSize::EightKb => "8",
+                                };
+                                html! {
+                                    <option value={val} selected={*s == self.stack_size}>
+                                        { s.label() }
+                                    </option>
+                                }
+                            })}
+                        </select>
+                    </label>
+                    <button class="toolbar-btn" onclick={on_reset}>{"Reset"}</button>
+                    <span class="toolbar-desc">{ self.prelude.description() }</span>
                 </div>
-                <div class="input-panel">
-                    <div class="panel-header">{"Input"}</div>
-                    <textarea
-                        ref={self.input_ref.clone()}
-                        class="input"
-                        value={self.input.clone()}
-                        oninput={on_input}
-                        placeholder="(+ 1 2)"
-                        spellcheck="false"
-                    />
-                    <div class="controls">
-                        <button onclick={on_eval} disabled={(!self.waiting_for_input && self.running) || !self.loaded}>
-                            {"Eval"}
-                        </button>
-                        <span class="status">{ &self.status }</span>
+
+                // Main content
+                <div class="repl-main">
+                    // Output + Input
+                    <div class="repl-io">
+                        <div class="output-panel">
+                            <div class="panel-header">{"Output"}</div>
+                            <pre class="output">{ &self.output }</pre>
+                        </div>
+                        <div class="input-panel">
+                            <div class="panel-header">{"Input"}</div>
+                            <textarea
+                                ref={self.input_ref.clone()}
+                                class="input"
+                                value={self.input.clone()}
+                                oninput={on_input}
+                                placeholder="(+ 1 2)"
+                                spellcheck="false"
+                            />
+                            <div class="controls">
+                                <button class="eval-btn" onclick={on_eval} disabled={eval_disabled}>
+                                    {"Eval"}
+                                </button>
+                                <span class="status">{ &self.status }</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    // Sidebar: hardware widgets
+                    <div class="sidebar">
+                        <div class="hw-widget">
+                            <span class="hw-label">{"D2"}</span>
+                            <div class={if self.led_on { "led led-on" } else { "led led-off" }} />
+                        </div>
                     </div>
                 </div>
 
-                <style>{r#"
-                    .repl {
-                        display: flex;
-                        flex-direction: column;
-                        flex: 1;
-                        overflow: hidden;
-                        padding: 12px 20px;
-                        gap: 12px;
-                    }
-                    .panel-header {
-                        font-size: 11px;
-                        text-transform: uppercase;
-                        letter-spacing: 0.1em;
-                        color: var(--dim);
-                        margin-bottom: 6px;
-                    }
-                    .output-panel {
-                        flex: 1;
-                        display: flex;
-                        flex-direction: column;
-                        min-height: 0;
-                    }
-                    .output {
-                        flex: 1;
-                        background: var(--surface);
-                        border: 1px solid var(--border);
-                        border-radius: 6px;
-                        padding: 12px;
-                        overflow-y: auto;
-                        font-size: 13px;
-                        line-height: 1.5;
-                        color: var(--green);
-                        white-space: pre-wrap;
-                        word-break: break-all;
-                        margin: 0;
-                    }
-                    .input-panel {
-                        display: flex;
-                        flex-direction: column;
-                    }
-                    .input {
-                        background: var(--surface);
-                        border: 1px solid var(--border);
-                        border-radius: 6px;
-                        padding: 12px;
-                        color: var(--text);
-                        font-family: var(--mono);
-                        font-size: 13px;
-                        line-height: 1.5;
-                        resize: vertical;
-                        min-height: 60px;
-                        max-height: 200px;
-                        outline: none;
-                    }
-                    .input:focus {
-                        border-color: var(--accent);
-                    }
-                    .controls {
-                        display: flex;
-                        align-items: center;
-                        gap: 12px;
-                        margin-top: 8px;
-                    }
-                    button {
-                        background: var(--accent);
-                        color: var(--bg);
-                        border: none;
-                        border-radius: 4px;
-                        padding: 6px 20px;
-                        font-family: var(--mono);
-                        font-size: 13px;
-                        font-weight: 600;
-                        cursor: pointer;
-                    }
-                    button:hover:not(:disabled) {
-                        filter: brightness(1.1);
-                    }
-                    button:disabled {
-                        opacity: 0.4;
-                        cursor: not-allowed;
-                    }
-                    .status {
-                        font-size: 11px;
-                        color: var(--dim);
-                    }
-                "#}</style>
+                <style>{include_str!("repl.css")}</style>
             </div>
         }
     }
