@@ -242,7 +242,7 @@ impl Component for Repl {
                             self.status = "Ready.".into();
                         } else {
                             let link = ctx.link().clone();
-                            Timeout::new(10, move || link.send_message(Msg::Tick)).forget();
+                            Timeout::new(25, move || link.send_message(Msg::Tick)).forget();
                         }
                     }
                     StopReason::Halted => {
