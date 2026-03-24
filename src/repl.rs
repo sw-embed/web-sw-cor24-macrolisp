@@ -48,6 +48,7 @@ pub struct Repl {
     led_on: bool,
     switch_pressed: bool,
     view_mode: ViewMode,
+    selected_demo: Option<usize>,
     /// Address of _heap_next in SRAM (from assembly labels)
     heap_next_addr: Option<u32>,
     /// Current heap usage (cells)
@@ -152,6 +153,7 @@ impl Component for Repl {
             led_on: false,
             switch_pressed: false,
             view_mode: ViewMode::Cli,
+            selected_demo: None,
             heap_next_addr: None,
             heap_used: 0,
             stack_depth: 0,
@@ -317,6 +319,7 @@ impl Component for Repl {
 
             Msg::LoadDemo(index) => {
                 if let Some(demo) = DEMOS.get(index) {
+                    self.selected_demo = Some(index);
                     self.input = demo.source.trim().to_string();
                     self.prelude = demo.prelude;
                     self.stack_size = demo.stack;
@@ -350,6 +353,7 @@ impl Component for Repl {
                 self.emulator.clear_uart_output();
                 self.output.clear();
                 self.input.clear();
+                self.selected_demo = None;
                 true
             }
 
@@ -454,7 +458,7 @@ impl Component for Repl {
                     <label class="toolbar-item">
                         {"Demo"}
                         <select onchange={on_demo}>
-                            <option value="" selected=true>{"— select —"}</option>
+                            <option value="" selected={self.selected_demo.is_none()}>{"— select —"}</option>
                             { for PreludeTier::ALL.iter().filter(|tier| {
                                 DEMOS.iter().any(|d| d.prelude == **tier)
                             }).map(|tier| {
@@ -469,8 +473,9 @@ impl Component for Repl {
                                                 } else {
                                                     ""
                                                 };
+                                                let sel = self.selected_demo == Some(i);
                                                 html! {
-                                                    <option value={i.to_string()}>
+                                                    <option value={i.to_string()} selected={sel}>
                                                         { format!("{}{}", d.title, stack_note) }
                                                     </option>
                                                 }
