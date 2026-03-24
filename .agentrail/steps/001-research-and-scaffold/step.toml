@@ -1,6 +1,6 @@
 number = 1
 slug = "research-and-scaffold"
-status = "pending"
+status = "in-progress"
 description = "Study tml24c at ~/github/sw-vibe-coding/tml24c (read CLAUDE.md, docs/, src/)...."
 role = "production"
 context_files = []

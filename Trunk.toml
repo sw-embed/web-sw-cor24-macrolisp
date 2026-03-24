@@ -1,0 +1,5 @@
+[build]
+dist = "pages"
+
+[serve]
+port = 7402

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiny Macro Lisp — COR24</title>
+    <link data-trunk rel="rust" data-bin="web-tml24c" />
+    <style>
+        :root {
+            --bg: #1e1e2e;
+            --surface: #282840;
+            --border: #3e3e5e;
+            --text: #cdd6f4;
+            --accent: #89b4fa;
+            --green: #a6e3a1;
+            --red: #f38ba8;
+            --dim: #6c7086;
+            --mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--mono);
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+        header {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        header h1 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        header span {
+            font-size: 12px;
+            color: var(--dim);
+        }
+        #app {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tiny Macro Lisp</h1>
+        <span>on COR24</span>
+    </header>
+    <div id="app"></div>
+</body>
+</html>
