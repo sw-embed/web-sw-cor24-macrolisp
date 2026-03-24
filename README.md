@@ -6,7 +6,7 @@ Write Lisp expressions, select a prelude tier, and evaluate — all in the brows
 
 **[Live Demo](https://sw-vibe-coding.github.io/web-tml24c/)**
 
-![web-tml24c screenshot](images/screenshot.png?ts=1774673309000)
+![web-tml24c screenshot](images/screenshot.png?ts=1774674005000)
 
 ## Features
 
