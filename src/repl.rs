@@ -28,7 +28,8 @@ pub enum Msg {
     LoadDemo(usize),
     ToggleView,
     ToggleSwitch,
-    ClearOutput,
+    ClearAll,
+    PauseResume,
     /// Keydown in CLI input (Enter to eval)
     CliKeyDown(KeyboardEvent),
 }
@@ -317,16 +318,13 @@ impl Component for Repl {
             Msg::LoadDemo(index) => {
                 if let Some(demo) = DEMOS.get(index) {
                     self.input = demo.source.trim().to_string();
-                    let needs_reload = demo.prelude != self.prelude
-                        || demo.stack != self.stack_size;
                     self.prelude = demo.prelude;
                     self.stack_size = demo.stack;
-                    if needs_reload {
-                        self.running = false;
-                        self.load_binary();
-                        if self.loaded {
-                            ctx.link().send_message(Msg::Tick);
-                        }
+                    // Always reset emulator for a clean demo run
+                    self.running = false;
+                    self.load_binary();
+                    if self.loaded {
+                        ctx.link().send_message(Msg::Tick);
                     }
                     // Switch to Split view for demos (multi-line code)
                     self.view_mode = ViewMode::Split;
@@ -348,9 +346,26 @@ impl Component for Repl {
                 true
             }
 
-            Msg::ClearOutput => {
+            Msg::ClearAll => {
                 self.emulator.clear_uart_output();
                 self.output.clear();
+                self.input.clear();
+                true
+            }
+
+            Msg::PauseResume => {
+                if self.running {
+                    // Pause
+                    self.running = false;
+                    self.status = "Paused.".into();
+                } else if self.loaded {
+                    // Resume
+                    self.emulator.resume();
+                    self.running = true;
+                    self.waiting_for_input = false;
+                    self.status = "Running...".into();
+                    ctx.link().send_message(Msg::Tick);
+                }
                 true
             }
         }
@@ -361,7 +376,8 @@ impl Component for Repl {
         let on_reset = ctx.link().callback(|_| Msg::Reset);
         let on_toggle_view = ctx.link().callback(|_| Msg::ToggleView);
         let on_toggle_switch = ctx.link().callback(|_| Msg::ToggleSwitch);
-        let on_clear = ctx.link().callback(|_| Msg::ClearOutput);
+        let on_clear = ctx.link().callback(|_| Msg::ClearAll);
+        let on_pause = ctx.link().callback(|_| Msg::PauseResume);
 
         let on_prelude = ctx.link().callback(|e: Event| {
             let target: web_sys::HtmlSelectElement = e.target_unchecked_into();
@@ -466,6 +482,9 @@ impl Component for Repl {
                         </select>
                     </label>
                     <button class="toolbar-btn" onclick={on_toggle_view}>{ view_label }</button>
+                    <button class="toolbar-btn" onclick={on_pause}>
+                        { if self.running { "Pause" } else { "Resume" } }
+                    </button>
                     <button class="toolbar-btn" onclick={on_reset}>{"Reset"}</button>
                     <button class="toolbar-btn" onclick={on_clear}>{"Clear"}</button>
                     <span class="toolbar-desc">{ self.prelude.description() }</span>
