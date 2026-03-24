@@ -25,22 +25,27 @@ Commit your code changes with git.
 
 ### 5. COMPLETE (LAST thing, after committing)
 ```bash
-agentrail complete --summary "what you accomplished" \
-  --reward 1 \
+agentrail complete --summary "what you accomplished" \\
+  --reward 1 \\
   --actions "tools and approach used"
 ```
 If the step failed: `--reward -1 --failure-mode "what went wrong"`
 If the saga is finished: add `--done`
 
-Do NOT skip steps 1, 2, or 5. The next session depends on your trajectory recording.
+### 6. STOP (after complete, DO NOT continue working)
+Do NOT make any further code changes after running agentrail complete.
+Any changes after complete are untracked and invisible to the next session.
+If you see more work to do, it belongs in the NEXT step, not this session.
+
+Do NOT skip any of these steps. The next session depends on your trajectory recording.
 
 ## Project
 
-Web UI for Tiny Macro Lisp on COR24. Browser-based Lisp REPL running on the COR24 emulator. Users write Lisp, compile to COR24, and execute -- all in the browser.
+Web UI for Tiny Macro Lisp on COR24. Browser-based Lisp REPL running on the COR24 emulator.
 
 ## Related Projects
 
-- `~/github/sw-vibe-coding/tml24c` -- The Lisp implementation (C) -- this is what we run in WASM
+- `~/github/sw-vibe-coding/tml24c` -- The Lisp implementation (C)
 - `~/github/sw-vibe-coding/tc24r` -- COR24 compiler (Rust)
 - `~/github/sw-embed/cor24-rs` -- COR24 assembler and emulator (Rust)
 - `~/github/sw-vibe-coding/agentrail-domain-coding` -- Coding skills domain
@@ -51,6 +56,6 @@ Web UI for Tiny Macro Lisp on COR24. Browser-based Lisp REPL running on the COR2
 
 ## Build
 
-Approach TBD (Emscripten for C→WASM or Rust rewrite of Lisp core). See docs/architecture.md once created.
+Approach TBD (Emscripten for C to WASM or Rust rewrite of Lisp core). See docs/architecture.md once created.
 
 Edition 2024 for any Rust code. Never suppress warnings.
