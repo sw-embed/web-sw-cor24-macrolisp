@@ -463,11 +463,7 @@ impl Component for Repl {
         });
 
         let eval_disabled = (!self.waiting_for_input && self.running) || !self.loaded;
-        let status_display = if self.running && !self.waiting_for_input {
-            format!("\u{25e2} {}", self.status) // ◢ spinner indicator
-        } else {
-            self.status.clone()
-        };
+        let show_spinner = self.running && !self.waiting_for_input;
         let view_label = match self.view_mode {
             ViewMode::Cli => "Split",
             ViewMode::Split => "CLI",
@@ -601,7 +597,8 @@ impl Component for Repl {
                                         spellcheck="false"
                                         disabled={eval_disabled}
                                     />
-                                    <span class="cli-status">{ &status_display }</span>
+                                    { if show_spinner { html! { <span class="spinner" /> } } else { html! {} } }
+                                    <span class="cli-status">{ &self.status }</span>
                                 </div>
                             }
                         }
@@ -624,7 +621,8 @@ impl Component for Repl {
                                         <button class="eval-btn" onclick={on_eval} disabled={eval_disabled}>
                                             {"Eval"}
                                         </button>
-                                        <span class="status">{ &status_display }</span>
+                                        { if show_spinner { html! { <span class="spinner" /> } } else { html! {} } }
+                                        <span class="status">{ &self.status }</span>
                                     </div>
                                 </div>
                             }
