@@ -34,9 +34,19 @@ impl PreludeTier {
         match self {
             Self::Bare => include_str!("../asm/repl-bare.s"),
             Self::Minimal => include_str!("../asm/repl-minimal.s"),
-            Self::Standard => include_str!("../asm/repl-standard.s"),
+            // Standard uses snapshot-capable REPL binary
+            Self::Standard => include_str!("../asm/repl-snapshot.s"),
             Self::Full => include_str!("../asm/repl-full.s"),
             Self::Scheme => include_str!("../asm/repl-scheme.s"),
+        }
+    }
+
+    /// Returns the pre-compiled heap snapshot for this prelude tier, if available.
+    /// Loading a snapshot at 0x080000 gives ~10x faster startup vs eval_str.
+    pub fn snapshot(self) -> Option<&'static [u8]> {
+        match self {
+            Self::Standard => Some(include_bytes!("../snapshots/standard.snap")),
+            _ => None,
         }
     }
 

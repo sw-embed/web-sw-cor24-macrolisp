@@ -62,6 +62,13 @@ pub const DEMOS: &[Demo] = &[
         stack: StackSize::ThreeKb,
     },
     Demo {
+        title: "String Formatting",
+        description: "format with ~a interpolation, tables, error messages",
+        source: include_str!("../../tml24c/demos/format.l24"),
+        prelude: PreludeTier::Standard,
+        stack: StackSize::ThreeKb,
+    },
+    Demo {
         title: "Macros",
         description: "let, cond, and, or — core macro system",
         source: include_str!("../../tml24c/demos/macros.l24"),

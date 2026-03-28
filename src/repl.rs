@@ -98,6 +98,13 @@ impl Repl {
         self.emulator.set_pc(0);
         self.emulator.set_reg(4, self.stack_size.initial_sp());
 
+        // Load pre-compiled heap snapshot if available (10x faster startup)
+        if let Some(snap) = self.prelude.snapshot() {
+            for (i, &byte) in snap.iter().enumerate() {
+                self.emulator.write_byte(0x080000 + i as u32, byte);
+            }
+        }
+
         // Capture memory pool addresses from symbol table
         self.addr_heap_next = result.labels.get("_heap_next").copied();
         self.addr_sym_count = result.labels.get("_sym_count").copied();
