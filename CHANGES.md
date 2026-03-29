@@ -1,5 +1,36 @@
 # Changes
 
+## 2026-03-28
+
+### LED & Hardware
+
+- Fix inverted LED display: use `is_led_on()` API (active-low: register 0 = lit)
+- Rename `led_on` → `led_lit` with active-low documentation
+- Add "Switch LED" demo: poll S2 to light D2
+
+### Demos
+
+- Add "String Formatting" demo (format with ~a interpolation)
+- Fix demo ordering: alphabetical within each prelude group
+
+## 2026-03-26
+
+### Features
+
+- Add instruction trace panel: toggle button captures and displays executed instructions
+- Add "Iteration Patterns" demo (Full prelude)
+
+## 2026-03-25
+
+### Deployment
+
+- Add favicon.ico (fix 404 console error)
+
+### Emulator
+
+- Snapshot-accelerated prelude loading (~10x faster Standard prelude startup)
+- Recompile all 5 REPL variants from latest tml24c
+
 ## 2026-03-24
 
 ### Build & Deployment

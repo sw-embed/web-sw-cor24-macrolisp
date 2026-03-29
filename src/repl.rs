@@ -51,7 +51,7 @@ pub struct Repl {
     uart_tx_queue: VecDeque<u8>,
     prelude: PreludeTier,
     stack_size: StackSize,
-    led_on: bool,
+    led_lit: bool, // true when D2 is visually lit (hardware is active-low)
     switch_pressed: bool,
     view_mode: ViewMode,
     selected_demo: Option<usize>,
@@ -116,7 +116,7 @@ impl Repl {
         self.uart_tx_queue.clear();
         self.loaded = true;
         self.waiting_for_input = false;
-        self.led_on = false;
+        self.led_lit = false;
         self.switch_pressed = false;
         self.heap_used = 0;
         self.sym_used = 0;
@@ -224,7 +224,7 @@ impl Component for Repl {
             uart_tx_queue: VecDeque::new(),
             prelude: PreludeTier::Standard,
             stack_size: StackSize::ThreeKb,
-            led_on: false,
+            led_lit: false,
             switch_pressed: false,
             view_mode: ViewMode::Cli,
             selected_demo: None,
@@ -287,7 +287,8 @@ impl Component for Repl {
                 self.cpu_load = self.cpu_load * (1.0 - ALPHA) + utilization * ALPHA;
 
                 if result.led_changed {
-                    self.led_on = self.emulator.get_led() & 1 != 0;
+                    // LED D2 is active-low: register 0 = lit, 1 = dark
+                    self.led_lit = self.emulator.is_led_on();
                 }
 
                 // Sample memory usage from runtime globals
@@ -638,7 +639,7 @@ impl Component for Repl {
                     <div class="hw-float">
                         <div class="hw-row">
                             <span class="hw-label">{"D2"}</span>
-                            <div class={if self.led_on { "led led-on" } else { "led led-off" }} />
+                            <div class={if self.led_lit { "led led-on" } else { "led led-off" }} />
                         </div>
                         <div class="hw-row">
                             <span class="hw-label">{"S2"}</span>

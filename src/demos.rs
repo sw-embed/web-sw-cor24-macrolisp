@@ -125,6 +125,13 @@ pub const DEMOS: &[Demo] = &[
         stack: StackSize::ThreeKb,
     },
     Demo {
+        title: "Switch LED",
+        description: "Poll S2 switch to light D2 — active-low I/O demo",
+        source: include_str!("../../tml24c/demos/switch-led.l24"),
+        prelude: PreludeTier::Standard,
+        stack: StackSize::ThreeKb,
+    },
+    Demo {
         title: "Strings",
         description: "String type: length, append, ref, conversion",
         source: include_str!("../../tml24c/demos/strings.l24"),

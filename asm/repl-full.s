@@ -4070,10 +4070,10 @@ _apply_primitive:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brf     L604
+        brf     L611
         la      r2,L318
         jmp     (r2)
-L604:
+L611:
         lw      r0,12(fp)
         push    r0
         la      r0,_car
@@ -4194,10 +4194,10 @@ L323:
         lc      r0,1
 L324:
         ceq     r0,z
-        brf     L603
+        brf     L610
         la      r2,L322
         jmp     (r2)
-L603:
+L610:
         lw      r0,-3(fp)
         lc      r1,3
         and     r0,r1
@@ -4304,10 +4304,10 @@ L344:
         lw      r0,9(fp)
         lc      r1,3
         ceq     r0,r1
-        brt     L602
+        brt     L609
         la      r2,L346
         jmp     (r2)
-L602:
+L609:
         lw      r0,-6(fp)
         lc      r1,2
         sra     r0,r1
@@ -4351,10 +4351,10 @@ L346:
         lw      r0,9(fp)
         lc      r1,4
         ceq     r0,r1
-        brt     L601
+        brt     L608
         la      r2,L350
         jmp     (r2)
-L601:
+L608:
         lw      r0,-6(fp)
         lc      r1,2
         sra     r0,r1
@@ -4769,10 +4769,10 @@ L400:
         lw      r0,9(fp)
         lc      r1,43
         ceq     r0,r1
-        brt     L600
+        brt     L607
         la      r2,L404
         jmp     (r2)
-L600:
+L607:
         lw      r0,-3(fp)
         lc      r1,3
         and     r0,r1
@@ -4844,10 +4844,10 @@ L404:
         lw      r0,9(fp)
         lc      r1,45
         ceq     r0,r1
-        brt     L599
+        brt     L606
         la      r2,L412
         jmp     (r2)
-L599:
+L606:
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_data
@@ -4867,17 +4867,25 @@ L599:
         add     sp,3
         sw      r0,-15(fp)
         lc      r0,0
-        sw      r0,-274(fp)
+        la      r1,-274
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        sw      r0,-277(fp)
+        la      r1,-277
+        add     r1,fp
+        sw      r0,0(r1)
 L413:
-        lw      r0,-277(fp)
+        la      r1,-277
+        add     r1,fp
+        lw      r0,0(r1)
         lw      r1,-12(fp)
         cls     r0,r1
         mov     r0,c
         ceq     r0,z
         brt     L415
-        lw      r0,-274(fp)
+        la      r1,-274
+        add     r1,fp
+        lw      r0,0(r1)
         la      r1,254
         cls     r0,r1
         mov     r0,c
@@ -4889,12 +4897,17 @@ L415:
         lc      r0,0
 L416:
         ceq     r0,z
-        brf     L598
+        brf     L605
         la      r2,L414
         jmp     (r2)
-L598:
+L605:
         lw      r0,-9(fp)
-        lw      r1,-277(fp)
+        push    r0
+        la      r1,-277
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         lc      r1,126
@@ -4902,7 +4915,9 @@ L598:
         mov     r0,c
         ceq     r0,z
         brt     L419
-        lw      r0,-277(fp)
+        la      r1,-277
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
         lw      r1,-12(fp)
@@ -4916,16 +4931,25 @@ L419:
         lc      r0,0
 L420:
         ceq     r0,z
-        brf     L597
+        brf     L604
         la      r2,L417
         jmp     (r2)
-L597:
-        lw      r0,-277(fp)
+L604:
+        la      r1,-277
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-277(fp)
+        la      r1,-277
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-9(fp)
-        lw      r1,-277(fp)
+        push    r0
+        la      r1,-277
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         lc      r1,97
@@ -4954,16 +4978,18 @@ L423:
         lc      r0,0
 L424:
         ceq     r0,z
-        brf     L596
+        brf     L603
         la      r2,L421
         jmp     (r2)
-L596:
+L603:
         lw      r0,-15(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-280(fp)
+        la      r1,-280
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-15(fp)
         push    r0
         la      r0,_cdr
@@ -4971,47 +4997,65 @@ L596:
         add     sp,3
         sw      r0,-15(fp)
         lc      r0,0
-        sw      r0,-283(fp)
+        la      r1,-283
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        sw      r0,-286(fp)
-        lw      r0,-280(fp)
+        la      r1,-286
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-280
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_is_string
         jal     r1,(r0)
         add     sp,3
         ceq     r0,z
         brt     L425
-        lw      r0,-280(fp)
+        la      r1,-280
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
-        lw      r0,-280(fp)
+        la      r1,-283
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-280
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_string_len
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-286(fp)
+        la      r1,-286
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L426
         jmp     (r2)
 L425:
-        lw      r0,-280(fp)
+        la      r1,-280
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         and     r0,r1
         lc      r1,0
         ceq     r0,r1
-        brt     L595
+        brt     L602
         la      r2,L427
         jmp     (r2)
-L595:
+L602:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
         push    r0
-        lw      r0,-280(fp)
+        la      r1,-280
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_cons
         jal     r1,(r0)
@@ -5022,67 +5066,113 @@ L595:
         la      r0,_apply_primitive
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-289(fp)
-        lw      r0,-289(fp)
+        la      r1,-289
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
-        lw      r0,-289(fp)
+        la      r1,-283
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_string_len
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-286(fp)
-        bra     L428
+        la      r1,-286
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L428
+        jmp     (r2)
 L427:
-        lw      r0,-280(fp)
+        la      r1,-280
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         and     r0,r1
         lc      r1,2
         ceq     r0,r1
-        brf     L430
-        lw      r0,-280(fp)
+        brt     L601
+        la      r2,L430
+        jmp     (r2)
+L601:
+        la      r1,-280
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_sym_name
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
+        la      r1,-283
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        sw      r0,-286(fp)
+        la      r1,-286
+        add     r1,fp
+        sw      r0,0(r1)
 L431:
-        lw      r0,-283(fp)
-        lw      r1,-286(fp)
+        la      r1,-283
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-286
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         ceq     r0,z
         brt     L432
-        lw      r0,-286(fp)
+        la      r1,-286
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-286(fp)
+        la      r1,-286
+        add     r1,fp
+        sw      r0,0(r1)
         bra     L431
 L432:
 L430:
 L428:
 L426:
-        lw      r0,-283(fp)
+        la      r1,-283
+        add     r1,fp
+        lw      r0,0(r1)
         ceq     r0,z
-        brf     L594
+        brf     L600
         la      r2,L434
         jmp     (r2)
-L594:
+L600:
         lc      r0,0
-        sw      r0,-292(fp)
+        la      r1,-292
+        add     r1,fp
+        sw      r0,0(r1)
 L435:
-        lw      r0,-292(fp)
-        lw      r1,-286(fp)
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-286
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         cls     r0,r1
         mov     r0,c
         ceq     r0,z
         brt     L437
-        lw      r0,-274(fp)
+        la      r1,-274
+        add     r1,fp
+        lw      r0,0(r1)
         la      r1,254
         cls     r0,r1
         mov     r0,c
@@ -5094,35 +5184,64 @@ L437:
         lc      r0,0
 L438:
         ceq     r0,z
-        brt     L436
-        lw      r0,-283(fp)
-        lw      r1,-292(fp)
+        brf     L599
+        la      r2,L436
+        jmp     (r2)
+L599:
+        la      r1,-283
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
         la      r0,-271
         add     r0,fp
-        lw      r1,-274(fp)
+        push    r0
+        la      r1,-274
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
-        lw      r0,-274(fp)
+        la      r1,-274
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-274(fp)
-        lw      r0,-292(fp)
+        la      r1,-274
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-292(fp)
+        la      r1,-292
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L435
         jmp     (r2)
 L436:
 L434:
-        bra     L422
+        la      r2,L422
+        jmp     (r2)
 L421:
         lw      r0,-9(fp)
-        lw      r1,-277(fp)
+        push    r0
+        la      r1,-277
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         lc      r1,126
@@ -5130,55 +5249,94 @@ L421:
         brf     L440
         la      r0,-271
         add     r0,fp
-        lw      r1,-274(fp)
+        push    r0
+        la      r1,-274
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,126
         sb      r0,0(r1)
-        lw      r0,-274(fp)
+        la      r1,-274
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-274(fp)
+        la      r1,-274
+        add     r1,fp
+        sw      r0,0(r1)
 L440:
 L422:
-        lw      r0,-277(fp)
+        la      r1,-277
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-277(fp)
-        bra     L418
+        la      r1,-277
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L418
+        jmp     (r2)
 L417:
         lw      r0,-9(fp)
-        lw      r1,-277(fp)
+        push    r0
+        la      r1,-277
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
         la      r0,-271
         add     r0,fp
-        lw      r1,-274(fp)
+        push    r0
+        la      r1,-274
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
-        lw      r0,-274(fp)
+        la      r1,-274
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-274(fp)
-        lw      r0,-277(fp)
+        la      r1,-274
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-277
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-277(fp)
+        la      r1,-277
+        add     r1,fp
+        sw      r0,0(r1)
 L418:
         la      r2,L413
         jmp     (r2)
 L414:
         la      r0,-271
         add     r0,fp
-        lw      r1,-274(fp)
+        push    r0
+        la      r1,-274
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,0
         sb      r0,0(r1)
-        lw      r0,-274(fp)
+        la      r1,-274
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,-271
         add     r0,fp
@@ -5208,41 +5366,73 @@ L444:
         lw      r0,9(fp)
         lc      r1,48
         ceq     r0,r1
-        brt     L593
+        brt     L598
         la      r2,L446
         jmp     (r2)
-L593:
+L598:
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
+        la      r1,-283
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_len
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-295(fp)
+        la      r1,-295
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-6(fp)
         lc      r1,2
         sra     r0,r1
-        sw      r0,-298(fp)
+        la      r1,-298
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
 L447:
-        lw      r0,-301(fp)
-        lw      r1,-295(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-295
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         cls     r0,r1
-        brf     L448
-        lw      r0,-283(fp)
-        lw      r1,-301(fp)
+        brt     L597
+        la      r2,L448
+        jmp     (r2)
+L597:
+        la      r1,-283
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
-        lw      r1,-298(fp)
+        push    r0
+        la      r1,-298
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         ceq     r0,r1
         brf     L450
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,2
         shl     r0,r1
         lc      r1,0
@@ -5250,11 +5440,16 @@ L447:
         la      r2,L316
         jmp     (r2)
 L450:
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-301(fp)
-        bra     L447
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L447
+        jmp     (r2)
 L448:
         lc      r0,1
         push    r0
@@ -5271,35 +5466,45 @@ L446:
         lw      r0,9(fp)
         lc      r1,49
         ceq     r0,r1
-        brt     L592
+        brt     L596
         la      r2,L452
         jmp     (r2)
-L592:
+L596:
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-304(fp)
+        la      r1,-304
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_len
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-307(fp)
+        la      r1,-307
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-6(fp)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-6(fp)
         push    r0
         la      r0,_string_len
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-313(fp)
-        lw      r0,-313(fp)
+        la      r1,-313
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-313
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         ceq     r0,r1
         brf     L454
@@ -5312,41 +5517,80 @@ L592:
         jmp     (r2)
 L454:
         lc      r0,0
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
 L455:
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
-        lw      r0,-307(fp)
-        lw      r1,-313(fp)
+        la      r1,-307
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-313
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         sub     r0,r1
         mov     r1,r0
         pop     r0
         cls     r1,r0
-        brf     L591
+        brf     L595
         la      r2,L456
         jmp     (r2)
-L591:
+L595:
         lc      r0,0
-        sw      r0,-316(fp)
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
 L457:
-        lw      r0,-316(fp)
-        lw      r1,-313(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-313
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         cls     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L459
-        lw      r0,-304(fp)
+        brf     L594
+        la      r2,L459
+        jmp     (r2)
+L594:
+        la      r1,-304
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
-        lw      r0,-301(fp)
-        lw      r1,-316(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
-        lw      r0,-310(fp)
-        lw      r1,-316(fp)
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         mov     r1,r0
@@ -5362,15 +5606,26 @@ L459:
 L460:
         ceq     r0,z
         brt     L458
-        lw      r0,-316(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-316(fp)
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L457
         jmp     (r2)
 L458:
-        lw      r0,-316(fp)
-        lw      r1,-313(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-313
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         ceq     r0,r1
         brf     L462
         lc      r0,1
@@ -5381,10 +5636,14 @@ L458:
         la      r2,L316
         jmp     (r2)
 L462:
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L455
         jmp     (r2)
 L456:
@@ -5399,14 +5658,16 @@ L452:
         lw      r0,9(fp)
         lc      r1,44
         ceq     r0,r1
-        brt     L590
+        brt     L593
         la      r2,L464
         jmp     (r2)
-L590:
+L593:
         lw      r0,-6(fp)
         lc      r1,2
         sra     r0,r1
-        sw      r0,-319(fp)
+        la      r1,-319
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,12(fp)
         push    r0
         la      r0,_cdr
@@ -5422,28 +5683,54 @@ L590:
         add     sp,3
         lc      r1,2
         sra     r0,r1
-        sw      r0,-322(fp)
+        la      r1,-322
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
-        lw      r0,-322(fp)
-        lw      r1,-319(fp)
+        la      r1,-283
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-322
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-319
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         sub     r0,r1
-        sw      r0,-325(fp)
-        lw      r0,-325(fp)
+        la      r1,-325
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
         brf     L466
         lc      r0,0
-        sw      r0,-325(fp)
+        la      r1,-325
+        add     r1,fp
+        sw      r0,0(r1)
 L466:
-        lw      r0,-325(fp)
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
-        lw      r0,-283(fp)
-        lw      r1,-319(fp)
+        la      r1,-283
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-319
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         push    r0
         la      r0,_make_string
@@ -5500,24 +5787,39 @@ L472:
         lw      r0,9(fp)
         lc      r1,21
         ceq     r0,r1
-        brf     L474
+        brt     L592
+        la      r2,L474
+        jmp     (r2)
+L592:
         lw      r0,-3(fp)
         lc      r1,2
         sra     r0,r1
-        sw      r0,-328(fp)
-        lw      r0,-328(fp)
+        la      r1,-328
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-328
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,50
         mul     r0,r1
-        sw      r0,-331(fp)
+        la      r1,-331
+        add     r1,fp
+        sw      r0,0(r1)
 L475:
-        lw      r0,-331(fp)
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r1,r0
         brf     L476
-        lw      r0,-331(fp)
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-331(fp)
+        la      r1,-331
+        add     r1,fp
+        sw      r0,0(r1)
         bra     L475
 L476:
         lc      r0,0
@@ -5651,52 +5953,77 @@ L490:
         lw      r0,9(fp)
         lc      r1,30
         ceq     r0,r1
-        brt     L589
+        brt     L591
         la      r2,L494
         jmp     (r2)
-L589:
+L591:
         lw      r0,-3(fp)
         push    r0
         la      r0,_is_string
         jal     r1,(r0)
         add     sp,3
         ceq     r0,z
-        brf     L588
+        brf     L590
         la      r2,L495
         jmp     (r2)
-L588:
+L590:
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
+        la      r1,-283
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_len
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-295(fp)
+        la      r1,-295
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
 L497:
-        lw      r0,-301(fp)
-        lw      r1,-295(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-295
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         cls     r0,r1
         brf     L498
-        lw      r0,-283(fp)
-        lw      r1,-301(fp)
+        la      r1,-283
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
         la      r0,_putc_uart
         jal     r1,(r0)
         add     sp,3
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-301(fp)
-        bra     L497
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L497
+        jmp     (r2)
 L498:
         bra     L496
 L495:
@@ -5763,10 +6090,10 @@ L504:
         lw      r0,9(fp)
         lc      r1,35
         ceq     r0,r1
-        brt     L587
+        brt     L589
         la      r2,L506
         jmp     (r2)
-L587:
+L589:
         lw      r0,-3(fp)
         lc      r1,3
         and     r0,r1
@@ -5873,10 +6200,10 @@ L516:
         lw      r0,9(fp)
         lc      r1,37
         ceq     r0,r1
-        brt     L586
+        brt     L588
         la      r2,L518
         jmp     (r2)
-L586:
+L588:
         lw      r0,-3(fp)
         lc      r1,3
         and     r0,r1
@@ -5896,33 +6223,45 @@ L520:
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-334(fp)
+        la      r1,-334
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-3(fp)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-337(fp)
-        lw      r0,-334(fp)
+        la      r1,-337
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-334
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         and     r0,r1
         lc      r1,2
         ceq     r0,r1
-        brt     L585
+        brt     L587
         la      r2,L522
         jmp     (r2)
-L585:
+L587:
         la      r1,_global_env
         lw      r0,0(r1)
-        sw      r0,-340(fp)
+        la      r1,-340
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        sw      r0,-343(fp)
+        la      r1,-343
+        add     r1,fp
+        sw      r0,0(r1)
 L523:
-        lw      r0,-340(fp)
+        la      r1,-340
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         lc      r0,0
         lc      r1,2
@@ -5936,39 +6275,63 @@ L523:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L524
-        lw      r0,-340(fp)
+        brf     L586
+        la      r2,L524
+        jmp     (r2)
+L586:
+        la      r1,-340
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-346(fp)
-        lw      r0,-346(fp)
+        la      r1,-346
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-346
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
-        lw      r1,-334(fp)
+        push    r0
+        la      r1,-334
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         ceq     r0,r1
         brf     L526
-        lw      r0,-346(fp)
+        la      r1,-346
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-343(fp)
+        la      r1,-343
+        add     r1,fp
+        sw      r0,0(r1)
         bra     L524
 L526:
-        lw      r0,-340(fp)
+        la      r1,-340
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-340(fp)
+        la      r1,-340
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L523
         jmp     (r2)
 L524:
-        lw      r0,-343(fp)
+        la      r1,-343
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         and     r0,r1
         lc      r1,3
@@ -5976,7 +6339,9 @@ L524:
         mov     r0,c
         ceq     r0,z
         brt     L529
-        lw      r0,-343(fp)
+        la      r1,-343
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_ext_type
         jal     r1,(r0)
@@ -5999,16 +6364,25 @@ L529:
         lc      r0,0
 L530:
         ceq     r0,z
-        brt     L528
-        lw      r0,-343(fp)
+        brf     L585
+        la      r2,L528
+        jmp     (r2)
+L585:
+        la      r1,-343
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_closure_env
         jal     r1,(r0)
         add     sp,3
         push    r0
-        lw      r0,-337(fp)
+        la      r1,-337
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
-        lw      r0,-343(fp)
+        la      r1,-343
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_closure_params
         jal     r1,(r0)
@@ -6017,10 +6391,16 @@ L530:
         la      r0,_env_bind
         jal     r1,(r0)
         add     sp,9
-        sw      r0,-349(fp)
-        lw      r0,-349(fp)
+        la      r1,-349
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-349
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
-        lw      r0,-343(fp)
+        la      r1,-343
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_closure_body
         jal     r1,(r0)
@@ -6060,7 +6440,9 @@ L584:
         sb      r0,0(r1)
         la      r1,_gensym_counter
         lw      r0,0(r1)
-        sw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        sw      r0,0(r1)
         la      r1,_gensym_counter
         lw      r0,0(r1)
         lc      r1,1
@@ -6068,29 +6450,48 @@ L584:
         la      r1,_gensym_counter
         sw      r0,0(r1)
         lc      r0,2
-        sw      r0,-301(fp)
-        lw      r0,-310(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         ceq     r0,r1
         brf     L533
         la      r0,-271
         add     r0,fp
-        lw      r1,-301(fp)
+        push    r0
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,48
         sb      r0,0(r1)
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L534
         jmp     (r2)
 L533:
-        lw      r0,-301(fp)
-        sw      r0,-319(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        la      r1,-319
+        add     r1,fp
+        sw      r0,0(r1)
 L535:
-        lw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r1,r0
         brt     L583
@@ -6099,7 +6500,9 @@ L535:
 L583:
         lc      r0,48
         push    r0
-        lw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,10
         push    r1
         push    r0
@@ -6112,35 +6515,63 @@ L583:
         push    r0
         la      r0,-271
         add     r0,fp
-        lw      r1,-301(fp)
+        push    r0
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
-        lw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,10
         push    r1
         push    r0
         la      r0,__tc24r_div
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-310(fp)
-        lw      r0,-301(fp)
+        la      r1,-310
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L535
         jmp     (r2)
 L536:
-        lw      r0,-319(fp)
-        sw      r0,-316(fp)
-        lw      r0,-301(fp)
+        la      r1,-319
+        add     r1,fp
+        lw      r0,0(r1)
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-352(fp)
+        la      r1,-352
+        add     r1,fp
+        sw      r0,0(r1)
 L537:
-        lw      r0,-316(fp)
-        lw      r1,-352(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-352
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         cls     r0,r1
         brt     L582
         la      r2,L538
@@ -6148,45 +6579,84 @@ L537:
 L582:
         la      r0,-271
         add     r0,fp
-        lw      r1,-316(fp)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
-        sw      r0,-355(fp)
+        la      r1,-355
+        add     r1,fp
+        sw      r0,0(r1)
         la      r0,-271
         add     r0,fp
-        lw      r1,-352(fp)
+        push    r0
+        la      r1,-352
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
         la      r0,-271
         add     r0,fp
-        lw      r1,-316(fp)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
+        la      r1,-355
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
         la      r0,-271
         add     r0,fp
-        lw      r1,-352(fp)
+        push    r0
+        la      r1,-352
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
-        lw      r0,-355(fp)
+        pop     r0
         sb      r0,0(r1)
-        lw      r0,-316(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-316(fp)
-        lw      r0,-352(fp)
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-352
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-352(fp)
+        la      r1,-352
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L537
         jmp     (r2)
 L538:
 L534:
         la      r0,-271
         add     r0,fp
-        lw      r1,-301(fp)
+        push    r0
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,0
@@ -6218,14 +6688,20 @@ L581:
         la      r0,_sym_name
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-358(fp)
-        lw      r0,-358(fp)
+        la      r1,-358
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-358
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_str_len
         jal     r1,(r0)
         add     sp,3
         push    r0
-        lw      r0,-358(fp)
+        la      r1,-358
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_make_string
         jal     r1,(r0)
@@ -6282,16 +6758,24 @@ L544:
         jmp     (r2)
 L580:
         lw      r0,-3(fp)
-        sw      r0,-361(fp)
+        la      r1,-361
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-6(fp)
-        sw      r0,-364(fp)
+        la      r1,-364
+        add     r1,fp
+        sw      r0,0(r1)
         la      r1,_catch_depth
         lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
 L549:
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
         brf     L579
@@ -6300,14 +6784,21 @@ L549:
 L579:
         la      r0,_catch_tags
         push    r0
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         mul     r0,r1
         mov     r1,r0
         pop     r0
         add     r0,r1
         lw      r0,0(r0)
-        lw      r1,-361(fp)
+        push    r0
+        la      r1,-361
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         ceq     r0,r1
         brt     L578
         la      r2,L552
@@ -6334,7 +6825,9 @@ L577:
         pop     r0
         add     r0,r1
         lw      r0,0(r0)
-        sw      r0,-367(fp)
+        la      r1,-367
+        add     r1,fp
+        sw      r0,0(r1)
         la      r1,_wind_depth
         lw      r0,0(r1)
         lc      r1,1
@@ -6347,7 +6840,9 @@ L577:
         lc      r1,2
         or      r0,r1
         push    r0
-        lw      r0,-367(fp)
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_apply_fn
         jal     r1,(r0)
@@ -6358,19 +6853,27 @@ L554:
         lc      r0,1
         la      r1,_catch_throwing
         sw      r0,0(r1)
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         la      r1,_catch_target
         sw      r0,0(r1)
+        la      r1,-364
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
         la      r0,_catch_vals
         push    r0
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         mul     r0,r1
         mov     r1,r0
         pop     r0
         add     r0,r1
         mov     r1,r0
-        lw      r0,-364(fp)
+        pop     r0
         sw      r0,0(r1)
         lc      r0,0
         lc      r1,2
@@ -6380,10 +6883,14 @@ L554:
         la      r2,L316
         jmp     (r2)
 L552:
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L549
         jmp     (r2)
 L550:
@@ -6392,7 +6899,9 @@ L550:
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
-        lw      r0,-361(fp)
+        la      r1,-361
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_print_val
         jal     r1,(r0)
@@ -6418,9 +6927,13 @@ L548:
         jmp     (r2)
 L576:
         lw      r0,-3(fp)
-        sw      r0,-370(fp)
+        la      r1,-370
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-6(fp)
-        sw      r0,-373(fp)
+        la      r1,-373
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,12(fp)
         push    r0
         la      r0,_cdr
@@ -6434,14 +6947,18 @@ L576:
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-367(fp)
+        la      r1,-367
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
         push    r0
-        lw      r0,-370(fp)
+        la      r1,-370
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_apply_fn
         jal     r1,(r0)
@@ -6466,7 +6983,13 @@ L576:
 L558:
         la      r1,_wind_depth
         lw      r0,0(r1)
-        sw      r0,-376(fp)
+        la      r1,-376
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
         la      r0,_wind_after
         push    r0
         la      r1,_wind_depth
@@ -6477,7 +7000,7 @@ L558:
         pop     r0
         add     r0,r1
         mov     r1,r0
-        lw      r0,-367(fp)
+        pop     r0
         sw      r0,0(r1)
         la      r1,_wind_depth
         lw      r0,0(r1)
@@ -6491,13 +7014,19 @@ L558:
         lc      r1,2
         or      r0,r1
         push    r0
-        lw      r0,-373(fp)
+        la      r1,-373
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_apply_fn
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-379(fp)
-        lw      r0,-376(fp)
+        la      r1,-379
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-376
+        add     r1,fp
+        lw      r0,0(r1)
         la      r1,_wind_depth
         sw      r0,0(r1)
         la      r1,_catch_throwing
@@ -6512,13 +7041,17 @@ L558:
         lc      r1,2
         or      r0,r1
         push    r0
-        lw      r0,-367(fp)
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_apply_fn
         jal     r1,(r0)
         add     sp,6
 L560:
-        lw      r0,-379(fp)
+        la      r1,-379
+        add     r1,fp
+        lw      r0,0(r1)
         la      r2,L316
         jmp     (r2)
 L556:
@@ -6532,21 +7065,38 @@ L575:
         lw      r0,-3(fp)
         lc      r1,2
         sra     r0,r1
-        sw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        sw      r0,-382(fp)
-        lw      r0,-310(fp)
+        la      r1,-382
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
         brf     L564
         lc      r0,1
-        sw      r0,-382(fp)
+        la      r1,-382
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        lw      r1,-310(fp)
+        push    r0
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         sub     r0,r1
-        sw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        sw      r0,0(r1)
 L564:
-        lw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         ceq     r0,r1
         brf     L566
@@ -6576,9 +7126,13 @@ L564:
         jmp     (r2)
 L566:
         lc      r0,0
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
 L567:
-        lw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r1,r0
         brt     L574
@@ -6587,7 +7141,9 @@ L567:
 L574:
         lc      r0,48
         push    r0
-        lw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,10
         push    r1
         push    r0
@@ -6600,50 +7156,87 @@ L574:
         push    r0
         la      r0,-271
         add     r0,fp
-        lw      r1,-301(fp)
+        push    r0
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
-        lw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,10
         push    r1
         push    r0
         la      r0,__tc24r_div
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-310(fp)
-        lw      r0,-301(fp)
+        la      r1,-310
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L567
         jmp     (r2)
 L568:
-        lw      r0,-382(fp)
+        la      r1,-382
+        add     r1,fp
+        lw      r0,0(r1)
         ceq     r0,z
         brt     L570
         la      r0,-271
         add     r0,fp
-        lw      r1,-301(fp)
+        push    r0
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,45
         sb      r0,0(r1)
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
 L570:
         lc      r0,0
-        sw      r0,-316(fp)
-        lw      r0,-301(fp)
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-352(fp)
+        la      r1,-352
+        add     r1,fp
+        sw      r0,0(r1)
 L571:
-        lw      r0,-316(fp)
-        lw      r1,-352(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-352
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         cls     r0,r1
         brt     L573
         la      r2,L572
@@ -6651,49 +7244,90 @@ L571:
 L573:
         la      r0,-271
         add     r0,fp
-        lw      r1,-316(fp)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
-        sw      r0,-385(fp)
+        la      r1,-385
+        add     r1,fp
+        sw      r0,0(r1)
         la      r0,-271
         add     r0,fp
-        lw      r1,-352(fp)
+        push    r0
+        la      r1,-352
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
         la      r0,-271
         add     r0,fp
-        lw      r1,-316(fp)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
+        la      r1,-385
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
         la      r0,-271
         add     r0,fp
-        lw      r1,-352(fp)
+        push    r0
+        la      r1,-352
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
-        lw      r0,-385(fp)
+        pop     r0
         sb      r0,0(r1)
-        lw      r0,-316(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-316(fp)
-        lw      r0,-352(fp)
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-352
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-352(fp)
+        la      r1,-352
+        add     r1,fp
+        sw      r0,0(r1)
         la      r2,L571
         jmp     (r2)
 L572:
         la      r0,-271
         add     r0,fp
-        lw      r1,-301(fp)
+        push    r0
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,0
         sb      r0,0(r1)
-        lw      r0,-301(fp)
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,-271
         add     r0,fp
@@ -6732,11 +7366,11 @@ _qq_expand:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L607
+        brt     L614
         lw      r0,9(fp)
-        la      r2,L605
+        la      r2,L612
         jmp     (r2)
-L607:
+L614:
         lw      r0,9(fp)
         push    r0
         la      r0,_car
@@ -6747,7 +7381,7 @@ L607:
         la      r1,_sym_unquote
         lw      r1,0(r1)
         ceq     r0,r1
-        brf     L609
+        brf     L616
         lw      r0,12(fp)
         push    r0
         lw      r0,9(fp)
@@ -6763,9 +7397,9 @@ L607:
         la      r0,_eval
         jal     r1,(r0)
         add     sp,6
-        la      r2,L605
+        la      r2,L612
         jmp     (r2)
-L609:
+L616:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -6780,16 +7414,16 @@ L609:
         sw      r0,-9(fp)
         lw      r0,9(fp)
         sw      r0,-12(fp)
-L610:
+L617:
         lw      r0,-12(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,1
         ceq     r0,r1
-        brt     L628
-        la      r2,L611
+        brt     L635
+        la      r2,L618
         jmp     (r2)
-L628:
+L635:
         lw      r0,-12(fp)
         push    r0
         la      r0,_car
@@ -6803,7 +7437,7 @@ L628:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L614
+        brt     L621
         lw      r0,-15(fp)
         push    r0
         la      r0,_car
@@ -6814,17 +7448,17 @@ L628:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L614
+        brt     L621
         lc      r0,1
-        bra     L615
-L614:
+        bra     L622
+L621:
         lc      r0,0
-L615:
+L622:
         ceq     r0,z
-        brf     L627
-        la      r2,L612
+        brf     L634
+        la      r2,L619
         jmp     (r2)
-L627:
+L634:
         lw      r0,12(fp)
         push    r0
         lw      r0,-15(fp)
@@ -6841,16 +7475,16 @@ L627:
         jal     r1,(r0)
         add     sp,6
         sw      r0,-18(fp)
-L616:
+L623:
         lw      r0,-18(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,1
         ceq     r0,r1
-        brt     L626
-        la      r2,L617
+        brt     L633
+        la      r2,L624
         jmp     (r2)
-L626:
+L633:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -6877,11 +7511,11 @@ L626:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L618
+        brf     L625
         lw      r0,-21(fp)
         sw      r0,-6(fp)
-        bra     L619
-L618:
+        bra     L626
+L625:
         la      r0,_heap_cdr
         push    r0
         lw      r0,-9(fp)
@@ -6895,7 +7529,7 @@ L618:
         mov     r1,r0
         lw      r0,-21(fp)
         sw      r0,0(r1)
-L619:
+L626:
         lw      r0,-21(fp)
         sw      r0,-9(fp)
         lw      r0,-18(fp)
@@ -6904,12 +7538,12 @@ L619:
         jal     r1,(r0)
         add     sp,3
         sw      r0,-18(fp)
-        la      r2,L616
+        la      r2,L623
         jmp     (r2)
-L617:
-        la      r2,L613
+L624:
+        la      r2,L620
         jmp     (r2)
-L612:
+L619:
         lw      r0,12(fp)
         push    r0
         lw      r0,-15(fp)
@@ -6940,11 +7574,11 @@ L612:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L620
+        brf     L627
         lw      r0,-21(fp)
         sw      r0,-6(fp)
-        bra     L621
-L620:
+        bra     L628
+L627:
         la      r0,_heap_cdr
         push    r0
         lw      r0,-9(fp)
@@ -6958,19 +7592,19 @@ L620:
         mov     r1,r0
         lw      r0,-21(fp)
         sw      r0,0(r1)
-L621:
+L628:
         lw      r0,-21(fp)
         sw      r0,-9(fp)
-L613:
+L620:
         lw      r0,-12(fp)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
         sw      r0,-12(fp)
-        la      r2,L610
+        la      r2,L617
         jmp     (r2)
-L611:
+L618:
         lw      r0,-12(fp)
         push    r0
         lc      r0,0
@@ -6985,7 +7619,7 @@ L611:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L624
+        brt     L631
         lw      r0,-9(fp)
         push    r0
         lc      r0,0
@@ -7000,14 +7634,14 @@ L611:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L624
+        brt     L631
         lc      r0,1
-        bra     L625
-L624:
+        bra     L632
+L631:
         lc      r0,0
-L625:
+L632:
         ceq     r0,z
-        brt     L623
+        brt     L630
         lw      r0,12(fp)
         push    r0
         lw      r0,-12(fp)
@@ -7029,10 +7663,10 @@ L625:
         mov     r1,r0
         pop     r0
         sw      r0,0(r1)
-L623:
+L630:
         lw      r0,-6(fp)
-        bra     L605
-L605:
+        bra     L612
+L612:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -7046,23 +7680,23 @@ _eval:
         push    r1
         mov     fp,sp
         add     sp,-87
-L630:
+L637:
         lc      r0,1
         ceq     r0,z
-        brf     L734
-        la      r2,L631
+        brf     L741
+        la      r2,L638
         jmp     (r2)
-L734:
+L741:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,0
         ceq     r0,r1
-        brf     L633
+        brf     L640
         lw      r0,9(fp)
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L633:
+L640:
         lw      r0,9(fp)
         push    r0
         lc      r0,0
@@ -7073,11 +7707,11 @@ L633:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L635
+        brf     L642
         lw      r0,9(fp)
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L635:
+L642:
         lw      r0,9(fp)
         push    r0
         lc      r0,1
@@ -7088,27 +7722,27 @@ L635:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L637
+        brf     L644
         lw      r0,9(fp)
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L637:
+L644:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
-        brf     L639
+        brf     L646
         lw      r0,9(fp)
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L639:
+L646:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,2
         ceq     r0,r1
-        brf     L641
+        brf     L648
         lw      r0,12(fp)
         push    r0
         lw      r0,9(fp)
@@ -7116,9 +7750,9 @@ L639:
         la      r0,_env_lookup
         jal     r1,(r0)
         add     sp,6
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L641:
+L648:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
@@ -7128,11 +7762,11 @@ L641:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L643
+        brt     L650
         lw      r0,9(fp)
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L643:
+L650:
         lw      r0,9(fp)
         push    r0
         la      r0,_car
@@ -7149,20 +7783,20 @@ L643:
         la      r1,_sym_quote
         lw      r1,0(r1)
         ceq     r0,r1
-        brf     L645
+        brf     L652
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L645:
+L652:
         lw      r0,-3(fp)
         la      r1,_sym_quasiquote
         lw      r1,0(r1)
         ceq     r0,r1
-        brf     L647
+        brf     L654
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -7174,17 +7808,17 @@ L645:
         la      r0,_qq_expand
         jal     r1,(r0)
         add     sp,6
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L647:
+L654:
         lw      r0,-3(fp)
         la      r1,_sym_if
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L733
-        la      r2,L649
+        brt     L740
+        la      r2,L656
         jmp     (r2)
-L733:
+L740:
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -7200,15 +7834,15 @@ L733:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L651
+        brt     L658
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L651:
+L658:
         lw      r0,-9(fp)
         push    r0
         lc      r0,0
@@ -7223,7 +7857,7 @@ L651:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L653
+        brt     L660
         lw      r0,-6(fp)
         push    r0
         la      r0,_cdr
@@ -7234,9 +7868,9 @@ L651:
         jal     r1,(r0)
         add     sp,3
         sw      r0,9(fp)
-        la      r2,L630
+        la      r2,L637
         jmp     (r2)
-L653:
+L660:
         lw      r0,-6(fp)
         push    r0
         la      r0,_cdr
@@ -7257,32 +7891,32 @@ L653:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L655
+        brf     L662
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L655:
+L662:
         lw      r0,-12(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
         sw      r0,9(fp)
-        la      r2,L630
+        la      r2,L637
         jmp     (r2)
-L649:
+L656:
         lw      r0,-3(fp)
         la      r1,_sym_define
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L732
-        la      r2,L657
+        brt     L739
+        la      r2,L664
         jmp     (r2)
-L732:
+L739:
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
@@ -7294,10 +7928,10 @@ L732:
         and     r0,r1
         lc      r1,1
         ceq     r0,r1
-        brt     L731
-        la      r2,L659
+        brt     L738
+        la      r2,L666
         jmp     (r2)
-L731:
+L738:
         lw      r0,-15(fp)
         push    r0
         la      r0,_car
@@ -7330,15 +7964,15 @@ L731:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L660
+        brf     L667
         lw      r0,-24(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
         sw      r0,-27(fp)
-        bra     L661
-L660:
+        bra     L668
+L667:
         lw      r0,-24(fp)
         push    r0
         la      r1,_sym_begin
@@ -7348,7 +7982,7 @@ L660:
         jal     r1,(r0)
         add     sp,6
         sw      r0,-27(fp)
-L661:
+L668:
         lw      r0,12(fp)
         push    r0
         lw      r0,-27(fp)
@@ -7372,9 +8006,9 @@ L661:
         la      r1,_global_env
         sw      r0,0(r1)
         lw      r0,-30(fp)
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L659:
+L666:
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -7394,15 +8028,15 @@ L659:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L663
+        brt     L670
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L663:
+L670:
         la      r1,_global_env
         lw      r0,0(r1)
         push    r0
@@ -7416,17 +8050,17 @@ L663:
         la      r1,_global_env
         sw      r0,0(r1)
         lw      r0,-30(fp)
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L657:
+L664:
         lw      r0,-3(fp)
         la      r1,_sym_set
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L730
-        la      r2,L665
+        brt     L737
+        la      r2,L672
         jmp     (r2)
-L730:
+L737:
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
@@ -7452,138 +8086,138 @@ L730:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L667
+        brt     L674
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L667:
+L674:
         lw      r0,12(fp)
         sw      r0,-33(fp)
-L668:
-        lw      r0,-33(fp)
-        push    r0
-        lc      r0,0
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        mov     r1,r0
-        pop     r0
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        mov     r0,c
-        ceq     r0,z
-        brf     L729
-        la      r2,L669
-        jmp     (r2)
-L729:
-        lw      r0,-33(fp)
-        push    r0
-        la      r0,_car
-        jal     r1,(r0)
-        add     sp,3
-        sw      r0,-36(fp)
-        lw      r0,-36(fp)
-        push    r0
-        la      r0,_car
-        jal     r1,(r0)
-        add     sp,3
-        lw      r1,-18(fp)
-        ceq     r0,r1
-        brf     L671
-        la      r0,_heap_cdr
-        push    r0
-        lw      r0,-36(fp)
-        lc      r1,2
-        sra     r0,r1
-        lc      r1,3
-        mul     r0,r1
-        mov     r1,r0
-        pop     r0
-        add     r0,r1
-        mov     r1,r0
-        lw      r0,-30(fp)
-        sw      r0,0(r1)
-        lw      r0,-30(fp)
-        la      r2,L629
-        jmp     (r2)
-L671:
-        lw      r0,-33(fp)
-        push    r0
-        la      r0,_cdr
-        jal     r1,(r0)
-        add     sp,3
-        sw      r0,-33(fp)
-        la      r2,L668
-        jmp     (r2)
-L669:
-        la      r1,_global_env
-        lw      r0,0(r1)
-        sw      r0,-33(fp)
-L672:
-        lw      r0,-33(fp)
-        push    r0
-        lc      r0,0
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        mov     r1,r0
-        pop     r0
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        mov     r0,c
-        ceq     r0,z
-        brf     L728
-        la      r2,L673
-        jmp     (r2)
-L728:
-        lw      r0,-33(fp)
-        push    r0
-        la      r0,_car
-        jal     r1,(r0)
-        add     sp,3
-        sw      r0,-36(fp)
-        lw      r0,-36(fp)
-        push    r0
-        la      r0,_car
-        jal     r1,(r0)
-        add     sp,3
-        lw      r1,-18(fp)
-        ceq     r0,r1
-        brf     L675
-        la      r0,_heap_cdr
-        push    r0
-        lw      r0,-36(fp)
-        lc      r1,2
-        sra     r0,r1
-        lc      r1,3
-        mul     r0,r1
-        mov     r1,r0
-        pop     r0
-        add     r0,r1
-        mov     r1,r0
-        lw      r0,-30(fp)
-        sw      r0,0(r1)
-        lw      r0,-30(fp)
-        la      r2,L629
-        jmp     (r2)
 L675:
         lw      r0,-33(fp)
         push    r0
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        mov     r1,r0
+        pop     r0
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        mov     r0,c
+        ceq     r0,z
+        brf     L736
+        la      r2,L676
+        jmp     (r2)
+L736:
+        lw      r0,-33(fp)
+        push    r0
+        la      r0,_car
+        jal     r1,(r0)
+        add     sp,3
+        sw      r0,-36(fp)
+        lw      r0,-36(fp)
+        push    r0
+        la      r0,_car
+        jal     r1,(r0)
+        add     sp,3
+        lw      r1,-18(fp)
+        ceq     r0,r1
+        brf     L678
+        la      r0,_heap_cdr
+        push    r0
+        lw      r0,-36(fp)
+        lc      r1,2
+        sra     r0,r1
+        lc      r1,3
+        mul     r0,r1
+        mov     r1,r0
+        pop     r0
+        add     r0,r1
+        mov     r1,r0
+        lw      r0,-30(fp)
+        sw      r0,0(r1)
+        lw      r0,-30(fp)
+        la      r2,L636
+        jmp     (r2)
+L678:
+        lw      r0,-33(fp)
+        push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
         sw      r0,-33(fp)
-        la      r2,L672
+        la      r2,L675
         jmp     (r2)
-L673:
+L676:
+        la      r1,_global_env
+        lw      r0,0(r1)
+        sw      r0,-33(fp)
+L679:
+        lw      r0,-33(fp)
+        push    r0
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        mov     r1,r0
+        pop     r0
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        mov     r0,c
+        ceq     r0,z
+        brf     L735
+        la      r2,L680
+        jmp     (r2)
+L735:
+        lw      r0,-33(fp)
+        push    r0
+        la      r0,_car
+        jal     r1,(r0)
+        add     sp,3
+        sw      r0,-36(fp)
+        lw      r0,-36(fp)
+        push    r0
+        la      r0,_car
+        jal     r1,(r0)
+        add     sp,3
+        lw      r1,-18(fp)
+        ceq     r0,r1
+        brf     L682
+        la      r0,_heap_cdr
+        push    r0
+        lw      r0,-36(fp)
+        lc      r1,2
+        sra     r0,r1
+        lc      r1,3
+        mul     r0,r1
+        mov     r1,r0
+        pop     r0
+        add     r0,r1
+        mov     r1,r0
+        lw      r0,-30(fp)
+        sw      r0,0(r1)
+        lw      r0,-30(fp)
+        la      r2,L636
+        jmp     (r2)
+L682:
+        lw      r0,-33(fp)
+        push    r0
+        la      r0,_cdr
+        jal     r1,(r0)
+        add     sp,3
+        sw      r0,-33(fp)
+        la      r2,L679
+        jmp     (r2)
+L680:
         la      r0,_S32
         push    r0
         la      r0,_puts_str
@@ -7604,17 +8238,17 @@ L673:
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L665:
+L672:
         lw      r0,-3(fp)
         la      r1,_sym_lambda
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L727
-        la      r2,L677
+        brt     L734
+        la      r2,L684
         jmp     (r2)
-L727:
+L734:
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
@@ -7641,15 +8275,15 @@ L727:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L678
+        brf     L685
         lw      r0,-24(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
         sw      r0,-27(fp)
-        bra     L679
-L678:
+        bra     L686
+L685:
         lw      r0,-24(fp)
         push    r0
         la      r1,_sym_begin
@@ -7659,7 +8293,7 @@ L678:
         jal     r1,(r0)
         add     sp,6
         sw      r0,-27(fp)
-L679:
+L686:
         lw      r0,12(fp)
         push    r0
         lw      r0,-27(fp)
@@ -7669,17 +8303,17 @@ L679:
         la      r0,_make_closure
         jal     r1,(r0)
         add     sp,9
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L677:
+L684:
         lw      r0,-3(fp)
         la      r1,_sym_defmacro
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L726
-        la      r2,L681
+        brt     L733
+        la      r2,L688
         jmp     (r2)
-L726:
+L733:
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
@@ -7720,15 +8354,15 @@ L726:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L682
+        brf     L689
         lw      r0,-45(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
         sw      r0,-48(fp)
-        bra     L683
-L682:
+        bra     L690
+L689:
         lw      r0,-45(fp)
         push    r0
         la      r1,_sym_begin
@@ -7738,7 +8372,7 @@ L682:
         jal     r1,(r0)
         add     sp,6
         sw      r0,-48(fp)
-L683:
+L690:
         lw      r0,12(fp)
         push    r0
         lw      r0,-48(fp)
@@ -7762,17 +8396,17 @@ L683:
         la      r1,_global_env
         sw      r0,0(r1)
         lw      r0,-51(fp)
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L681:
+L688:
         lw      r0,-3(fp)
         la      r1,_sym_catch
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L725
-        la      r2,L685
+        brt     L732
+        la      r2,L692
         jmp     (r2)
-L725:
+L732:
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -7788,20 +8422,20 @@ L725:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L687
+        brt     L694
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L687:
+L694:
         la      r1,_catch_depth
         lw      r0,0(r1)
         lc      r1,16
         cls     r0,r1
-        brt     L689
+        brt     L696
         la      r0,_S33
         push    r0
         la      r0,_puts_str
@@ -7812,9 +8446,9 @@ L687:
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L689:
+L696:
         la      r0,_catch_tags
         push    r0
         la      r1,_catch_depth
@@ -7876,21 +8510,21 @@ L689:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L692
+        brt     L699
         la      r1,_catch_target
         lw      r0,0(r1)
         lw      r1,-57(fp)
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L692
+        brt     L699
         lc      r0,1
-        bra     L693
-L692:
+        bra     L700
+L699:
         lc      r0,0
-L693:
+L700:
         ceq     r0,z
-        brt     L691
+        brt     L698
         lc      r0,0
         la      r1,_catch_throwing
         sw      r0,0(r1)
@@ -7903,33 +8537,33 @@ L693:
         pop     r0
         add     r0,r1
         lw      r0,0(r0)
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L691:
+L698:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L695
+        brt     L702
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L695:
+L702:
         lw      r0,-60(fp)
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L685:
+L692:
         lw      r0,-3(fp)
         la      r1,_sym_begin
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L724
-        la      r2,L697
+        brt     L731
+        la      r2,L704
         jmp     (r2)
-L724:
+L731:
         lw      r0,-6(fp)
         push    r0
         lc      r0,0
@@ -7940,16 +8574,16 @@ L724:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L699
+        brf     L706
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L699:
-L700:
+L706:
+L707:
         lw      r0,-6(fp)
         push    r0
         la      r0,_cdr
@@ -7968,7 +8602,7 @@ L700:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L701
+        brt     L708
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -7983,33 +8617,33 @@ L700:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L703
+        brt     L710
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L703:
+L710:
         lw      r0,-6(fp)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
         sw      r0,-6(fp)
-        la      r2,L700
+        la      r2,L707
         jmp     (r2)
-L701:
+L708:
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
         sw      r0,9(fp)
-        la      r2,L630
+        la      r2,L637
         jmp     (r2)
-L697:
+L704:
         lw      r0,12(fp)
         push    r0
         lw      r0,-3(fp)
@@ -8021,24 +8655,24 @@ L697:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L705
+        brt     L712
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L705:
+L712:
         lw      r0,-63(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
-        brt     L723
-        la      r2,L707
+        brt     L730
+        la      r2,L714
         jmp     (r2)
-L723:
+L730:
         lw      r0,-63(fp)
         push    r0
         la      r0,_ext_type
@@ -8053,10 +8687,10 @@ L723:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brt     L722
-        la      r2,L709
+        brt     L729
+        la      r2,L716
         jmp     (r2)
-L722:
+L729:
         lw      r0,-63(fp)
         push    r0
         la      r0,_closure_env
@@ -8090,21 +8724,21 @@ L722:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L711
+        brt     L718
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L711:
+L718:
         lw      r0,-69(fp)
         sw      r0,9(fp)
-        la      r2,L630
+        la      r2,L637
         jmp     (r2)
-L709:
-L707:
+L716:
+L714:
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -8116,24 +8750,24 @@ L707:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L713
+        brt     L720
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L629
+        la      r2,L636
         jmp     (r2)
-L713:
+L720:
         lw      r0,-63(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
-        brt     L721
-        la      r2,L715
+        brt     L728
+        la      r2,L722
         jmp     (r2)
-L721:
+L728:
         lw      r0,-63(fp)
         push    r0
         la      r0,_ext_type
@@ -8150,10 +8784,10 @@ L721:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brt     L720
-        la      r2,L717
+        brt     L727
+        la      r2,L724
         jmp     (r2)
-L720:
+L727:
         lw      r0,-63(fp)
         push    r0
         la      r0,_closure_params
@@ -8184,9 +8818,9 @@ L720:
         sw      r0,12(fp)
         lw      r0,-81(fp)
         sw      r0,9(fp)
-        la      r2,L630
+        la      r2,L637
         jmp     (r2)
-L717:
+L724:
         lw      r0,-75(fp)
         push    r0
         lc      r0,3
@@ -8197,7 +8831,7 @@ L717:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L719
+        brf     L726
         lw      r0,-63(fp)
         push    r0
         la      r0,_ext_data
@@ -8213,9 +8847,9 @@ L717:
         la      r0,_apply_primitive
         jal     r1,(r0)
         add     sp,6
-        bra     L629
-L719:
-L715:
+        bra     L636
+L726:
+L722:
         la      r0,_S34
         push    r0
         la      r0,_puts_str
@@ -8226,11 +8860,11 @@ L715:
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        bra     L629
-        la      r2,L630
+        bra     L636
+        la      r2,L637
         jmp     (r2)
-L631:
-L629:
+L638:
+L636:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8249,10 +8883,10 @@ _apply_fn:
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
-        brt     L742
-        la      r2,L737
+        brt     L749
+        la      r2,L744
         jmp     (r2)
-L742:
+L749:
         lw      r0,9(fp)
         push    r0
         la      r0,_ext_type
@@ -8269,7 +8903,7 @@ L742:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L739
+        brf     L746
         lw      r0,9(fp)
         push    r0
         la      r0,_closure_env
@@ -8299,9 +8933,9 @@ L742:
         la      r0,_eval
         jal     r1,(r0)
         add     sp,6
-        la      r2,L735
+        la      r2,L742
         jmp     (r2)
-L739:
+L746:
         lw      r0,-3(fp)
         push    r0
         lc      r0,3
@@ -8312,7 +8946,7 @@ L739:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L741
+        brf     L748
         lw      r0,9(fp)
         push    r0
         la      r0,_ext_data
@@ -8328,9 +8962,9 @@ L739:
         la      r0,_apply_primitive
         jal     r1,(r0)
         add     sp,6
-        bra     L735
-L741:
-L737:
+        bra     L742
+L748:
+L744:
         la      r0,_S35
         push    r0
         la      r0,_puts_str
@@ -8341,8 +8975,8 @@ L737:
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        bra     L735
-L735:
+        bra     L742
+L742:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8380,7 +9014,7 @@ _register_prim:
         add     sp,9
         la      r1,_global_env
         sw      r0,0(r1)
-L743:
+L750:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8839,7 +9473,7 @@ _eval_init:
         lc      r0,0
         la      r1,_gensym_counter
         sw      r0,0(r1)
-L744:
+L751:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8868,7 +9502,7 @@ _gc_init:
         mov r0, sp
         la r1, _gc_initial_sp
         sw r0, 0(r1)
-L745:
+L752:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8885,7 +9519,7 @@ _gc_protect:
         lw      r0,0(r1)
         la      r1,256
         cls     r0,r1
-        brt     L748
+        brt     L755
         la      r0,_S97
         push    r0
         la      r0,_puts_str
@@ -8893,7 +9527,7 @@ _gc_protect:
         add     sp,3
         _gcr_halt:
         bra _gcr_halt
-L748:
+L755:
         la      r0,_gc_roots
         push    r0
         la      r1,_gc_root_count
@@ -8913,8 +9547,8 @@ L748:
         la      r1,_gc_root_count
         sw      r0,0(r1)
         lw      r0,9(fp)
-        bra     L746
-L746:
+        bra     L753
+L753:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8933,7 +9567,7 @@ _gc_unprotect:
         sub     r0,r1
         la      r1,_gc_root_count
         sw      r0,0(r1)
-L749:
+L756:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8947,22 +9581,22 @@ _gc_mark_val:
         push    r1
         mov     fp,sp
         add     sp,-3
-L751:
+L758:
         lc      r0,1
         ceq     r0,z
-        brf     L763
-        la      r2,L752
+        brf     L770
+        la      r2,L759
         jmp     (r2)
-L763:
+L770:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,1
         ceq     r0,r1
-        brt     L762
-        la      r2,L753
+        brt     L769
+        la      r2,L760
         jmp     (r2)
-L762:
+L769:
         lw      r0,9(fp)
         lc      r1,2
         sra     r0,r1
@@ -8977,11 +9611,11 @@ L762:
         add     r0,r1
         lw      r0,0(r0)
         ceq     r0,z
-        brt     L756
+        brt     L763
         lc      r0,0
-        la      r2,L750
+        la      r2,L757
         jmp     (r2)
-L756:
+L763:
         la      r0,_heap_mark
         push    r0
         lw      r0,-3(fp)
@@ -9016,18 +9650,18 @@ L756:
         add     r0,r1
         lw      r0,0(r0)
         sw      r0,9(fp)
-        la      r2,L754
+        la      r2,L761
         jmp     (r2)
-L753:
+L760:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
-        brt     L761
-        la      r2,L757
+        brt     L768
+        la      r2,L764
         jmp     (r2)
-L761:
+L768:
         lw      r0,9(fp)
         lc      r1,2
         sra     r0,r1
@@ -9042,11 +9676,11 @@ L761:
         add     r0,r1
         lw      r0,0(r0)
         ceq     r0,z
-        brt     L760
+        brt     L767
         lc      r0,0
-        la      r2,L750
+        la      r2,L757
         jmp     (r2)
-L760:
+L767:
         la      r0,_heap_mark
         push    r0
         lw      r0,-3(fp)
@@ -9081,16 +9715,16 @@ L760:
         add     r0,r1
         lw      r0,0(r0)
         sw      r0,9(fp)
-        bra     L758
-L757:
+        bra     L765
+L764:
         lc      r0,0
-        bra     L750
-L758:
-L754:
-        la      r2,L751
+        bra     L757
+L765:
+L761:
+        la      r2,L758
         jmp     (r2)
-L752:
-L750:
+L759:
+L757:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9116,14 +9750,14 @@ _gc_sweep:
         lc      r1,1
         sub     r0,r1
         sw      r0,-3(fp)
-L765:
+L772:
         lw      r0,-3(fp)
         lc      r1,0
         cls     r0,r1
-        brf     L769
-        la      r2,L766
+        brf     L776
+        la      r2,L773
         jmp     (r2)
-L769:
+L776:
         la      r0,_heap_mark
         push    r0
         lw      r0,-3(fp)
@@ -9134,7 +9768,7 @@ L769:
         add     r0,r1
         lw      r0,0(r0)
         ceq     r0,z
-        brt     L767
+        brt     L774
         la      r0,_heap_mark
         push    r0
         lw      r0,-3(fp)
@@ -9146,9 +9780,9 @@ L769:
         mov     r1,r0
         lc      r0,0
         sw      r0,0(r1)
-        la      r2,L768
+        la      r2,L775
         jmp     (r2)
-L767:
+L774:
         la      r1,_free_list
         lw      r0,0(r1)
         push    r0
@@ -9183,15 +9817,15 @@ L767:
         lw      r0,-3(fp)
         la      r1,_free_list
         sw      r0,0(r1)
-L768:
+L775:
         lw      r0,-3(fp)
         lc      r1,1
         sub     r0,r1
         sw      r0,-3(fp)
-        la      r2,L765
+        la      r2,L772
         jmp     (r2)
-L766:
-L764:
+L773:
+L771:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9225,14 +9859,14 @@ _gc_scan_stack:
         la      r1,_gc_scan_sp
         lw      r0,0(r1)
         sw      r0,-9(fp)
-L771:
+L778:
         lw      r0,-6(fp)
         lc      r1,0
         cls     r1,r0
-        brt     L781
-        la      r2,L772
+        brt     L788
+        la      r2,L779
         jmp     (r2)
-L781:
+L788:
         lw      r0,-9(fp)
         lw      r0,0(r0)
         sw      r0,-12(fp)
@@ -9245,20 +9879,20 @@ L781:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brf     L775
+        brf     L782
         lw      r0,-15(fp)
         lc      r1,3
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brf     L775
+        brf     L782
         lc      r0,0
-        bra     L776
-L775:
+        bra     L783
+L782:
         lc      r0,1
-L776:
+L783:
         ceq     r0,z
-        brt     L774
+        brt     L781
         lw      r0,-12(fp)
         lc      r1,2
         sra     r0,r1
@@ -9270,28 +9904,28 @@ L776:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L779
+        brt     L786
         lw      r0,-18(fp)
         la      r1,_heap_next
         lw      r1,0(r1)
         cls     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L779
+        brt     L786
         lc      r0,1
-        bra     L780
-L779:
+        bra     L787
+L786:
         lc      r0,0
-L780:
+L787:
         ceq     r0,z
-        brt     L778
+        brt     L785
         lw      r0,-12(fp)
         push    r0
         la      r0,_gc_mark_val
         jal     r1,(r0)
         add     sp,3
-L778:
-L774:
+L785:
+L781:
         lw      r0,-9(fp)
         lc      r1,3
         add     r0,r1
@@ -9300,10 +9934,10 @@ L774:
         lc      r1,1
         sub     r0,r1
         sw      r0,-6(fp)
-        la      r2,L771
+        la      r2,L778
         jmp     (r2)
-L772:
-L770:
+L779:
+L777:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9325,12 +9959,12 @@ _gc_collect:
         sw      r0,0(r1)
         lc      r0,0
         sw      r0,-3(fp)
-L783:
+L790:
         lw      r0,-3(fp)
         la      r1,_heap_next
         lw      r1,0(r1)
         cls     r0,r1
-        brf     L784
+        brf     L791
         la      r0,_heap_mark
         push    r0
         lw      r0,-3(fp)
@@ -9346,8 +9980,8 @@ L783:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        bra     L783
-L784:
+        bra     L790
+L791:
         la      r1,_global_env
         lw      r0,0(r1)
         push    r0
@@ -9356,12 +9990,12 @@ L784:
         add     sp,3
         lc      r0,0
         sw      r0,-3(fp)
-L785:
+L792:
         lw      r0,-3(fp)
         la      r1,_gc_root_count
         lw      r1,0(r1)
         cls     r0,r1
-        brf     L786
+        brf     L793
         la      r0,_gc_roots
         push    r0
         lw      r0,-3(fp)
@@ -9379,16 +10013,16 @@ L785:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        bra     L785
-L786:
+        bra     L792
+L793:
         lc      r0,0
         sw      r0,-3(fp)
-L787:
+L794:
         lw      r0,-3(fp)
         la      r1,_wind_depth
         lw      r1,0(r1)
         cls     r0,r1
-        brf     L788
+        brf     L795
         la      r0,_wind_after
         push    r0
         lw      r0,-3(fp)
@@ -9406,19 +10040,19 @@ L787:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        bra     L787
-L788:
+        bra     L794
+L795:
         lc      r0,0
         sw      r0,-3(fp)
-L789:
+L796:
         lw      r0,-3(fp)
         la      r1,_catch_depth
         lw      r1,0(r1)
         cls     r0,r1
-        brt     L791
-        la      r2,L790
+        brt     L798
+        la      r2,L797
         jmp     (r2)
-L791:
+L798:
         la      r0,_catch_tags
         push    r0
         lw      r0,-3(fp)
@@ -9449,14 +10083,14 @@ L791:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        la      r2,L789
+        la      r2,L796
         jmp     (r2)
-L790:
+L797:
         la      r0,_gc_scan_stack
         jal     r1,(r0)
         la      r0,_gc_sweep
         jal     r1,(r0)
-L782:
+L789:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9474,10 +10108,10 @@ _gc_alloc_cell:
         lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
-        brf     L801
-        la      r2,L794
+        brf     L808
+        la      r2,L801
         jmp     (r2)
-L801:
+L808:
         la      r1,_free_list
         lw      r0,0(r1)
         sw      r0,-3(fp)
@@ -9527,17 +10161,17 @@ L801:
         pop     r0
         sw      r0,0(r1)
         lw      r0,-3(fp)
-        la      r2,L792
+        la      r2,L799
         jmp     (r2)
-L794:
+L801:
         la      r1,_heap_next
         lw      r0,0(r1)
         la      r1,32768
         cls     r0,r1
-        brt     L800
-        la      r2,L796
+        brt     L807
+        la      r2,L803
         jmp     (r2)
-L800:
+L807:
         la      r1,_heap_next
         lw      r0,0(r1)
         sw      r0,-3(fp)
@@ -9582,19 +10216,19 @@ L800:
         pop     r0
         sw      r0,0(r1)
         lw      r0,-3(fp)
-        la      r2,L792
+        la      r2,L799
         jmp     (r2)
-L796:
+L803:
         la      r0,_gc_collect
         jal     r1,(r0)
         la      r1,_free_list
         lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
-        brf     L799
-        la      r2,L798
+        brf     L806
+        la      r2,L805
         jmp     (r2)
-L799:
+L806:
         la      r1,_free_list
         lw      r0,0(r1)
         sw      r0,-3(fp)
@@ -9644,8 +10278,8 @@ L799:
         pop     r0
         sw      r0,0(r1)
         lw      r0,-3(fp)
-        bra     L792
-L798:
+        bra     L799
+L805:
         la      r0,_S98
         push    r0
         la      r0,_puts_str
@@ -9676,8 +10310,8 @@ L798:
         _oom2_halt:
         bra _oom2_halt
         lc      r0,0
-        bra     L792
-L792:
+        bra     L799
+L799:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9696,11 +10330,11 @@ _gc_count_free:
         la      r1,_free_list
         lw      r0,0(r1)
         sw      r0,-6(fp)
-L803:
+L810:
         lw      r0,-6(fp)
         lc      r1,0
         cls     r0,r1
-        brt     L804
+        brt     L811
         lw      r0,-3(fp)
         lc      r1,1
         add     r0,r1
@@ -9715,11 +10349,11 @@ L803:
         add     r0,r1
         lw      r0,0(r0)
         sw      r0,-6(fp)
-        bra     L803
-L804:
+        bra     L810
+L811:
         lw      r0,-3(fp)
-        bra     L802
-L802:
+        bra     L809
+L809:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9744,7 +10378,7 @@ _eval_str:
         la      r0,_eval
         jal     r1,(r0)
         add     sp,6
-L805:
+L812:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10317,7 +10951,22 @@ _load_prelude:
         la      r0,_eval_str
         jal     r1,(r0)
         add     sp,3
-L806:
+        la      r0,_S212
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S213
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S214
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+L813:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10331,18 +10980,18 @@ _repl:
         push    r1
         mov     fp,sp
         sub     sp,1033
-        la      r0,_S212
+        la      r0,_S215
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
-L808:
+L815:
         lc      r0,1
         ceq     r0,z
-        brf     L814
-        la      r2,L809
+        brf     L821
+        la      r2,L816
         jmp     (r2)
-L814:
+L821:
         la      r0,1024
         push    r0
         la      r0,-1024
@@ -10351,48 +11000,62 @@ L814:
         la      r0,_read_line
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-1027(fp)
-        lw      r0,-1027(fp)
+        la      r1,-1027
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-1027
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
-        brf     L811
-        la      r0,_S213
+        brf     L818
+        la      r0,_S216
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
         la      r0,_halt
         jal     r1,(r0)
-L811:
-        lw      r0,-1027(fp)
+L818:
+        la      r1,-1027
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         ceq     r0,r1
-        brf     L813
-        la      r0,_S214
+        brf     L820
+        la      r0,_S217
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
-        la      r2,L808
+        la      r2,L815
         jmp     (r2)
-L813:
+L820:
         la      r0,-1024
         add     r0,fp
         push    r0
         la      r0,_read_str
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-1030(fp)
+        la      r1,-1030
+        add     r1,fp
+        sw      r0,0(r1)
         la      r1,_global_env
         lw      r0,0(r1)
         push    r0
-        lw      r0,-1030(fp)
+        la      r1,-1030
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_eval
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-1033(fp)
-        lw      r0,-1033(fp)
+        la      r1,-1033
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-1033
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_print_val
         jal     r1,(r0)
@@ -10402,15 +11065,15 @@ L813:
         la      r0,_putc_uart
         jal     r1,(r0)
         add     sp,3
-        la      r0,_S215
+        la      r0,_S218
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
-        la      r2,L808
+        la      r2,L815
         jmp     (r2)
-L809:
-L807:
+L816:
+L814:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10441,8 +11104,8 @@ _main:
         la      r0,_repl
         jal     r1,(r0)
         lc      r0,0
-        bra     L815
-L815:
+        bra     L822
+L822:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -122369,30 +123032,36 @@ _S200:
 _S201:
         .byte   40,100,101,102,105,110,101,32,102,97,108,115,101,32,110,105,108,41,0
 _S202:
-        .byte   40,100,101,102,109,97,99,114,111,32,99,111,109,109,101,110,116,32,114,101,115,116,32,110,105,108,41,0
+        .byte   40,100,101,102,105,110,101,32,40,109,101,115,115,97,103,101,32,102,109,116,32,46,32,97,114,103,115,41,32,40,100,105,115,112,108,97,121,32,40,97,112,112,108,121,32,102,111,114,109,97,116,32,40,99,111,110,115,32,102,109,116,32,97,114,103,115,41,41,41,32,40,110,101,119,108,105,110,101,41,41,0
 _S203:
-        .byte   40,100,101,102,105,110,101,32,109,97,99,114,111,101,120,112,97,110,100,32,40,108,97,109,98,100,97,32,40,102,111,114,109,41,32,40,108,101,116,32,40,40,101,120,112,97,110,100,101,100,32,40,109,97,99,114,111,101,120,112,97,110,100,45,49,32,102,111,114,109,41,41,41,32,40,105,102,32,40,101,113,63,32,101,120,112,97,110,100,101,100,32,102,111,114,109,41,32,102,111,114,109,32,40,109,97,99,114,111,101,120,112,97,110,100,32,101,120,112,97,110,100,101,100,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,95,102,111,114,109,97,116,32,102,111,114,109,97,116,41,0
 _S204:
-        .byte   40,100,101,102,105,110,101,32,73,79,45,76,69,68,32,35,120,70,70,48,48,48,48,41,0
+        .byte   40,100,101,102,105,110,101,32,40,102,111,114,109,97,116,32,100,101,115,116,32,46,32,97,114,103,115,41,32,40,105,102,32,40,101,113,63,32,100,101,115,116,32,116,41,32,40,98,101,103,105,110,32,40,100,105,115,112,108,97,121,32,40,97,112,112,108,121,32,95,102,111,114,109,97,116,32,97,114,103,115,41,41,32,40,110,101,119,108,105,110,101,41,41,32,40,97,112,112,108,121,32,95,102,111,114,109,97,116,32,40,99,111,110,115,32,100,101,115,116,32,97,114,103,115,41,41,41,41,0
 _S205:
-        .byte   40,100,101,102,105,110,101,32,73,79,45,83,87,73,84,67,72,32,35,120,70,70,48,48,48,48,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,99,111,109,109,101,110,116,32,114,101,115,116,32,110,105,108,41,0
 _S206:
-        .byte   40,100,101,102,105,110,101,32,73,79,45,85,65,82,84,45,68,65,84,65,32,35,120,70,70,48,49,48,48,41,0
+        .byte   40,100,101,102,105,110,101,32,109,97,99,114,111,101,120,112,97,110,100,32,40,108,97,109,98,100,97,32,40,102,111,114,109,41,32,40,108,101,116,32,40,40,101,120,112,97,110,100,101,100,32,40,109,97,99,114,111,101,120,112,97,110,100,45,49,32,102,111,114,109,41,41,41,32,40,105,102,32,40,101,113,63,32,101,120,112,97,110,100,101,100,32,102,111,114,109,41,32,102,111,114,109,32,40,109,97,99,114,111,101,120,112,97,110,100,32,101,120,112,97,110,100,101,100,41,41,41,41,41,0
 _S207:
-        .byte   40,100,101,102,105,110,101,32,73,79,45,85,65,82,84,45,83,84,65,84,85,83,32,35,120,70,70,48,49,48,49,41,0
+        .byte   40,100,101,102,105,110,101,32,73,79,45,76,69,68,32,35,120,70,70,48,48,48,48,41,0
 _S208:
-        .byte   40,100,101,102,105,110,101,32,73,79,45,73,78,84,45,69,78,65,66,76,69,32,35,120,70,70,48,48,49,48,41,0
+        .byte   40,100,101,102,105,110,101,32,73,79,45,83,87,73,84,67,72,32,35,120,70,70,48,48,48,48,41,0
 _S209:
-        .byte   40,100,101,102,105,110,101,32,115,101,116,45,108,101,100,115,32,40,108,97,109,98,100,97,32,40,110,41,32,40,112,111,107,101,32,73,79,45,76,69,68,32,110,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,73,79,45,85,65,82,84,45,68,65,84,65,32,35,120,70,70,48,49,48,48,41,0
 _S210:
-        .byte   40,100,101,102,105,110,101,32,103,101,116,45,108,101,100,115,32,40,108,97,109,98,100,97,32,40,41,32,40,112,101,101,107,32,73,79,45,76,69,68,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,73,79,45,85,65,82,84,45,83,84,65,84,85,83,32,35,120,70,70,48,49,48,49,41,0
 _S211:
-        .byte   40,100,101,102,105,110,101,32,115,50,45,112,114,101,115,115,101,100,63,32,40,108,97,109,98,100,97,32,40,41,32,40,61,32,40,37,32,40,112,101,101,107,32,73,79,45,83,87,73,84,67,72,41,32,50,41,32,48,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,73,79,45,73,78,84,45,69,78,65,66,76,69,32,35,120,70,70,48,48,49,48,41,0
 _S212:
-        .byte   62,32,0
+        .byte   40,100,101,102,105,110,101,32,115,101,116,45,108,101,100,115,32,40,108,97,109,98,100,97,32,40,110,41,32,40,112,111,107,101,32,73,79,45,76,69,68,32,110,41,41,41,0
 _S213:
-        .byte   66,121,101,46,10,0
+        .byte   40,100,101,102,105,110,101,32,103,101,116,45,108,101,100,115,32,40,108,97,109,98,100,97,32,40,41,32,40,112,101,101,107,32,73,79,45,76,69,68,41,41,41,0
 _S214:
-        .byte   62,32,0
+        .byte   40,100,101,102,105,110,101,32,115,50,45,112,114,101,115,115,101,100,63,32,40,108,97,109,98,100,97,32,40,41,32,40,61,32,40,37,32,40,112,101,101,107,32,73,79,45,83,87,73,84,67,72,41,32,50,41,32,48,41,41,41,0
 _S215:
+        .byte   62,32,0
+_S216:
+        .byte   66,121,101,46,10,0
+_S217:
+        .byte   62,32,0
+_S218:
         .byte   62,32,0
