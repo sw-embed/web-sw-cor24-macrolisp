@@ -1,3 +1,5 @@
+> **Stabilized.** Will be migrated to [sw-embed/web-sw-cor24-macrolisp](https://github.com/sw-embed/web-sw-cor24-macrolisp) as part of the COR24 ecosystem consolidation. Bug fixes here will be carried forward.
+
 # web-tml24c
 
 Web UI for [Tiny Macro Lisp](https://github.com/sw-vibe-coding/tml24c) on COR24. Browser-based Lisp REPL running on the COR24 emulator via Rust, Yew, and WebAssembly.
