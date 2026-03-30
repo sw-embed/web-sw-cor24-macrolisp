@@ -1,12 +1,32 @@
 # Changes
 
+## 2026-03-29
+
+### Bug Fixes
+
+- Fix prompt detection for looping demos: REPL falsely idled when evaluating
+  long-running expressions with no UART output (delay spin loops, polling).
+  Added feed cooldown — 10 ticks after last UART feed before checking prompt.
+- Skip comment lines (`;`) in UART feed to avoid wasting cycles and `nil` spam
+- Rebuild from latest tml24c with variadic arithmetic fix (`+`, `*`, `-` now
+  accept 2+ arguments)
+
+### UI
+
+- Shift-Enter in Split mode triggers Eval (plain Enter inserts newline)
+
+### Demos
+
+- Add "Switch LED" demo: mirror S2 switch to LED D2 in a polling loop
+- Add variadic arithmetic examples to Variadic Functions demo
+- Add reduce+range section to Functional Toolkit demo
+
 ## 2026-03-28
 
 ### LED & Hardware
 
 - Fix inverted LED display: use `is_led_on()` API (active-low: register 0 = lit)
 - Rename `led_on` → `led_lit` with active-low documentation
-- Add "Switch LED" demo: poll S2 to light D2
 
 ### Demos
 
