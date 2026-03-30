@@ -1,4 +1,16 @@
-# Changes
+# Changelog
+
+## 2026-03-30 — Fork Migration
+
+- Forked from [sw-vibe-coding/web-tml24c](https://github.com/sw-vibe-coding/web-tml24c)
+- Renamed package to `web-sw-cor24-macrolisp`
+- Updated path deps to `../sw-cor24-emulator` (was `../../sw-embed/cor24-rs`)
+- Updated demo include paths to `../sw-cor24-macrolisp/demos/` (was `../../tml24c/demos/`)
+- Updated GitHub links to `sw-embed/web-sw-cor24-macrolisp`
+- Updated `build-all.sh` paths to use `../sw-cor24-macrolisp` and `../sw-cor24-tinyc`
+- Added `build-pages.sh` script
+- Removed `.agentrail/` and `.claude/` directories
+- Updated README with ecosystem links and provenance
 
 ## 2026-03-29
 

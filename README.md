@@ -1,14 +1,12 @@
-> **Stabilized.** Will be migrated to [sw-embed/web-sw-cor24-macrolisp](https://github.com/sw-embed/web-sw-cor24-macrolisp) as part of the COR24 ecosystem consolidation. Bug fixes here will be carried forward.
+# web-sw-cor24-macrolisp
 
-# web-tml24c
-
-Web UI for [Tiny Macro Lisp](https://github.com/sw-vibe-coding/tml24c) on COR24. Browser-based Lisp REPL running on the COR24 emulator via Rust, Yew, and WebAssembly.
+Web UI for [sw-cor24-macrolisp](https://github.com/sw-embed/sw-cor24-macrolisp) on COR24. Browser-based Lisp REPL running on the COR24 emulator via Rust, Yew, and WebAssembly.
 
 Write Lisp expressions, select a prelude tier, and evaluate — all in the browser.
 
-**[Live Demo](https://sw-vibe-coding.github.io/web-tml24c/)**
+**[Live Demo](https://sw-embed.github.io/web-sw-cor24-macrolisp/)**
 
-![web-tml24c screenshot](images/screenshot.png?ts=1774674005000)
+![web-sw-cor24-macrolisp screenshot](images/screenshot.png?ts=1774674005000)
 
 ## Features
 
@@ -20,20 +18,27 @@ Write Lisp expressions, select a prelude tier, and evaluate — all in the brows
 - **Pause/Resume/Reset/Clear** controls
 - **COR24 emulator**: Full 24-bit RISC CPU running in WebAssembly with instant UART TX
 
+## Provenance
+
+Forked from [sw-vibe-coding/web-tml24c](https://github.com/sw-vibe-coding/web-tml24c) as part of the COR24 ecosystem consolidation under [sw-embed](https://github.com/sw-embed).
+
 ## Related
 
-- [tml24c](https://github.com/sw-vibe-coding/tml24c) — The Lisp implementation (C)
-- [tc24r](https://github.com/sw-vibe-coding/tc24r) — COR24 C compiler (Rust)
-- [cor24-rs](https://github.com/sw-embed/cor24-rs) — COR24 assembler and emulator (Rust)
-- [web-tc24r](https://github.com/sw-vibe-coding/web-tc24r) — Web UI for tc24r compiler
+- [sw-cor24-macrolisp](https://github.com/sw-embed/sw-cor24-macrolisp) — The Lisp implementation (C)
+- [sw-cor24-tinyc](https://github.com/sw-embed/sw-cor24-tinyc) — COR24 C compiler (Rust)
+- [sw-cor24-emulator](https://github.com/sw-embed/sw-cor24-emulator) — COR24 emulator (Rust)
+- [sw-cor24-project](https://github.com/sw-embed/sw-cor24-project) — COR24 ecosystem hub
 
 ## Development
 
 ```bash
-./scripts/serve.sh          # dev server with hot reload on port 9135
-./scripts/build-all.sh      # recompile tml24c + build pages/ for GitHub Pages
+./scripts/serve.sh              # dev server with hot reload on port 9135
+./scripts/build-all.sh          # recompile macrolisp + build pages/ for GitHub Pages
+./scripts/build-pages.sh        # release build to pages/ for GitHub Pages
+cargo clippy -- -D warnings     # lint
+cargo fmt --all                 # format
 ```
 
 ## License
 
-MIT
+MIT © 2026 Michael A. Wright

@@ -1,1 +1,0 @@
-Added 6 new demos (Continuations, Fixed-Point Arithmetic, Functional Toolkit, Multi-body Forms, Parameters, Restartable Conditions), CPU load gauge with EWMA smoothing, and rebuilt all runtime variants from latest tml24c C code

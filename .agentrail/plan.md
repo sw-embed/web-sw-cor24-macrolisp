@@ -1,1 +1,0 @@
-Build a browser-based UI for Tiny Macro Lisp on COR24. Phase 1: compile tml24c to WASM via Emscripten or rewrite core in Rust. Phase 2: REPL component. Phase 3: visual execution trace.

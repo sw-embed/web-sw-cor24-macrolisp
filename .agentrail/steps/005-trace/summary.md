@@ -1,1 +1,0 @@
-Added visual instruction trace panel showing last 20 CPU instructions with register diffs via emulator TraceBuffer. Trace button in toolbar toggles floating bottom-left panel. Also added iteration.l24 demo (named let, do loop, type dispatch). Rebuilt all REPL variants and pages.
