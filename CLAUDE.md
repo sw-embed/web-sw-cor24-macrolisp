@@ -9,7 +9,7 @@ Web UI for Tiny Macro Lisp on COR24. Browser-based Lisp REPL running on the COR2
 ## Related Projects
 
 - `~/github/sw-embed/sw-cor24-macrolisp` -- The Lisp implementation (C)
-- `~/github/sw-embed/sw-cor24-tinyc` -- COR24 C compiler (Rust)
+- `~/github/sw-embed/sw-cor24-x-tinyc` -- COR24 C compiler (Rust)
 - `~/github/sw-embed/sw-cor24-emulator` -- COR24 assembler and emulator (Rust)
 
 ## Build

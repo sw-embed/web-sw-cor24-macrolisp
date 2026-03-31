@@ -25,7 +25,7 @@ Forked from [sw-vibe-coding/web-tml24c](https://github.com/sw-vibe-coding/web-tm
 ## Related
 
 - [sw-cor24-macrolisp](https://github.com/sw-embed/sw-cor24-macrolisp) — The Lisp implementation (C)
-- [sw-cor24-tinyc](https://github.com/sw-embed/sw-cor24-tinyc) — COR24 C compiler (Rust)
+- [sw-cor24-x-tinyc](https://github.com/sw-embed/sw-cor24-x-tinyc) — COR24 C compiler (Rust)
 - [sw-cor24-emulator](https://github.com/sw-embed/sw-cor24-emulator) — COR24 emulator (Rust)
 - [sw-cor24-project](https://github.com/sw-embed/sw-cor24-project) — COR24 ecosystem hub
 
