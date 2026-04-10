@@ -6,6 +6,8 @@ Write Lisp expressions, select a prelude tier, and evaluate — all in the brows
 
 **[Live Demo](https://sw-embed.github.io/web-sw-cor24-macrolisp/)**
 
+Part of the [Software Wrighter COR24 Tools Project](https://sw-embed.github.io/web-sw-cor24-demos/#/).
+
 ![web-sw-cor24-macrolisp screenshot](images/screenshot.png?ts=1774674005000)
 
 ## Features
@@ -39,6 +41,16 @@ cargo clippy -- -D warnings     # lint
 cargo fmt --all                 # format
 ```
 
+## Links
+
+- Blog: [Software Wrighter Lab](https://software-wrighter-lab.github.io/)
+- Discord: [Join the community](https://discord.com/invite/Ctzk5uHggZ)
+- YouTube: [Software Wrighter](https://www.youtube.com/@SoftwareWrighter)
+
+## Copyright
+
+Copyright (c) 2026 Michael A. Wright
+
 ## License
 
-MIT © 2026 Michael A. Wright
+MIT

@@ -43,9 +43,15 @@ pub fn app() -> Html {
                 <span class="footer-sep">{"\u{00b7}"}</span>
                 <a href="https://makerlisp.com" target="_blank">{"COR24-TB"}</a>
                 <span class="footer-sep">{"\u{00b7}"}</span>
+                <a href="https://software-wrighter-lab.github.io/" target="_blank">{"Blog"}</a>
+                <span class="footer-sep">{"\u{00b7}"}</span>
+                <a href="https://discord.com/invite/Ctzk5uHggZ" target="_blank">{"Discord"}</a>
+                <span class="footer-sep">{"\u{00b7}"}</span>
+                <a href="https://www.youtube.com/@SoftwareWrighter" target="_blank">{"YouTube"}</a>
+                <span class="footer-sep">{"\u{00b7}"}</span>
                 <a href="https://github.com/sw-embed/sw-cor24-macrolisp/blob/main/docs/demos.md" target="_blank">{"Demo Documentation"}</a>
                 <span class="footer-sep">{"\u{00b7}"}</span>
-                <a href="https://github.com/sw-embed/web-sw-cor24-macrolisp/blob/main/CHANGES.md" target="_blank">{"Changes"}</a>
+                <a href="https://github.com/sw-embed/sw-cor24-macrolisp/blob/main/CHANGES.md" target="_blank">{"Changes"}</a>
             </footer>
         </>
     }

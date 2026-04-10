@@ -382,6 +382,14 @@ impl Component for Repl {
                         self.running = false;
                         self.status = "Paused.".into();
                     }
+                    StopReason::StackOverflow(addr) => {
+                        self.running = false;
+                        self.status = format!("Stack overflow at 0x{:06X}", addr);
+                    }
+                    StopReason::StackUnderflow(addr) => {
+                        self.running = false;
+                        self.status = format!("Stack underflow at 0x{:06X}", addr);
+                    }
                 }
                 true
             }
