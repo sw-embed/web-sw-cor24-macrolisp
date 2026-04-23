@@ -1,5 +1,6 @@
 use std::collections::VecDeque;
 
+use cor24_emulator::cpu::state::EBR_BASE;
 use cor24_emulator::{Assembler, EmulatorCore, StopReason};
 use gloo::timers::callback::Timeout;
 use web_sys::{HtmlInputElement, HtmlTextAreaElement, KeyboardEvent};
@@ -102,7 +103,12 @@ impl Repl {
             self.emulator.write_byte(addr as u32, byte);
         }
         self.emulator.set_pc(0);
-        self.emulator.set_reg(4, self.stack_size.initial_sp());
+        let sp = self.stack_size.initial_sp();
+        self.emulator.set_reg(4, sp);
+        // Pair the configured SP with matching bounds. EmulatorCore::new()
+        // defaults stack_top to INITIAL_SP (0xFEEC00, the 3KB figure), so an
+        // 8KB SP of 0xFF0000 would underflow on the first cycle without this.
+        self.emulator.set_stack_bounds(EBR_BASE, sp);
 
         // Load pre-compiled heap snapshot if available (10x faster startup)
         if let Some(snap) = self.prelude.snapshot() {
