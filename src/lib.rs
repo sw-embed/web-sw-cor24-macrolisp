@@ -52,6 +52,12 @@ pub fn app() -> Html {
                 <a href="https://github.com/sw-embed/sw-cor24-macrolisp/blob/main/docs/demos.md" target="_blank">{"Demo Documentation"}</a>
                 <span class="footer-sep">{"\u{00b7}"}</span>
                 <a href="https://github.com/sw-embed/sw-cor24-macrolisp/blob/main/CHANGES.md" target="_blank">{"Changes"}</a>
+                <span class="footer-sep">{"\u{00b7}"}</span>
+                <span>{ format!("{} \u{00b7} {} \u{00b7} {}",
+                    env!("BUILD_HOST"),
+                    env!("BUILD_SHA"),
+                    env!("BUILD_TIMESTAMP"),
+                ) }</span>
             </footer>
         </>
     }
