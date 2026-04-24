@@ -220,13 +220,17 @@
     white-space: nowrap;
 }
 
-/* ─── Split view: semi-transparent overlay (bottom-right 1/4) ─── */
+/* ─── Split view: semi-transparent overlay (anchored bottom-right,
+       resizable by dragging the top edge, left edge, or top-left corner) ─── */
 .split-input-overlay {
     position: absolute;
     bottom: 8px;
     right: 8px;
-    width: 50%;
-    height: 50%;
+    /* width/height set inline from Rust state */
+    min-width: 20%;
+    min-height: 20%;
+    max-width: 95%;
+    max-height: 95%;
     z-index: 5;
     background: rgba(40, 40, 64, 0.88);
     border: 2px dashed rgba(249, 226, 175, 0.5);
@@ -236,6 +240,44 @@
     padding: 10px;
     gap: 8px;
     backdrop-filter: blur(4px);
+}
+
+/* Resize handles — transparent until hovered, then show accent tint */
+.resize-handle {
+    position: absolute;
+    z-index: 11;
+    background: transparent;
+    transition: background 0.15s ease;
+    touch-action: none;
+}
+.resize-handle:hover,
+.resize-handle:active {
+    background: rgba(249, 226, 175, 0.35);
+}
+.resize-handle-left {
+    top: 8px;
+    bottom: 8px;
+    left: -4px;
+    width: 10px;
+    cursor: ew-resize;
+    border-radius: 4px;
+}
+.resize-handle-top {
+    top: -4px;
+    left: 8px;
+    right: 8px;
+    height: 10px;
+    cursor: ns-resize;
+    border-radius: 4px;
+}
+.resize-handle-corner {
+    top: -5px;
+    left: -5px;
+    width: 14px;
+    height: 14px;
+    cursor: nwse-resize;
+    border-radius: 4px;
+    z-index: 12;
 }
 .split-textarea {
     flex: 1;

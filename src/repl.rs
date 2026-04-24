@@ -3,7 +3,7 @@ use std::collections::VecDeque;
 use cor24_emulator::cpu::state::EBR_BASE;
 use cor24_emulator::{Assembler, EmulatorCore, StopReason};
 use gloo::timers::callback::Timeout;
-use web_sys::{HtmlInputElement, HtmlTextAreaElement, KeyboardEvent};
+use web_sys::{Element, HtmlInputElement, HtmlTextAreaElement, KeyboardEvent, PointerEvent};
 use yew::prelude::*;
 
 use crate::config::{PreludeTier, StackSize};
@@ -16,6 +16,21 @@ const BATCH_SIZE: u64 = 50_000;
 pub enum ViewMode {
     Cli,
     Split,
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum ResizeEdge {
+    Left,
+    Top,
+    Corner,
+}
+
+struct ResizeDrag {
+    edge: ResizeEdge,
+    start_x: i32,
+    start_y: i32,
+    start_width_pct: f64,
+    start_height_pct: f64,
 }
 
 pub enum Msg {
@@ -36,6 +51,9 @@ pub enum Msg {
     CliKeyDown(KeyboardEvent),
     /// Keydown in Split textarea (Shift-Enter to eval)
     SplitKeyDown(KeyboardEvent),
+    ResizeStart(ResizeEdge, PointerEvent),
+    ResizeMove(PointerEvent),
+    ResizeEnd(PointerEvent),
 }
 
 pub struct Repl {
@@ -79,6 +97,11 @@ pub struct Repl {
     trace_text: String,
     input_ref: NodeRef,
     cli_input_ref: NodeRef,
+    main_area_ref: NodeRef,
+    /// Split-view overlay size as percentage of main-area.
+    split_width_pct: f64,
+    split_height_pct: f64,
+    resize_drag: Option<ResizeDrag>,
 }
 
 const HEAP_SIZE: u32 = 32768;
@@ -255,6 +278,10 @@ impl Component for Repl {
             trace_text: String::new(),
             input_ref: NodeRef::default(),
             cli_input_ref: NodeRef::default(),
+            main_area_ref: NodeRef::default(),
+            split_width_pct: 50.0,
+            split_height_pct: 50.0,
+            resize_drag: None,
         }
     }
 
@@ -545,6 +572,65 @@ impl Component for Repl {
                 }
                 true
             }
+
+            Msg::ResizeStart(edge, e) => {
+                e.prevent_default();
+                if let Some(target) = e.target_dyn_into::<Element>() {
+                    let _ = target.set_pointer_capture(e.pointer_id());
+                }
+                self.resize_drag = Some(ResizeDrag {
+                    edge,
+                    start_x: e.client_x(),
+                    start_y: e.client_y(),
+                    start_width_pct: self.split_width_pct,
+                    start_height_pct: self.split_height_pct,
+                });
+                false
+            }
+
+            Msg::ResizeMove(e) => {
+                let Some(drag) = &self.resize_drag else {
+                    return false;
+                };
+                let Some(main_area) = self.main_area_ref.cast::<Element>() else {
+                    return false;
+                };
+                let rect = main_area.get_bounding_client_rect();
+                let parent_w = rect.width();
+                let parent_h = rect.height();
+                if parent_w <= 0.0 || parent_h <= 0.0 {
+                    return false;
+                }
+                let dx = (e.client_x() - drag.start_x) as f64;
+                let dy = (e.client_y() - drag.start_y) as f64;
+                // Overlay is anchored bottom-right. Dragging the top or left
+                // edge toward the upper-left grows the overlay.
+                match drag.edge {
+                    ResizeEdge::Left => {
+                        self.split_width_pct =
+                            (drag.start_width_pct - dx / parent_w * 100.0).clamp(20.0, 95.0);
+                    }
+                    ResizeEdge::Top => {
+                        self.split_height_pct =
+                            (drag.start_height_pct - dy / parent_h * 100.0).clamp(20.0, 95.0);
+                    }
+                    ResizeEdge::Corner => {
+                        self.split_width_pct =
+                            (drag.start_width_pct - dx / parent_w * 100.0).clamp(20.0, 95.0);
+                        self.split_height_pct =
+                            (drag.start_height_pct - dy / parent_h * 100.0).clamp(20.0, 95.0);
+                    }
+                }
+                true
+            }
+
+            Msg::ResizeEnd(e) => {
+                if let Some(target) = e.target_dyn_into::<Element>() {
+                    let _ = target.release_pointer_capture(e.pointer_id());
+                }
+                self.resize_drag = None;
+                false
+            }
         }
     }
 
@@ -673,7 +759,7 @@ impl Component for Repl {
                 </div>
 
                 // Main area (output is always full-size)
-                <div class="main-area">
+                <div class="main-area" ref={self.main_area_ref.clone()}>
                     // Output panel (full size)
                     // CLI view: interleaved transcript; Split view: raw UART output
                     <pre class="output">{ match self.view_mode {
@@ -750,8 +836,41 @@ impl Component for Repl {
                                 Msg::InputChanged(target.value())
                             });
                             let on_split_keydown = ctx.link().callback(Msg::SplitKeyDown);
+                            let on_resize_left =
+                                ctx.link().callback(|e: PointerEvent| {
+                                    Msg::ResizeStart(ResizeEdge::Left, e)
+                                });
+                            let on_resize_top =
+                                ctx.link().callback(|e: PointerEvent| {
+                                    Msg::ResizeStart(ResizeEdge::Top, e)
+                                });
+                            let on_resize_corner =
+                                ctx.link().callback(|e: PointerEvent| {
+                                    Msg::ResizeStart(ResizeEdge::Corner, e)
+                                });
+                            let on_resize_move = ctx.link().callback(Msg::ResizeMove);
+                            let on_resize_end = ctx.link().callback(Msg::ResizeEnd);
+                            let overlay_style = format!(
+                                "width: {:.2}%; height: {:.2}%;",
+                                self.split_width_pct, self.split_height_pct,
+                            );
                             html! {
-                                <div class="split-input-overlay">
+                                <div class="split-input-overlay" style={overlay_style}>
+                                    <div class="resize-handle resize-handle-left"
+                                         onpointerdown={on_resize_left}
+                                         onpointermove={on_resize_move.clone()}
+                                         onpointerup={on_resize_end.clone()}
+                                         onpointercancel={on_resize_end.clone()} />
+                                    <div class="resize-handle resize-handle-top"
+                                         onpointerdown={on_resize_top}
+                                         onpointermove={on_resize_move.clone()}
+                                         onpointerup={on_resize_end.clone()}
+                                         onpointercancel={on_resize_end.clone()} />
+                                    <div class="resize-handle resize-handle-corner"
+                                         onpointerdown={on_resize_corner}
+                                         onpointermove={on_resize_move}
+                                         onpointerup={on_resize_end.clone()}
+                                         onpointercancel={on_resize_end} />
                                     <textarea
                                         ref={self.input_ref.clone()}
                                         class="split-textarea"
