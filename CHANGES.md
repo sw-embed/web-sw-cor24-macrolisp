@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-04-24
+
+### Demos
+
+- Add "Power DSL (Glyphs)" demo (Standard): Power expressed as `(• power (N E) → (P) ← (loop E times ┌ 1 │ * N └))` via two glyph macros
+- Add "Power DSL (Typed + iff)" demo (Standard): extends the glyph DSL with `n : ℤ` type annotations and `iff e is positive` → `(assert (positive? e))` preconditions
+- Update fuzzy-eq demo: pulls sibling's new Unicode-glyph section (`if≈ a ≈ b ± e then X else Y`) into the embedded source
+
 ## 2026-04-23
 
 ### Demos

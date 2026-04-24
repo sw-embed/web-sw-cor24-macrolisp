@@ -132,6 +132,20 @@ pub const DEMOS: &[Demo] = &[
         stack: StackSize::ThreeKb,
     },
     Demo {
+        title: "Power DSL (Glyphs)",
+        description: "Power expressed as glyph notation: • (N E) → (P) ← loop …",
+        source: include_str!("../../sw-cor24-macrolisp/demos/power-dsl.l24"),
+        prelude: PreludeTier::Standard,
+        stack: StackSize::ThreeKb,
+    },
+    Demo {
+        title: "Power DSL (Typed + iff)",
+        description: "Glyph DSL with type annotations (n : ℤ) and iff-preconditions via assert",
+        source: include_str!("../../sw-cor24-macrolisp/demos/power-dsl-iff.l24"),
+        prelude: PreludeTier::Standard,
+        stack: StackSize::ThreeKb,
+    },
+    Demo {
         title: "Quasiquote",
         description: "Template expansion with unquote and splicing",
         source: include_str!("../../sw-cor24-macrolisp/demos/quasiquote.l24"),
