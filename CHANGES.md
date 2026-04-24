@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-04-25
+
+### Demos
+
+- Add "Fuzzy + Percent" demo (Standard): `(if≈% α ≈ β ± ρ % then X else Y)` — an infix macro combining fuzzy-eq and percent-tol (Unicode ≈/± and ASCII `if~=%` twins; pure integer math; gensym-hygienic). Extended with `aif≈%` anaphoric variant that binds `it` to the signed delta and yields 0 when within tolerance or `it` otherwise — composes through reduce/+/abs for drift aggregation.
+- README: demo count bumped to 35.
+
 ## 2026-04-24
 
 ### Demos

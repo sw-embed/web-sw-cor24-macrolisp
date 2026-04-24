@@ -69,6 +69,13 @@ pub const DEMOS: &[Demo] = &[
         stack: StackSize::ThreeKb,
     },
     Demo {
+        title: "Fuzzy + Percent",
+        description: "Combined DSL: (if≈% α ≈ β ± ρ % then X else Y) plus anaphoric aif≈%",
+        source: include_str!("../../sw-cor24-macrolisp/demos/fuzzy-pct.l24"),
+        prelude: PreludeTier::Standard,
+        stack: StackSize::ThreeKb,
+    },
+    Demo {
         title: "Infix Syntax",
         description: "Binary and variadic infix arithmetic via macros",
         source: include_str!("../../sw-cor24-macrolisp/demos/infix.l24"),
