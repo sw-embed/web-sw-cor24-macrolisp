@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-04-23
+
+### Demos
+
+- Add "Fuzzy Equality" demo (Standard): `if~=` DSL macro mirroring `a ≈ b ± e` notation
+- Add "Infix Syntax" demo (Standard): binary `$` macro and variadic left-to-right `infix` macro
+- Add "Percent Tolerance" demo (Standard): hygienic `if-close?` macro for percentage-tolerance comparisons
+- Add "Reduce" demo (Full): reduce/fold patterns — sum, product, reverse, max, min, join
+
+### Build
+
+- Fix `build-all.sh` tc24r path: `sw-cor24-tinyc` → `sw-cor24-x-tinyc` (was stale after the `x-` rename)
+
 ## 2026-03-30 — Fork Migration
 
 - Forked from [sw-vibe-coding/web-tml24c](https://github.com/sw-vibe-coding/web-tml24c)

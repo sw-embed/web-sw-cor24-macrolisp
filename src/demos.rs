@@ -62,6 +62,20 @@ pub const DEMOS: &[Demo] = &[
         stack: StackSize::ThreeKb,
     },
     Demo {
+        title: "Fuzzy Equality",
+        description: "DSL macro: (if~= a ~= b +/- e then X else Y)",
+        source: include_str!("../../sw-cor24-macrolisp/demos/fuzzy-eq.l24"),
+        prelude: PreludeTier::Standard,
+        stack: StackSize::ThreeKb,
+    },
+    Demo {
+        title: "Infix Syntax",
+        description: "Binary and variadic infix arithmetic via macros",
+        source: include_str!("../../sw-cor24-macrolisp/demos/infix.l24"),
+        prelude: PreludeTier::Standard,
+        stack: StackSize::ThreeKb,
+    },
+    Demo {
         title: "Macros",
         description: "let, cond, and, or — core macro system",
         source: include_str!("../../sw-cor24-macrolisp/demos/macros.l24"),
@@ -100,6 +114,13 @@ pub const DEMOS: &[Demo] = &[
         title: "Parameters",
         description: "make-parameter, parameterize — dynamic scoping",
         source: include_str!("../../sw-cor24-macrolisp/demos/parameters.l24"),
+        prelude: PreludeTier::Standard,
+        stack: StackSize::ThreeKb,
+    },
+    Demo {
+        title: "Percent Tolerance",
+        description: "Hygienic macro: percentage-tolerance equality DSL",
+        source: include_str!("../../sw-cor24-macrolisp/demos/percent-tol.l24"),
         prelude: PreludeTier::Standard,
         stack: StackSize::ThreeKb,
     },
@@ -180,6 +201,13 @@ pub const DEMOS: &[Demo] = &[
         source: include_str!("../../sw-cor24-macrolisp/demos/lazy.l24"),
         prelude: PreludeTier::Full,
         stack: StackSize::EightKb,
+    },
+    Demo {
+        title: "Reduce",
+        description: "reduce/fold patterns: sum, product, reverse, max, join",
+        source: include_str!("../../sw-cor24-macrolisp/demos/reduce.l24"),
+        prelude: PreludeTier::Full,
+        stack: StackSize::ThreeKb,
     },
     Demo {
         title: "Threading Macros",

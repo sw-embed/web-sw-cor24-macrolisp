@@ -7,7 +7,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 TML_DIR="$PROJECT_DIR/../sw-cor24-macrolisp"
-TC24R="$PROJECT_DIR/../sw-cor24-tinyc/components/cli/target/release/tc24r"
+TC24R="$PROJECT_DIR/../sw-cor24-x-tinyc/components/cli/target/release/tc24r"
 
 # 1. Recompile all REPL variants from sw-cor24-macrolisp
 echo "=== Compiling REPL variants ==="
