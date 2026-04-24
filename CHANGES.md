@@ -17,6 +17,8 @@
 ### Docs
 
 - `d706cba` CLAUDE.md: add a "Changelog discipline" section requiring a `CHANGES.md` entry on every commit; backfill this 2026-04-24 section.
+- `3c921af` CHANGES.md: one bullet per commit so the day's iteration history reads in order.
+- Footer "Changes" link now points to this repo's CHANGES.md (was: sibling `sw-cor24-macrolisp`).
 
 ## 2026-04-23
 
