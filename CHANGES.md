@@ -7,6 +7,7 @@
 - Add "Fuzzy Equality" demo (Standard): `if~=` DSL macro mirroring `a ≈ b ± e` notation
 - Add "Infix Syntax" demo (Standard): binary `$` macro and variadic left-to-right `infix` macro
 - Add "Percent Tolerance" demo (Standard): hygienic `if-close?` macro for percentage-tolerance comparisons
+- Add "Power (Integer Exponent)" demo (Standard): tail-recursive N^E with 22-bit fixnum wrap caveat
 - Add "Reduce" demo (Full): reduce/fold patterns — sum, product, reverse, max, min, join
 
 ### Build

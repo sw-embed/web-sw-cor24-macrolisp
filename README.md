@@ -13,7 +13,7 @@ Part of the [Software Wrighter COR24 Tools Project](https://sw-embed.github.io/w
 ## Features
 
 - **5 prelude tiers**: Bare, Minimal, Standard, Full, Scheme
-- **31 embedded demos**: TCO, macros, lazy sequences, error handling, anaphoric macros, bottles of beer, LED blink, infix/fuzzy/percent-tolerance DSLs, reduce patterns, and more — grouped by prelude in the dropdown
+- **32 embedded demos**: TCO, macros, lazy sequences, error handling, anaphoric macros, bottles of beer, LED blink, infix/fuzzy/percent-tolerance DSLs, reduce patterns, tail-recursive power, and more — grouped by prelude in the dropdown
 - **Dual view modes**: CLI (Enter to eval, interleaved output) and Split (semi-transparent overlay for multi-line code)
 - **Configurable stack**: 3 KB (hardware default) or 8 KB (full EBR)
 - **Floating hardware panel**: LED D2, Switch S2 (clickable), with live memory gauges for heap, symbols, string pool, and stack (green/yellow/red)

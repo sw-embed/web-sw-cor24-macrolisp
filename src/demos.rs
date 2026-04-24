@@ -125,6 +125,13 @@ pub const DEMOS: &[Demo] = &[
         stack: StackSize::ThreeKb,
     },
     Demo {
+        title: "Power (Integer Exponent)",
+        description: "N^E via tail-recursive accumulator; 22-bit fixnum wrap caveat",
+        source: include_str!("../../sw-cor24-macrolisp/demos/power.l24"),
+        prelude: PreludeTier::Standard,
+        stack: StackSize::ThreeKb,
+    },
+    Demo {
         title: "Quasiquote",
         description: "Template expansion with unquote and splicing",
         source: include_str!("../../sw-cor24-macrolisp/demos/quasiquote.l24"),
