@@ -4,18 +4,19 @@
 
 ### Demos
 
-- Add "Power DSL (Glyphs)" demo (Standard): glyph-notation Power where the Unicode curly brace `⎧⎨⎩` is itself the macro. Positional scaffolding symbols (`loop`, `times`) occupy slots so the source mirrors the math picture. Flattened form: `(• power (N E) → (P) ← (⎧ 1 ⎨ loop E times ⎩ N *))`.
-- Add "Power DSL (Typed + iff)" demo (Standard): extends with `n : ℤ` type annotations (stripped by macro) and an `iff e is positive` precondition on the `⎨` row that expands to `(assert (positive? e))` and raises `"assertion failed"` on bad input. Defines `assert` locally so the demo works on the cached Standard snapshot that predates the prelude's built-in `assert`.
-- Refresh `fuzzy-eq` embedded source for sibling's Unicode-glyph section (`if≈ a ≈ b ± e then X else Y`) with real math symbols.
-- DSL-parsing fragility notes added to both Power DSL demos (positional binding silently breaks on token reorder).
+- `1d199f5` Refresh `fuzzy-eq` embedded source for sibling's new Unicode-glyph section: `(if≈ a ≈ b ± e then X else Y)` using real math symbols (≈ U+2248, ± U+00B1) alongside the ASCII `if~=` variant.
+- `c581cd2` Add "Power DSL (Glyphs)" and "Power DSL (Typed + iff)" demos (Standard). Initial form used DOS-style box corners (┌│└) and `iff` as a tail argument on `•`.
+- `5342217` Fix Power DSL demos: swap box corners (┌│└) for Unicode curly-brace pieces (⎧⎨⎩); move `iff` inside `loop` (between `times` and the body brace) so it visually tracks the loop control; define `assert` locally so the iff variant runs on the cached Standard snapshot (which predates the prelude's built-in `assert`).
+- `ed5fb00` Refactor Power DSL: the curly brace `⎧⎨⎩` is the macro. `loop`/`iff` live inside the brace on the middle row, `•` body reduces to the brace expression. Added DSL-parsing-fragility notes (positional binding silently breaks on token reorder).
+- `9cf7d6c` Match updated `docs/fix.txt` layout: relocate the per-step combination (operand, operator) to the `⎩` row; middle row (`⎨`) carries only loop ctrl + `iff`. Flattened form: `(• Power (n : ℤ e : ℤ) → (p : ℤ) ← (⎧ 1 ⎨ loop e times iff e is positive ⎩ n *))`.
 
 ### UI
 
-- Drag-resize the Split-view input overlay. Invisible hover-lit handles on the top edge, left edge, and top-left corner grow/shrink the panel (clamped 20%–95% of the main area). Uses Pointer Events with `setPointerCapture` so drags survive the cursor leaving the handle — no global listeners needed.
+- `8fe36b6` Drag-resize the Split-view input overlay. Invisible hover-lit handles on the top edge, left edge, and top-left corner grow/shrink the panel (clamped 20%–95% of the main area). Uses Pointer Events with `setPointerCapture` so drags survive the cursor leaving the handle — no global listeners needed.
 
 ### Docs
 
-- CLAUDE.md: add a "Changelog discipline" section requiring a `CHANGES.md` entry on every commit.
+- `d706cba` CLAUDE.md: add a "Changelog discipline" section requiring a `CHANGES.md` entry on every commit; backfill this 2026-04-24 section.
 
 ## 2026-04-23
 
