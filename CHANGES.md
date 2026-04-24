@@ -4,9 +4,18 @@
 
 ### Demos
 
-- Add "Power DSL (Glyphs)" demo (Standard): Power expressed as `(• power (N E) → (P) ← (loop E times ┌ 1 │ * N └))` via two glyph macros
-- Add "Power DSL (Typed + iff)" demo (Standard): extends the glyph DSL with `n : ℤ` type annotations and `iff e is positive` → `(assert (positive? e))` preconditions
-- Update fuzzy-eq demo: pulls sibling's new Unicode-glyph section (`if≈ a ≈ b ± e then X else Y`) into the embedded source
+- Add "Power DSL (Glyphs)" demo (Standard): glyph-notation Power where the Unicode curly brace `⎧⎨⎩` is itself the macro. Positional scaffolding symbols (`loop`, `times`) occupy slots so the source mirrors the math picture. Flattened form: `(• power (N E) → (P) ← (⎧ 1 ⎨ loop E times ⎩ N *))`.
+- Add "Power DSL (Typed + iff)" demo (Standard): extends with `n : ℤ` type annotations (stripped by macro) and an `iff e is positive` precondition on the `⎨` row that expands to `(assert (positive? e))` and raises `"assertion failed"` on bad input. Defines `assert` locally so the demo works on the cached Standard snapshot that predates the prelude's built-in `assert`.
+- Refresh `fuzzy-eq` embedded source for sibling's Unicode-glyph section (`if≈ a ≈ b ± e then X else Y`) with real math symbols.
+- DSL-parsing fragility notes added to both Power DSL demos (positional binding silently breaks on token reorder).
+
+### UI
+
+- Drag-resize the Split-view input overlay. Invisible hover-lit handles on the top edge, left edge, and top-left corner grow/shrink the panel (clamped 20%–95% of the main area). Uses Pointer Events with `setPointerCapture` so drags survive the cursor leaving the handle — no global listeners needed.
+
+### Docs
+
+- CLAUDE.md: add a "Changelog discipline" section requiring a `CHANGES.md` entry on every commit.
 
 ## 2026-04-23
 

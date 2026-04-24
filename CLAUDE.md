@@ -35,6 +35,14 @@ cargo fmt --all
 
 **Before committing `pages/` changes, always run `./scripts/build-all.sh`.** The `pages/` directory is committed and deployed via GitHub Actions (`.github/workflows/pages.yml`, which just uploads the `pages/` artifact — CI does not rebuild).
 
+## Changelog discipline
+
+**Every commit updates `CHANGES.md`.** No exceptions for "trivial" pages/ rebuilds, build-script tweaks, or sibling-repo syncs — if it's shipping, it belongs in the changelog. Before running `git commit`, add a one-line bullet to the current date's section (create the section if the date is new). Keep entries grouped by `### Demos`, `### UI`, `### Build`, `### Docs`, etc.
+
+**Also refresh the README if user-visible things change** — the demo count in the feature bullet, any new capabilities, or setup/flag changes. If the README is stale, correct it in the same commit as the behavior change.
+
+**If I'm about to commit without a CHANGES.md entry, stop and add one first.**
+
 ## Architecture
 
 **Pipeline.** `repl-<tier>.c` → (`tc24r`, at build time) → `asm/repl-<tier>.s` → (`cor24_emulator::Assembler`, at browser startup) → bytes loaded into `EmulatorCore` at address 0 → CPU runs the REPL → user Lisp flows in via UART RX, output via UART TX.
