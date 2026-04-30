@@ -1,6 +1,5 @@
 use std::collections::VecDeque;
 
-use cor24_emulator::cpu::state::EBR_BASE;
 use cor24_emulator::{Assembler, EmulatorCore, StopReason};
 use gloo::timers::callback::Timeout;
 use web_sys::{Element, HtmlInputElement, HtmlTextAreaElement, KeyboardEvent, PointerEvent};
@@ -110,9 +109,22 @@ const STR_POOL_SIZE: u32 = 8192;
 
 impl Repl {
     fn load_binary(&mut self) {
-        let asm_source = self.prelude.assembly();
+        // For SRAM-relocated stacks, prepend an SP-load to `_start` so the
+        // first instructions executed move sp into SRAM before any push.
+        let asm_source: String = if self.stack_size.requires_relocated_sp() {
+            self.prelude.assembly().replacen(
+                "_start:\n",
+                &format!(
+                    "_start:\n        la      r0,{}\n        mov     sp,r0\n",
+                    self.stack_size.initial_sp()
+                ),
+                1,
+            )
+        } else {
+            self.prelude.assembly().to_string()
+        };
         let mut asm = Assembler::new();
-        let result = asm.assemble(asm_source);
+        let result = asm.assemble(&asm_source);
 
         if !result.errors.is_empty() {
             self.status = format!("Assembly failed: {}", result.errors[0]);
@@ -131,7 +143,7 @@ impl Repl {
         // Pair the configured SP with matching bounds. EmulatorCore::new()
         // defaults stack_top to INITIAL_SP (0xFEEC00, the 3KB figure), so an
         // 8KB SP of 0xFF0000 would underflow on the first cycle without this.
-        self.emulator.set_stack_bounds(EBR_BASE, sp);
+        self.emulator.set_stack_bounds(self.stack_size.lower_bound(), sp);
 
         // Load pre-compiled heap snapshot if available (10x faster startup)
         if let Some(snap) = self.prelude.snapshot() {
@@ -659,6 +671,7 @@ impl Component for Repl {
             let target: web_sys::HtmlSelectElement = e.target_unchecked_into();
             let size = match target.value().as_str() {
                 "8" => StackSize::EightKb,
+                "16sram" => StackSize::SixteenKbSram,
                 _ => StackSize::ThreeKb,
             };
             Msg::SetStack(size)
@@ -707,6 +720,7 @@ impl Component for Repl {
                                 let val = match s {
                                     StackSize::ThreeKb => "3",
                                     StackSize::EightKb => "8",
+                                    StackSize::SixteenKbSram => "16sram",
                                 };
                                 html! {
                                     <option value={val} selected={*s == self.stack_size}>

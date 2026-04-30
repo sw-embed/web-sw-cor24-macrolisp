@@ -59,13 +59,21 @@ impl PreludeTier {
     ];
 }
 
-/// Stack size configuration for the COR24 EBR region.
+/// Stack size configuration.
+///
+/// `ThreeKb` and `EightKb` use the COR24 EBR region (8 KB hardware cap).
+/// `SixteenKbSram` is a diagnostic option: it relocates the stack into SRAM
+/// at 0x100000 (top of SRAM, grows down to 0x0FC000) by patching the loaded
+/// assembly's `_start` to load `sp = 0x100000`. Use it to determine whether
+/// a demo overflows due to true unbounded recursion or just C-stack budget.
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 pub enum StackSize {
     /// 3 KB — matches MachXO hardware default
     ThreeKb,
     /// 8 KB — full EBR window, needed for deep recursion
     EightKb,
+    /// 16 KB — relocated into SRAM (0x0FC000..0x100000). Diagnostic only.
+    SixteenKbSram,
 }
 
 impl StackSize {
@@ -73,13 +81,29 @@ impl StackSize {
         match self {
             Self::ThreeKb => 0xFEEC00,
             Self::EightKb => 0xFF0000,
+            Self::SixteenKbSram => 0x100000,
         }
+    }
+
+    /// Lower bound for stack-overflow detection.
+    pub fn lower_bound(self) -> u32 {
+        match self {
+            Self::ThreeKb | Self::EightKb => 0xFEE000,
+            Self::SixteenKbSram => 0x0FC000,
+        }
+    }
+
+    /// True if the loaded assembly needs `_start` patched to load SP into a
+    /// non-default region (i.e. SRAM).
+    pub fn requires_relocated_sp(self) -> bool {
+        matches!(self, Self::SixteenKbSram)
     }
 
     pub fn label(self) -> &'static str {
         match self {
             Self::ThreeKb => "3 KB",
             Self::EightKb => "8 KB",
+            Self::SixteenKbSram => "16 KB SRAM",
         }
     }
 
@@ -87,8 +111,9 @@ impl StackSize {
         match self {
             Self::ThreeKb => 3072,
             Self::EightKb => 8192,
+            Self::SixteenKbSram => 16384,
         }
     }
 
-    pub const ALL: [StackSize; 2] = [Self::ThreeKb, Self::EightKb];
+    pub const ALL: [StackSize; 3] = [Self::ThreeKb, Self::EightKb, Self::SixteenKbSram];
 }

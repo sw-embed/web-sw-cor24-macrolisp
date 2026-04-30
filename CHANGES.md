@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-04-30
+
+### UI
+- Add `StackSize::SixteenKbSram` — 16 KB stack relocated into SRAM (0x0FC000..0x100000). Implemented by runtime-patching `_start` in the loaded assembly to load `sp = 0x100000` before calling `_main`. Diagnostic option for distinguishing C-stack budget overflows from true unbounded recursion. Bound checks remain active (overflow at 0x0FC000).
+- Functional Toolkit demo now defaults to 16 KB SRAM stack — overflows reported at 3 KB and 8 KB EBR.
+
+### Sync from sw-cor24-macrolisp
+- Regenerated all `asm/repl-*.s` snapshots from sw-cor24-macrolisp@278bdba (picks up the REPL/compiler drain-loop fix that allows multiple forms on one line).
+
 ## 2026-04-25
 
 ### Demos

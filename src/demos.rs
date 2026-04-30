@@ -214,7 +214,7 @@ pub const DEMOS: &[Demo] = &[
         description: "fn?, compose, complement, every?, flatten, zip",
         source: include_str!("../../sw-cor24-macrolisp/demos/functional.l24"),
         prelude: PreludeTier::Full,
-        stack: StackSize::ThreeKb,
+        stack: StackSize::SixteenKbSram,
     },
     Demo {
         title: "Iteration Patterns",

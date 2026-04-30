@@ -4043,7 +4043,7 @@ _apply_primitive:
         push    r2
         push    r1
         mov     fp,sp
-        sub     sp,373
+        sub     sp,397
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -4070,10 +4070,10 @@ _apply_primitive:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brf     L579
+        brf     L625
         la      r2,L318
         jmp     (r2)
-L579:
+L625:
         lw      r0,12(fp)
         push    r0
         la      r0,_car
@@ -4116,61 +4116,9 @@ L318:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brf     L333
-        lw      r0,9(fp)
-        lc      r1,1
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        brf     L333
-        lc      r0,0
-        bra     L334
-L333:
-        lc      r0,1
-L334:
-        ceq     r0,z
-        brf     L331
-        lw      r0,9(fp)
-        lc      r1,2
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        brf     L331
-        lc      r0,0
-        bra     L332
-L331:
-        lc      r0,1
-L332:
-        ceq     r0,z
-        brf     L329
-        lw      r0,9(fp)
-        lc      r1,3
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        brf     L329
-        lc      r0,0
-        bra     L330
-L329:
-        lc      r0,1
-L330:
-        ceq     r0,z
-        brf     L327
-        lw      r0,9(fp)
-        lc      r1,4
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        brf     L327
-        lc      r0,0
-        bra     L328
-L327:
-        lc      r0,1
-L328:
-        ceq     r0,z
         brf     L325
         lw      r0,9(fp)
-        lc      r1,5
+        lc      r1,1
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
@@ -4183,7 +4131,7 @@ L326:
         ceq     r0,z
         brf     L323
         lw      r0,9(fp)
-        lc      r1,6
+        lc      r1,2
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
@@ -4194,37 +4142,63 @@ L323:
         lc      r0,1
 L324:
         ceq     r0,z
-        brf     L578
+        brf     L624
         la      r2,L322
         jmp     (r2)
-L578:
-        lw      r0,-3(fp)
-        lc      r1,3
-        and     r0,r1
-        lc      r1,0
+L624:
+        lw      r0,9(fp)
+        lc      r1,2
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        mov     r0,c
-        ceq     r0,z
-        brf     L337
-        lw      r0,-6(fp)
-        lc      r1,3
-        and     r0,r1
-        lc      r1,0
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        mov     r0,c
-        ceq     r0,z
-        brf     L337
-        lc      r0,0
-        bra     L338
-L337:
+        brt     L327
         lc      r0,1
-L338:
+        bra     L328
+L327:
+        lc      r0,0
+L328:
+        sw      r0,-9(fp)
+        lw      r0,-9(fp)
+        sw      r0,-12(fp)
+        lw      r0,12(fp)
+        sw      r0,-15(fp)
+        lc      r0,0
+        sw      r0,-18(fp)
+L329:
+        lw      r0,-15(fp)
+        push    r0
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        mov     r1,r0
+        pop     r0
+        ceq     r0,r1
+        mov     r0,c
         ceq     r0,z
-        brt     L336
+        mov     r0,c
+        ceq     r0,z
+        brf     L623
+        la      r2,L330
+        jmp     (r2)
+L623:
+        lw      r0,-15(fp)
+        push    r0
+        la      r0,_car
+        jal     r1,(r0)
+        add     sp,3
+        sw      r0,-21(fp)
+        lw      r0,-21(fp)
+        lc      r1,3
+        and     r0,r1
+        lc      r1,0
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        mov     r0,c
+        ceq     r0,z
+        brt     L332
         la      r0,_S23
         push    r0
         la      r0,_puts_str
@@ -4237,83 +4211,198 @@ L338:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
+L332:
+        lw      r0,-18(fp)
+        lc      r1,0
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brt     L335
+        lw      r0,9(fp)
+        lc      r1,1
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brt     L335
+        lc      r0,1
+        bra     L336
+L335:
+        lc      r0,0
 L336:
+        ceq     r0,z
+        brt     L333
+        lw      r0,-21(fp)
+        lc      r1,2
+        sra     r0,r1
+        sw      r0,-12(fp)
+        la      r2,L334
+        jmp     (r2)
+L333:
         lw      r0,9(fp)
         lc      r1,0
         ceq     r0,r1
-        brf     L340
-        lw      r0,-3(fp)
-        lc      r1,2
-        sra     r0,r1
+        brf     L337
+        lw      r0,-12(fp)
         push    r0
-        lw      r0,-6(fp)
+        lw      r0,-21(fp)
         lc      r1,2
         sra     r0,r1
         mov     r1,r0
         pop     r0
         add     r0,r1
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,0
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L340:
+        sw      r0,-12(fp)
+        bra     L338
+L337:
         lw      r0,9(fp)
         lc      r1,1
         ceq     r0,r1
-        brf     L342
-        lw      r0,-3(fp)
-        lc      r1,2
-        sra     r0,r1
+        brf     L339
+        lw      r0,-12(fp)
         push    r0
-        lw      r0,-6(fp)
+        lw      r0,-21(fp)
         lc      r1,2
         sra     r0,r1
         mov     r1,r0
         pop     r0
         sub     r0,r1
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,0
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L342:
-        lw      r0,9(fp)
-        lc      r1,2
-        ceq     r0,r1
-        brf     L344
-        lw      r0,-3(fp)
-        lc      r1,2
-        sra     r0,r1
+        sw      r0,-12(fp)
+        bra     L340
+L339:
+        lw      r0,-12(fp)
         push    r0
-        lw      r0,-6(fp)
+        lw      r0,-21(fp)
         lc      r1,2
         sra     r0,r1
         mov     r1,r0
         pop     r0
         mul     r0,r1
+        sw      r0,-12(fp)
+L340:
+L338:
+L334:
+        lw      r0,-18(fp)
+        push    r0
+        add     r0,1
+        sw      r0,-18(fp)
+        pop     r0
+        lw      r0,-15(fp)
+        push    r0
+        la      r0,_cdr
+        jal     r1,(r0)
+        add     sp,3
+        sw      r0,-15(fp)
+        la      r2,L329
+        jmp     (r2)
+L330:
+        lw      r0,9(fp)
+        lc      r1,1
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brt     L343
+        lw      r0,-18(fp)
+        lc      r1,1
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brt     L343
+        lc      r0,1
+        bra     L344
+L343:
+        lc      r0,0
+L344:
+        ceq     r0,z
+        brt     L342
+        lw      r0,-12(fp)
+        push    r0
+        lc      r0,0
+        pop     r1
+        sub     r0,r1
+        sw      r0,-12(fp)
+L342:
+        lw      r0,-12(fp)
         lc      r1,2
         shl     r0,r1
         lc      r1,0
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L344:
+L322:
         lw      r0,9(fp)
         lc      r1,3
         ceq     r0,r1
-        brt     L577
+        mov     r0,c
+        ceq     r0,z
+        brf     L351
+        lw      r0,9(fp)
+        lc      r1,4
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brf     L351
+        lc      r0,0
+        bra     L352
+L351:
+        lc      r0,1
+L352:
+        ceq     r0,z
+        brf     L349
+        lw      r0,9(fp)
+        lc      r1,5
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brf     L349
+        lc      r0,0
+        bra     L350
+L349:
+        lc      r0,1
+L350:
+        ceq     r0,z
+        brf     L347
+        lw      r0,9(fp)
+        lc      r1,6
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brf     L347
+        lc      r0,0
+        bra     L348
+L347:
+        lc      r0,1
+L348:
+        ceq     r0,z
+        brf     L622
         la      r2,L346
         jmp     (r2)
-L577:
-        lw      r0,-6(fp)
-        lc      r1,2
-        sra     r0,r1
+L622:
+        lw      r0,-3(fp)
+        lc      r1,3
+        and     r0,r1
         lc      r1,0
         ceq     r0,r1
-        brf     L348
+        mov     r0,c
+        ceq     r0,z
+        mov     r0,c
+        ceq     r0,z
+        brf     L355
+        lw      r0,-6(fp)
+        lc      r1,3
+        and     r0,r1
+        lc      r1,0
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        mov     r0,c
+        ceq     r0,z
+        brf     L355
+        lc      r0,0
+        bra     L356
+L355:
+        lc      r0,1
+L356:
+        ceq     r0,z
+        brt     L354
         la      r0,_S24
         push    r0
         la      r0,_puts_str
@@ -4326,7 +4415,33 @@ L577:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L348:
+L354:
+        lw      r0,9(fp)
+        lc      r1,3
+        ceq     r0,r1
+        brt     L621
+        la      r2,L358
+        jmp     (r2)
+L621:
+        lw      r0,-6(fp)
+        lc      r1,2
+        sra     r0,r1
+        lc      r1,0
+        ceq     r0,r1
+        brf     L360
+        la      r0,_S25
+        push    r0
+        la      r0,_puts_str
+        jal     r1,(r0)
+        add     sp,3
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L360:
         lw      r0,-3(fp)
         lc      r1,2
         sra     r0,r1
@@ -4347,21 +4462,21 @@ L348:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L346:
+L358:
         lw      r0,9(fp)
         lc      r1,4
         ceq     r0,r1
-        brt     L576
-        la      r2,L350
+        brt     L620
+        la      r2,L362
         jmp     (r2)
-L576:
+L620:
         lw      r0,-6(fp)
         lc      r1,2
         sra     r0,r1
         lc      r1,0
         ceq     r0,r1
-        brf     L352
-        la      r0,_S25
+        brf     L364
+        la      r0,_S26
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
@@ -4373,7 +4488,7 @@ L576:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L352:
+L364:
         lw      r0,-3(fp)
         lc      r1,2
         sra     r0,r1
@@ -4394,11 +4509,11 @@ L352:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L350:
+L362:
         lw      r0,9(fp)
         lc      r1,5
         ceq     r0,r1
-        brf     L354
+        brf     L366
         lw      r0,-3(fp)
         lc      r1,2
         sra     r0,r1
@@ -4409,7 +4524,7 @@ L350:
         mov     r1,r0
         pop     r0
         cls     r0,r1
-        brf     L356
+        brf     L368
         lc      r0,1
         lc      r1,2
         shl     r0,r1
@@ -4417,7 +4532,7 @@ L350:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L356:
+L368:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -4425,11 +4540,11 @@ L356:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L354:
+L366:
         lw      r0,9(fp)
         lc      r1,6
         ceq     r0,r1
-        brf     L358
+        brf     L370
         lw      r0,-3(fp)
         lc      r1,2
         sra     r0,r1
@@ -4440,7 +4555,7 @@ L354:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L360
+        brf     L372
         lc      r0,1
         lc      r1,2
         shl     r0,r1
@@ -4448,7 +4563,7 @@ L354:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L360:
+L372:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -4456,12 +4571,12 @@ L360:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L358:
-L322:
+L370:
+L346:
         lw      r0,9(fp)
         lc      r1,7
         ceq     r0,r1
-        brf     L362
+        brf     L374
         lw      r0,-6(fp)
         push    r0
         lw      r0,-3(fp)
@@ -4471,11 +4586,11 @@ L322:
         add     sp,6
         la      r2,L316
         jmp     (r2)
-L362:
+L374:
         lw      r0,9(fp)
         lc      r1,8
         ceq     r0,r1
-        brf     L364
+        brf     L376
         lw      r0,-3(fp)
         lc      r1,3
         and     r0,r1
@@ -4485,42 +4600,7 @@ L362:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L366
-        la      r0,_S26
-        push    r0
-        la      r0,_puts_str
-        jal     r1,(r0)
-        add     sp,3
-        lc      r0,0
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L366:
-        lw      r0,-3(fp)
-        push    r0
-        la      r0,_car
-        jal     r1,(r0)
-        add     sp,3
-        la      r2,L316
-        jmp     (r2)
-L364:
-        lw      r0,9(fp)
-        lc      r1,9
-        ceq     r0,r1
-        brf     L368
-        lw      r0,-3(fp)
-        lc      r1,3
-        and     r0,r1
-        lc      r1,1
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        mov     r0,c
-        ceq     r0,z
-        brt     L370
+        brt     L378
         la      r0,_S27
         push    r0
         la      r0,_puts_str
@@ -4533,7 +4613,42 @@ L364:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L370:
+L378:
+        lw      r0,-3(fp)
+        push    r0
+        la      r0,_car
+        jal     r1,(r0)
+        add     sp,3
+        la      r2,L316
+        jmp     (r2)
+L376:
+        lw      r0,9(fp)
+        lc      r1,9
+        ceq     r0,r1
+        brf     L380
+        lw      r0,-3(fp)
+        lc      r1,3
+        and     r0,r1
+        lc      r1,1
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        mov     r0,c
+        ceq     r0,z
+        brt     L382
+        la      r0,_S28
+        push    r0
+        la      r0,_puts_str
+        jal     r1,(r0)
+        add     sp,3
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L382:
         lw      r0,-3(fp)
         push    r0
         la      r0,_cdr
@@ -4541,19 +4656,19 @@ L370:
         add     sp,3
         la      r2,L316
         jmp     (r2)
-L368:
+L380:
         lw      r0,9(fp)
         lc      r1,10
         ceq     r0,r1
-        brf     L372
+        brf     L384
         lw      r0,12(fp)
         la      r2,L316
         jmp     (r2)
-L372:
+L384:
         lw      r0,9(fp)
         lc      r1,11
         ceq     r0,r1
-        brf     L374
+        brf     L386
         lw      r0,-3(fp)
         push    r0
         lc      r0,0
@@ -4563,86 +4678,6 @@ L372:
         or      r0,r1
         mov     r1,r0
         pop     r0
-        ceq     r0,r1
-        brf     L376
-        lc      r0,1
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L376:
-        lc      r0,0
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L374:
-        lw      r0,9(fp)
-        lc      r1,12
-        ceq     r0,r1
-        brf     L378
-        lw      r0,-3(fp)
-        lc      r1,3
-        and     r0,r1
-        lc      r1,1
-        ceq     r0,r1
-        brf     L380
-        lc      r0,1
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L380:
-        lc      r0,0
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L378:
-        lw      r0,9(fp)
-        lc      r1,13
-        ceq     r0,r1
-        brf     L382
-        lw      r0,-3(fp)
-        lc      r1,3
-        and     r0,r1
-        lc      r1,1
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        mov     r0,c
-        ceq     r0,z
-        brt     L384
-        lc      r0,1
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L384:
-        lc      r0,0
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L382:
-        lw      r0,9(fp)
-        lc      r1,14
-        ceq     r0,r1
-        brf     L386
-        lw      r0,-3(fp)
-        lw      r1,-6(fp)
         ceq     r0,r1
         brf     L388
         lc      r0,1
@@ -4662,18 +4697,13 @@ L388:
         jmp     (r2)
 L386:
         lw      r0,9(fp)
-        lc      r1,15
+        lc      r1,12
         ceq     r0,r1
         brf     L390
         lw      r0,-3(fp)
-        push    r0
-        lc      r0,0
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        mov     r1,r0
-        pop     r0
+        lc      r1,3
+        and     r0,r1
+        lc      r1,1
         ceq     r0,r1
         brf     L392
         lc      r0,1
@@ -4693,45 +4723,51 @@ L392:
         jmp     (r2)
 L390:
         lw      r0,9(fp)
-        lc      r1,16
+        lc      r1,13
         ceq     r0,r1
         brf     L394
         lw      r0,-3(fp)
-        push    r0
-        la      r0,_print_val
-        jal     r1,(r0)
-        add     sp,3
-        lw      r0,-3(fp)
+        lc      r1,3
+        and     r0,r1
+        lc      r1,1
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        mov     r0,c
+        ceq     r0,z
+        brt     L396
+        lc      r0,1
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L396:
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
         la      r2,L316
         jmp     (r2)
 L394:
         lw      r0,9(fp)
-        lc      r1,22
-        ceq     r0,r1
-        brf     L396
-        lw      r0,-3(fp)
-        push    r0
-        la      r0,_print_val
-        jal     r1,(r0)
-        add     sp,3
-        lc      r0,10
-        push    r0
-        la      r0,_putc_uart
-        jal     r1,(r0)
-        add     sp,3
-        lw      r0,-3(fp)
-        la      r2,L316
-        jmp     (r2)
-L396:
-        lw      r0,9(fp)
-        lc      r1,23
+        lc      r1,14
         ceq     r0,r1
         brf     L398
-        lc      r0,10
-        push    r0
-        la      r0,_putc_uart
-        jal     r1,(r0)
-        add     sp,3
+        lw      r0,-3(fp)
+        lw      r1,-6(fp)
+        ceq     r0,r1
+        brf     L400
+        lc      r0,1
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L400:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -4741,46 +4777,9 @@ L396:
         jmp     (r2)
 L398:
         lw      r0,9(fp)
-        lc      r1,17
-        ceq     r0,r1
-        brf     L400
-        lw      r0,-3(fp)
-        lc      r1,3
-        and     r0,r1
-        lc      r1,0
+        lc      r1,15
         ceq     r0,r1
         brf     L402
-        lc      r0,1
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L402:
-        lc      r0,0
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L400:
-        lw      r0,9(fp)
-        lc      r1,43
-        ceq     r0,r1
-        brt     L575
-        la      r2,L404
-        jmp     (r2)
-L575:
-        lw      r0,-3(fp)
-        lc      r1,3
-        and     r0,r1
-        lc      r1,2
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        brt     L409
         lw      r0,-3(fp)
         push    r0
         lc      r0,0
@@ -4791,49 +4790,8 @@ L575:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        mov     r0,c
-        ceq     r0,z
-        brt     L409
+        brf     L404
         lc      r0,1
-        bra     L410
-L409:
-        lc      r0,0
-L410:
-        ceq     r0,z
-        brt     L407
-        lw      r0,-3(fp)
-        push    r0
-        lc      r0,1
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        mov     r1,r0
-        pop     r0
-        ceq     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        mov     r0,c
-        ceq     r0,z
-        brt     L407
-        lc      r0,1
-        bra     L408
-L407:
-        lc      r0,0
-L408:
-        ceq     r0,z
-        brt     L406
-        lc      r0,1
-        lc      r1,2
-        shl     r0,r1
-        lc      r1,2
-        or      r0,r1
-        la      r2,L316
-        jmp     (r2)
-L406:
-        lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
@@ -4841,72 +4799,137 @@ L406:
         la      r2,L316
         jmp     (r2)
 L404:
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L402:
         lw      r0,9(fp)
-        lc      r1,45
+        lc      r1,16
         ceq     r0,r1
-        brt     L574
-        la      r2,L412
+        brf     L406
+        lw      r0,-3(fp)
+        push    r0
+        la      r0,_print_val
+        jal     r1,(r0)
+        add     sp,3
+        lw      r0,-3(fp)
+        la      r2,L316
         jmp     (r2)
-L574:
+L406:
+        lw      r0,9(fp)
+        lc      r1,22
+        ceq     r0,r1
+        brf     L408
         lw      r0,-3(fp)
         push    r0
-        la      r0,_string_data
+        la      r0,_print_val
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-9(fp)
+        lc      r0,10
+        push    r0
+        la      r0,_putc_uart
+        jal     r1,(r0)
+        add     sp,3
         lw      r0,-3(fp)
+        la      r2,L316
+        jmp     (r2)
+L408:
+        lw      r0,9(fp)
+        lc      r1,23
+        ceq     r0,r1
+        brf     L410
+        lc      r0,10
         push    r0
-        la      r0,_string_len
+        la      r0,_putc_uart
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-12(fp)
-        lw      r0,12(fp)
-        push    r0
-        la      r0,_cdr
-        jal     r1,(r0)
-        add     sp,3
-        sw      r0,-15(fp)
         lc      r0,0
-        sw      r0,-274(fp)
-        lc      r0,0
-        sw      r0,-277(fp)
-L413:
-        lw      r0,-277(fp)
-        lw      r1,-12(fp)
-        cls     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        brt     L415
-        lw      r0,-274(fp)
-        la      r1,254
-        cls     r0,r1
-        mov     r0,c
-        ceq     r0,z
-        brt     L415
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L410:
+        lw      r0,9(fp)
+        lc      r1,17
+        ceq     r0,r1
+        brf     L412
+        lw      r0,-3(fp)
+        lc      r1,3
+        and     r0,r1
+        lc      r1,0
+        ceq     r0,r1
+        brf     L414
         lc      r0,1
-        bra     L416
-L415:
-        lc      r0,0
-L416:
-        ceq     r0,z
-        brf     L573
-        la      r2,L414
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
         jmp     (r2)
-L573:
-        lw      r0,-9(fp)
-        lw      r1,-277(fp)
-        add     r0,r1
-        lbu     r0,0(r0)
-        lc      r1,126
+L414:
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L412:
+        lw      r0,9(fp)
+        lc      r1,43
+        ceq     r0,r1
+        brt     L619
+        la      r2,L416
+        jmp     (r2)
+L619:
+        lw      r0,-3(fp)
+        lc      r1,3
+        and     r0,r1
+        lc      r1,2
         ceq     r0,r1
         mov     r0,c
+        ceq     r0,z
+        brt     L421
+        lw      r0,-3(fp)
+        push    r0
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        mov     r1,r0
+        pop     r0
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        mov     r0,c
+        ceq     r0,z
+        brt     L421
+        lc      r0,1
+        bra     L422
+L421:
+        lc      r0,0
+L422:
         ceq     r0,z
         brt     L419
-        lw      r0,-277(fp)
-        lc      r1,1
-        add     r0,r1
-        lw      r1,-12(fp)
-        cls     r0,r1
+        lw      r0,-3(fp)
+        push    r0
+        lc      r0,1
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        mov     r1,r0
+        pop     r0
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
         mov     r0,c
         ceq     r0,z
         brt     L419
@@ -4916,24 +4939,140 @@ L419:
         lc      r0,0
 L420:
         ceq     r0,z
-        brf     L572
-        la      r2,L417
+        brt     L418
+        lc      r0,1
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
         jmp     (r2)
-L572:
-        lw      r0,-277(fp)
+L418:
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L416:
+        lw      r0,9(fp)
+        lc      r1,45
+        ceq     r0,r1
+        brt     L618
+        la      r2,L424
+        jmp     (r2)
+L618:
+        lw      r0,-3(fp)
+        push    r0
+        la      r0,_string_data
+        jal     r1,(r0)
+        add     sp,3
+        sw      r0,-24(fp)
+        lw      r0,-3(fp)
+        push    r0
+        la      r0,_string_len
+        jal     r1,(r0)
+        add     sp,3
+        sw      r0,-27(fp)
+        lw      r0,12(fp)
+        push    r0
+        la      r0,_cdr
+        jal     r1,(r0)
+        add     sp,3
+        sw      r0,-30(fp)
+        lc      r0,0
+        la      r1,-289
+        add     r1,fp
+        sw      r0,0(r1)
+        lc      r0,0
+        la      r1,-292
+        add     r1,fp
+        sw      r0,0(r1)
+L425:
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
+        lw      r1,-27(fp)
+        cls     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brt     L427
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
+        la      r1,254
+        cls     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brt     L427
+        lc      r0,1
+        bra     L428
+L427:
+        lc      r0,0
+L428:
+        ceq     r0,z
+        brf     L617
+        la      r2,L426
+        jmp     (r2)
+L617:
+        lw      r0,-24(fp)
+        push    r0
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
+        add     r0,r1
+        lbu     r0,0(r0)
+        lc      r1,126
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brt     L431
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-277(fp)
-        lw      r0,-9(fp)
-        lw      r1,-277(fp)
+        lw      r1,-27(fp)
+        cls     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brt     L431
+        lc      r0,1
+        bra     L432
+L431:
+        lc      r0,0
+L432:
+        ceq     r0,z
+        brf     L616
+        la      r2,L429
+        jmp     (r2)
+L616:
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
+        lc      r1,1
+        add     r0,r1
+        la      r1,-292
+        add     r1,fp
+        sw      r0,0(r1)
+        lw      r0,-24(fp)
+        push    r0
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         lc      r1,97
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L423
-        lw      r0,-15(fp)
+        brt     L435
+        lw      r0,-30(fp)
         push    r0
         lc      r0,0
         lc      r1,2
@@ -4947,71 +5086,91 @@ L572:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L423
+        brt     L435
         lc      r0,1
-        bra     L424
-L423:
+        bra     L436
+L435:
         lc      r0,0
-L424:
+L436:
         ceq     r0,z
-        brf     L571
-        la      r2,L421
+        brf     L615
+        la      r2,L433
         jmp     (r2)
-L571:
-        lw      r0,-15(fp)
+L615:
+        lw      r0,-30(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-280(fp)
-        lw      r0,-15(fp)
+        la      r1,-295
+        add     r1,fp
+        sw      r0,0(r1)
+        lw      r0,-30(fp)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-15(fp)
+        sw      r0,-30(fp)
         lc      r0,0
-        sw      r0,-283(fp)
+        la      r1,-298
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        sw      r0,-286(fp)
-        lw      r0,-280(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-295
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_is_string
         jal     r1,(r0)
         add     sp,3
         ceq     r0,z
-        brt     L425
-        lw      r0,-280(fp)
+        brt     L437
+        la      r1,-295
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
-        lw      r0,-280(fp)
+        la      r1,-298
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-295
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_string_len
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-286(fp)
-        la      r2,L426
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L438
         jmp     (r2)
-L425:
-        lw      r0,-280(fp)
+L437:
+        la      r1,-295
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         and     r0,r1
         lc      r1,0
         ceq     r0,r1
-        brt     L570
-        la      r2,L427
+        brt     L614
+        la      r2,L439
         jmp     (r2)
-L570:
+L614:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
         push    r0
-        lw      r0,-280(fp)
+        la      r1,-295
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_cons
         jal     r1,(r0)
@@ -5022,165 +5181,279 @@ L570:
         la      r0,_apply_primitive
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-289(fp)
-        lw      r0,-289(fp)
+        la      r1,-304
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-304
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
-        lw      r0,-289(fp)
+        la      r1,-298
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-304
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_string_len
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-286(fp)
-        bra     L428
-L427:
-        lw      r0,-280(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L440
+        jmp     (r2)
+L439:
+        la      r1,-295
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         and     r0,r1
         lc      r1,2
         ceq     r0,r1
-        brf     L430
-        lw      r0,-280(fp)
+        brt     L613
+        la      r2,L442
+        jmp     (r2)
+L613:
+        la      r1,-295
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_sym_name
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
+        la      r1,-298
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        sw      r0,-286(fp)
-L431:
-        lw      r0,-283(fp)
-        lw      r1,-286(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
+L443:
+        la      r1,-298
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         ceq     r0,z
-        brt     L432
-        lw      r0,-286(fp)
+        brt     L444
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-286(fp)
-        bra     L431
-L432:
-L430:
-L428:
-L426:
-        lw      r0,-283(fp)
+        la      r1,-301
+        add     r1,fp
+        sw      r0,0(r1)
+        bra     L443
+L444:
+L442:
+L440:
+L438:
+        la      r1,-298
+        add     r1,fp
+        lw      r0,0(r1)
         ceq     r0,z
-        brf     L569
-        la      r2,L434
+        brf     L612
+        la      r2,L446
         jmp     (r2)
-L569:
+L612:
         lc      r0,0
-        sw      r0,-292(fp)
-L435:
-        lw      r0,-292(fp)
-        lw      r1,-286(fp)
+        la      r1,-307
+        add     r1,fp
+        sw      r0,0(r1)
+L447:
+        la      r1,-307
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-301
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         cls     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L437
-        lw      r0,-274(fp)
+        brt     L449
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
         la      r1,254
         cls     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L437
+        brt     L449
         lc      r0,1
-        bra     L438
-L437:
+        bra     L450
+L449:
         lc      r0,0
-L438:
+L450:
         ceq     r0,z
-        brt     L436
-        lw      r0,-283(fp)
-        lw      r1,-292(fp)
+        brf     L611
+        la      r2,L448
+        jmp     (r2)
+L611:
+        la      r1,-298
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-307
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
-        lw      r1,-274(fp)
+        push    r0
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
-        lw      r0,-274(fp)
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-274(fp)
-        lw      r0,-292(fp)
+        la      r1,-289
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-307
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-292(fp)
-        la      r2,L435
+        la      r1,-307
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L447
         jmp     (r2)
-L436:
-L434:
-        bra     L422
-L421:
-        lw      r0,-9(fp)
-        lw      r1,-277(fp)
+L448:
+L446:
+        la      r2,L434
+        jmp     (r2)
+L433:
+        lw      r0,-24(fp)
+        push    r0
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         lc      r1,126
         ceq     r0,r1
-        brf     L440
-        la      r0,-271
+        brf     L452
+        la      r0,-286
         add     r0,fp
-        lw      r1,-274(fp)
+        push    r0
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,126
         sb      r0,0(r1)
-        lw      r0,-274(fp)
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-274(fp)
-L440:
-L422:
-        lw      r0,-277(fp)
+        la      r1,-289
+        add     r1,fp
+        sw      r0,0(r1)
+L452:
+L434:
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-277(fp)
-        bra     L418
-L417:
-        lw      r0,-9(fp)
-        lw      r1,-277(fp)
+        la      r1,-292
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L430
+        jmp     (r2)
+L429:
+        lw      r0,-24(fp)
+        push    r0
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
-        lw      r1,-274(fp)
+        push    r0
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
-        lw      r0,-274(fp)
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-274(fp)
-        lw      r0,-277(fp)
+        la      r1,-289
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-292
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-277(fp)
-L418:
-        la      r2,L413
+        la      r1,-292
+        add     r1,fp
+        sw      r0,0(r1)
+L430:
+        la      r2,L425
         jmp     (r2)
-L414:
-        la      r0,-271
+L426:
+        la      r0,-286
         add     r0,fp
-        lw      r1,-274(fp)
+        push    r0
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,0
         sb      r0,0(r1)
-        lw      r0,-274(fp)
+        la      r1,-289
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
         push    r0
         la      r0,_make_string
@@ -5188,18 +5461,328 @@ L414:
         add     sp,6
         la      r2,L316
         jmp     (r2)
-L412:
+L424:
         lw      r0,9(fp)
-        lc      r1,44
+        lc      r1,46
         ceq     r0,r1
-        brt     L568
-        la      r2,L442
+        brf     L454
+        lw      r0,-3(fp)
+        la      r2,L316
         jmp     (r2)
-L568:
+L454:
+        lw      r0,9(fp)
+        lc      r1,47
+        ceq     r0,r1
+        brf     L456
+        lw      r0,-3(fp)
+        la      r2,L316
+        jmp     (r2)
+L456:
+        lw      r0,9(fp)
+        lc      r1,48
+        ceq     r0,r1
+        brt     L610
+        la      r2,L458
+        jmp     (r2)
+L610:
+        lw      r0,-3(fp)
+        push    r0
+        la      r0,_string_data
+        jal     r1,(r0)
+        add     sp,3
+        la      r1,-298
+        add     r1,fp
+        sw      r0,0(r1)
+        lw      r0,-3(fp)
+        push    r0
+        la      r0,_string_len
+        jal     r1,(r0)
+        add     sp,3
+        la      r1,-310
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-6(fp)
         lc      r1,2
         sra     r0,r1
-        sw      r0,-295(fp)
+        la      r1,-313
+        add     r1,fp
+        sw      r0,0(r1)
+        lc      r0,0
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+L459:
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
+        cls     r0,r1
+        brt     L609
+        la      r2,L460
+        jmp     (r2)
+L609:
+        la      r1,-298
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
+        add     r0,r1
+        lbu     r0,0(r0)
+        push    r0
+        la      r1,-313
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
+        ceq     r0,r1
+        brf     L462
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,0
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L462:
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        lc      r1,1
+        add     r0,r1
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L459
+        jmp     (r2)
+L460:
+        lc      r0,1
+        push    r0
+        lc      r0,0
+        pop     r1
+        sub     r0,r1
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,0
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L458:
+        lw      r0,9(fp)
+        lc      r1,49
+        ceq     r0,r1
+        brt     L608
+        la      r2,L464
+        jmp     (r2)
+L608:
+        lw      r0,-3(fp)
+        push    r0
+        la      r0,_string_data
+        jal     r1,(r0)
+        add     sp,3
+        la      r1,-319
+        add     r1,fp
+        sw      r0,0(r1)
+        lw      r0,-3(fp)
+        push    r0
+        la      r0,_string_len
+        jal     r1,(r0)
+        add     sp,3
+        la      r1,-322
+        add     r1,fp
+        sw      r0,0(r1)
+        lw      r0,-6(fp)
+        push    r0
+        la      r0,_string_data
+        jal     r1,(r0)
+        add     sp,3
+        la      r1,-325
+        add     r1,fp
+        sw      r0,0(r1)
+        lw      r0,-6(fp)
+        push    r0
+        la      r0,_string_len
+        jal     r1,(r0)
+        add     sp,3
+        la      r1,-328
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-328
+        add     r1,fp
+        lw      r0,0(r1)
+        lc      r1,0
+        ceq     r0,r1
+        brf     L466
+        lc      r0,1
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L466:
+        lc      r0,0
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+L467:
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-322
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-328
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
+        sub     r0,r1
+        mov     r1,r0
+        pop     r0
+        cls     r1,r0
+        brf     L607
+        la      r2,L468
+        jmp     (r2)
+L607:
+        lc      r0,0
+        la      r1,-331
+        add     r1,fp
+        sw      r0,0(r1)
+L469:
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-328
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
+        cls     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brf     L606
+        la      r2,L471
+        jmp     (r2)
+L606:
+        la      r1,-319
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
+        add     r0,r1
+        mov     r1,r0
+        pop     r0
+        add     r0,r1
+        lbu     r0,0(r0)
+        push    r0
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
+        add     r0,r1
+        lbu     r0,0(r0)
+        mov     r1,r0
+        pop     r0
+        ceq     r0,r1
+        mov     r0,c
+        ceq     r0,z
+        brt     L471
+        lc      r0,1
+        bra     L472
+L471:
+        lc      r0,0
+L472:
+        ceq     r0,z
+        brt     L470
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        lc      r1,1
+        add     r0,r1
+        la      r1,-331
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L469
+        jmp     (r2)
+L470:
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-328
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
+        ceq     r0,r1
+        brf     L474
+        lc      r0,1
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L474:
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        lc      r1,1
+        add     r0,r1
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L467
+        jmp     (r2)
+L468:
+        lc      r0,0
+        lc      r1,2
+        shl     r0,r1
+        lc      r1,2
+        or      r0,r1
+        la      r2,L316
+        jmp     (r2)
+L464:
+        lw      r0,9(fp)
+        lc      r1,44
+        ceq     r0,r1
+        brt     L605
+        la      r2,L476
+        jmp     (r2)
+L605:
+        lw      r0,-6(fp)
+        lc      r1,2
+        sra     r0,r1
+        la      r1,-334
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,12(fp)
         push    r0
         la      r0,_cdr
@@ -5215,28 +5798,54 @@ L568:
         add     sp,3
         lc      r1,2
         sra     r0,r1
-        sw      r0,-298(fp)
+        la      r1,-337
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
-        lw      r0,-298(fp)
-        lw      r1,-295(fp)
+        la      r1,-298
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-337
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-334
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         sub     r0,r1
-        sw      r0,-301(fp)
-        lw      r0,-301(fp)
+        la      r1,-340
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-340
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
-        brf     L444
+        brf     L478
         lc      r0,0
-        sw      r0,-301(fp)
-L444:
-        lw      r0,-301(fp)
+        la      r1,-340
+        add     r1,fp
+        sw      r0,0(r1)
+L478:
+        la      r1,-340
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
-        lw      r0,-283(fp)
-        lw      r1,-295(fp)
+        la      r1,-298
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-334
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         push    r0
         la      r0,_make_string
@@ -5244,23 +5853,23 @@ L444:
         add     sp,6
         la      r2,L316
         jmp     (r2)
-L442:
+L476:
         lw      r0,9(fp)
         lc      r1,18
         ceq     r0,r1
-        brf     L446
-        la      r0,_S28
+        brf     L480
+        la      r0,_S29
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
         la      r0,_halt
         jal     r1,(r0)
-L446:
+L480:
         lw      r0,9(fp)
         lc      r1,19
         ceq     r0,r1
-        brf     L448
+        brf     L482
         lw      r0,-3(fp)
         lc      r1,2
         sra     r0,r1
@@ -5271,11 +5880,11 @@ L446:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L448:
+L482:
         lw      r0,9(fp)
         lc      r1,20
         ceq     r0,r1
-        brf     L450
+        brf     L484
         lw      r0,-6(fp)
         lc      r1,2
         sra     r0,r1
@@ -5289,30 +5898,45 @@ L448:
         lw      r0,-6(fp)
         la      r2,L316
         jmp     (r2)
-L450:
+L484:
         lw      r0,9(fp)
         lc      r1,21
         ceq     r0,r1
-        brf     L452
+        brt     L604
+        la      r2,L486
+        jmp     (r2)
+L604:
         lw      r0,-3(fp)
         lc      r1,2
         sra     r0,r1
-        sw      r0,-304(fp)
-        lw      r0,-304(fp)
+        la      r1,-343
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-343
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,50
         mul     r0,r1
-        sw      r0,-307(fp)
-L453:
-        lw      r0,-307(fp)
+        la      r1,-346
+        add     r1,fp
+        sw      r0,0(r1)
+L487:
+        la      r1,-346
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r1,r0
-        brf     L454
-        lw      r0,-307(fp)
+        brf     L488
+        la      r1,-346
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-307(fp)
-        bra     L453
-L454:
+        la      r1,-346
+        add     r1,fp
+        sw      r0,0(r1)
+        bra     L487
+L488:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -5320,11 +5944,11 @@ L454:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L452:
+L486:
         lw      r0,9(fp)
         lc      r1,24
         ceq     r0,r1
-        brf     L456
+        brf     L490
         lw      r0,-6(fp)
         push    r0
         lw      r0,-3(fp)
@@ -5334,11 +5958,11 @@ L452:
         add     sp,6
         la      r2,L316
         jmp     (r2)
-L456:
+L490:
         lw      r0,9(fp)
         lc      r1,25
         ceq     r0,r1
-        brf     L458
+        brf     L492
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_len
@@ -5350,11 +5974,11 @@ L456:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L458:
+L492:
         lw      r0,9(fp)
         lc      r1,26
         ceq     r0,r1
-        brf     L460
+        brf     L494
         lw      r0,-6(fp)
         lc      r1,2
         sra     r0,r1
@@ -5370,11 +5994,11 @@ L458:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L460:
+L494:
         lw      r0,9(fp)
         lc      r1,27
         ceq     r0,r1
-        brf     L462
+        brf     L496
         lw      r0,-6(fp)
         push    r0
         lw      r0,-3(fp)
@@ -5384,11 +6008,11 @@ L460:
         add     sp,6
         la      r2,L316
         jmp     (r2)
-L462:
+L496:
         lw      r0,9(fp)
         lc      r1,28
         ceq     r0,r1
-        brf     L464
+        brf     L498
         lw      r0,-6(fp)
         push    r0
         lw      r0,-3(fp)
@@ -5397,7 +6021,7 @@ L462:
         jal     r1,(r0)
         add     sp,6
         ceq     r0,z
-        brt     L466
+        brt     L500
         lc      r0,1
         lc      r1,2
         shl     r0,r1
@@ -5405,7 +6029,7 @@ L462:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L466:
+L500:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -5413,18 +6037,18 @@ L466:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L464:
+L498:
         lw      r0,9(fp)
         lc      r1,29
         ceq     r0,r1
-        brf     L468
+        brf     L502
         lw      r0,-3(fp)
         push    r0
         la      r0,_is_string
         jal     r1,(r0)
         add     sp,3
         ceq     r0,z
-        brt     L470
+        brt     L504
         lc      r0,1
         lc      r1,2
         shl     r0,r1
@@ -5432,7 +6056,7 @@ L464:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L470:
+L504:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -5440,65 +6064,90 @@ L470:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L468:
+L502:
         lw      r0,9(fp)
         lc      r1,30
         ceq     r0,r1
-        brt     L567
-        la      r2,L472
+        brt     L603
+        la      r2,L506
         jmp     (r2)
-L567:
+L603:
         lw      r0,-3(fp)
         push    r0
         la      r0,_is_string
         jal     r1,(r0)
         add     sp,3
         ceq     r0,z
-        brf     L566
-        la      r2,L473
+        brf     L602
+        la      r2,L507
         jmp     (r2)
-L566:
+L602:
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_data
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-283(fp)
+        la      r1,-298
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_len
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-310(fp)
+        la      r1,-310
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        sw      r0,-313(fp)
-L475:
-        lw      r0,-313(fp)
-        lw      r1,-310(fp)
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+L509:
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-310
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         cls     r0,r1
-        brf     L476
-        lw      r0,-283(fp)
-        lw      r1,-313(fp)
+        brf     L510
+        la      r1,-298
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
         la      r0,_putc_uart
         jal     r1,(r0)
         add     sp,3
-        lw      r0,-313(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-313(fp)
-        bra     L475
-L476:
-        bra     L474
-L473:
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L509
+        jmp     (r2)
+L510:
+        bra     L508
+L507:
         lw      r0,-3(fp)
         push    r0
         la      r0,_print_val
         jal     r1,(r0)
         add     sp,3
-L474:
+L508:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -5506,11 +6155,11 @@ L474:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L472:
+L506:
         lw      r0,9(fp)
         lc      r1,31
         ceq     r0,r1
-        brf     L478
+        brf     L512
         la      r0,_gc_collect
         jal     r1,(r0)
         la      r0,_gc_count_free
@@ -5521,11 +6170,11 @@ L472:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L478:
+L512:
         lw      r0,9(fp)
         lc      r1,32
         ceq     r0,r1
-        brf     L480
+        brf     L514
         la      r1,_heap_next
         lw      r0,0(r1)
         push    r0
@@ -5540,11 +6189,11 @@ L478:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L480:
+L514:
         lw      r0,9(fp)
         lc      r1,33
         ceq     r0,r1
-        brf     L482
+        brf     L516
         la      r0,32768
         lc      r1,2
         shl     r0,r1
@@ -5552,14 +6201,14 @@ L480:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L482:
+L516:
         lw      r0,9(fp)
         lc      r1,35
         ceq     r0,r1
-        brt     L565
-        la      r2,L484
+        brt     L601
+        la      r2,L518
         jmp     (r2)
-L565:
+L601:
         lw      r0,-3(fp)
         lc      r1,3
         and     r0,r1
@@ -5567,7 +6216,7 @@ L565:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L487
+        brt     L521
         lw      r0,-3(fp)
         push    r0
         la      r0,_ext_type
@@ -5584,14 +6233,14 @@ L565:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L487
+        brt     L521
         lc      r0,1
-        bra     L488
-L487:
+        bra     L522
+L521:
         lc      r0,0
-L488:
+L522:
         ceq     r0,z
-        brt     L486
+        brt     L520
         lc      r0,1
         lc      r1,2
         shl     r0,r1
@@ -5599,7 +6248,7 @@ L488:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L486:
+L520:
         lw      r0,-3(fp)
         lc      r1,3
         and     r0,r1
@@ -5607,7 +6256,7 @@ L486:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L491
+        brt     L525
         lw      r0,-3(fp)
         push    r0
         la      r0,_ext_type
@@ -5624,14 +6273,14 @@ L486:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L491
+        brt     L525
         lc      r0,1
-        bra     L492
-L491:
+        bra     L526
+L525:
         lc      r0,0
-L492:
+L526:
         ceq     r0,z
-        brt     L490
+        brt     L524
         lc      r0,1
         lc      r1,2
         shl     r0,r1
@@ -5639,7 +6288,7 @@ L492:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L490:
+L524:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -5647,11 +6296,11 @@ L490:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L484:
+L518:
         lw      r0,9(fp)
         lc      r1,36
         ceq     r0,r1
-        brf     L494
+        brf     L528
         la      r1,_global_env
         lw      r0,0(r1)
         push    r0
@@ -5662,14 +6311,14 @@ L484:
         add     sp,6
         la      r2,L316
         jmp     (r2)
-L494:
+L528:
         lw      r0,9(fp)
         lc      r1,37
         ceq     r0,r1
-        brt     L564
-        la      r2,L496
+        brt     L600
+        la      r2,L530
         jmp     (r2)
-L564:
+L600:
         lw      r0,-3(fp)
         lc      r1,3
         and     r0,r1
@@ -5679,43 +6328,55 @@ L564:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L498
+        brt     L532
         lw      r0,-3(fp)
         la      r2,L316
         jmp     (r2)
-L498:
+L532:
         lw      r0,-3(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-316(fp)
+        la      r1,-349
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-3(fp)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-319(fp)
-        lw      r0,-316(fp)
+        la      r1,-352
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-349
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         and     r0,r1
         lc      r1,2
         ceq     r0,r1
-        brt     L563
-        la      r2,L500
+        brt     L599
+        la      r2,L534
         jmp     (r2)
-L563:
+L599:
         la      r1,_global_env
         lw      r0,0(r1)
-        sw      r0,-322(fp)
+        la      r1,-355
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        sw      r0,-325(fp)
-L501:
-        lw      r0,-322(fp)
+        la      r1,-358
+        add     r1,fp
+        sw      r0,0(r1)
+L535:
+        la      r1,-355
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         lc      r0,0
         lc      r1,2
@@ -5729,47 +6390,73 @@ L501:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L502
-        lw      r0,-322(fp)
-        push    r0
-        la      r0,_car
-        jal     r1,(r0)
-        add     sp,3
-        sw      r0,-328(fp)
-        lw      r0,-328(fp)
-        push    r0
-        la      r0,_car
-        jal     r1,(r0)
-        add     sp,3
-        lw      r1,-316(fp)
-        ceq     r0,r1
-        brf     L504
-        lw      r0,-328(fp)
-        push    r0
-        la      r0,_cdr
-        jal     r1,(r0)
-        add     sp,3
-        sw      r0,-325(fp)
-        bra     L502
-L504:
-        lw      r0,-322(fp)
-        push    r0
-        la      r0,_cdr
-        jal     r1,(r0)
-        add     sp,3
-        sw      r0,-322(fp)
-        la      r2,L501
+        brf     L598
+        la      r2,L536
         jmp     (r2)
-L502:
-        lw      r0,-325(fp)
+L598:
+        la      r1,-355
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r0,_car
+        jal     r1,(r0)
+        add     sp,3
+        la      r1,-361
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-361
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r0,_car
+        jal     r1,(r0)
+        add     sp,3
+        push    r0
+        la      r1,-349
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
+        ceq     r0,r1
+        brf     L538
+        la      r1,-361
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r0,_cdr
+        jal     r1,(r0)
+        add     sp,3
+        la      r1,-358
+        add     r1,fp
+        sw      r0,0(r1)
+        bra     L536
+L538:
+        la      r1,-355
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r0,_cdr
+        jal     r1,(r0)
+        add     sp,3
+        la      r1,-355
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L535
+        jmp     (r2)
+L536:
+        la      r1,-358
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L507
-        lw      r0,-325(fp)
+        brt     L541
+        la      r1,-358
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_ext_type
         jal     r1,(r0)
@@ -5785,23 +6472,32 @@ L502:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L507
+        brt     L541
         lc      r0,1
-        bra     L508
-L507:
+        bra     L542
+L541:
         lc      r0,0
-L508:
+L542:
         ceq     r0,z
-        brt     L506
-        lw      r0,-325(fp)
+        brf     L597
+        la      r2,L540
+        jmp     (r2)
+L597:
+        la      r1,-358
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_closure_env
         jal     r1,(r0)
         add     sp,3
         push    r0
-        lw      r0,-319(fp)
+        la      r1,-352
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
-        lw      r0,-325(fp)
+        la      r1,-358
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_closure_params
         jal     r1,(r0)
@@ -5810,10 +6506,16 @@ L508:
         la      r0,_env_bind
         jal     r1,(r0)
         add     sp,9
-        sw      r0,-331(fp)
-        lw      r0,-331(fp)
+        la      r1,-364
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-364
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
-        lw      r0,-325(fp)
+        la      r1,-358
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_closure_body
         jal     r1,(r0)
@@ -5824,27 +6526,27 @@ L508:
         add     sp,6
         la      r2,L316
         jmp     (r2)
-L506:
-L500:
+L540:
+L534:
         lw      r0,-3(fp)
         la      r2,L316
         jmp     (r2)
-L496:
+L530:
         lw      r0,9(fp)
         lc      r1,38
         ceq     r0,r1
-        brt     L562
-        la      r2,L510
+        brt     L596
+        la      r2,L544
         jmp     (r2)
-L562:
-        la      r0,-271
+L596:
+        la      r0,-286
         add     r0,fp
         lc      r1,0
         add     r0,r1
         mov     r1,r0
         lc      r0,95
         sb      r0,0(r1)
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
         lc      r1,1
         add     r0,r1
@@ -5853,7 +6555,9 @@ L562:
         sb      r0,0(r1)
         la      r1,_gensym_counter
         lw      r0,0(r1)
-        sw      r0,-334(fp)
+        la      r1,-325
+        add     r1,fp
+        sw      r0,0(r1)
         la      r1,_gensym_counter
         lw      r0,0(r1)
         lc      r1,1
@@ -5861,38 +6565,59 @@ L562:
         la      r1,_gensym_counter
         sw      r0,0(r1)
         lc      r0,2
-        sw      r0,-313(fp)
-        lw      r0,-334(fp)
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         ceq     r0,r1
-        brf     L511
-        la      r0,-271
+        brf     L545
+        la      r0,-286
         add     r0,fp
-        lw      r1,-313(fp)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,48
         sb      r0,0(r1)
-        lw      r0,-313(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-313(fp)
-        la      r2,L512
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L546
         jmp     (r2)
-L511:
-        lw      r0,-313(fp)
-        sw      r0,-295(fp)
-L513:
-        lw      r0,-334(fp)
+L545:
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        la      r1,-334
+        add     r1,fp
+        sw      r0,0(r1)
+L547:
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r1,r0
-        brt     L561
-        la      r2,L514
+        brt     L595
+        la      r2,L548
         jmp     (r2)
-L561:
+L595:
         lc      r0,48
         push    r0
-        lw      r0,-334(fp)
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,10
         push    r1
         push    r0
@@ -5903,88 +6628,155 @@ L561:
         pop     r0
         add     r0,r1
         push    r0
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
-        lw      r1,-313(fp)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
-        lw      r0,-334(fp)
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,10
         push    r1
         push    r0
         la      r0,__tc24r_div
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-334(fp)
-        lw      r0,-313(fp)
+        la      r1,-325
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-313(fp)
-        la      r2,L513
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L547
         jmp     (r2)
-L514:
-        lw      r0,-295(fp)
-        sw      r0,-337(fp)
-        lw      r0,-313(fp)
+L548:
+        la      r1,-334
+        add     r1,fp
+        lw      r0,0(r1)
+        la      r1,-331
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-340(fp)
-L515:
-        lw      r0,-337(fp)
-        lw      r1,-340(fp)
+        la      r1,-367
+        add     r1,fp
+        sw      r0,0(r1)
+L549:
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         cls     r0,r1
-        brt     L560
-        la      r2,L516
+        brt     L594
+        la      r2,L550
         jmp     (r2)
-L560:
-        la      r0,-271
+L594:
+        la      r0,-286
         add     r0,fp
-        lw      r1,-337(fp)
+        push    r0
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
-        sw      r0,-343(fp)
-        la      r0,-271
+        la      r1,-370
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r0,-286
         add     r0,fp
-        lw      r1,-340(fp)
+        push    r0
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
-        lw      r1,-337(fp)
+        push    r0
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
-        la      r0,-271
+        la      r1,-370
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r0,-286
         add     r0,fp
-        lw      r1,-340(fp)
+        push    r0
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
-        lw      r0,-343(fp)
+        pop     r0
         sb      r0,0(r1)
-        lw      r0,-337(fp)
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-337(fp)
-        lw      r0,-340(fp)
+        la      r1,-331
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-340(fp)
-        la      r2,L515
+        la      r1,-367
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L549
         jmp     (r2)
-L516:
-L512:
-        la      r0,-271
+L550:
+L546:
+        la      r0,-286
         add     r0,fp
-        lw      r1,-313(fp)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,0
         sb      r0,0(r1)
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
         push    r0
         la      r0,_intern
@@ -5992,61 +6784,67 @@ L512:
         add     sp,3
         la      r2,L316
         jmp     (r2)
-L510:
+L544:
         lw      r0,9(fp)
         lc      r1,39
         ceq     r0,r1
-        brt     L559
-        la      r2,L518
+        brt     L593
+        la      r2,L552
         jmp     (r2)
-L559:
+L593:
         lw      r0,-3(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,2
         ceq     r0,r1
-        brf     L520
+        brf     L554
         lw      r0,-3(fp)
         push    r0
         la      r0,_sym_name
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-346(fp)
-        lw      r0,-346(fp)
+        la      r1,-373
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-373
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_str_len
         jal     r1,(r0)
         add     sp,3
         push    r0
-        lw      r0,-346(fp)
+        la      r1,-373
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_make_string
         jal     r1,(r0)
         add     sp,6
         la      r2,L316
         jmp     (r2)
-L520:
+L554:
         lc      r0,0
         push    r0
-        la      r0,_S29
+        la      r0,_S30
         push    r0
         la      r0,_make_string
         jal     r1,(r0)
         add     sp,6
         la      r2,L316
         jmp     (r2)
-L518:
+L552:
         lw      r0,9(fp)
         lc      r1,40
         ceq     r0,r1
-        brf     L522
+        brf     L556
         lw      r0,-3(fp)
         push    r0
         la      r0,_is_string
         jal     r1,(r0)
         add     sp,3
         ceq     r0,z
-        brt     L524
+        brt     L558
         lw      r0,-3(fp)
         push    r0
         la      r0,_string_data
@@ -6058,7 +6856,7 @@ L518:
         add     sp,3
         la      r2,L316
         jmp     (r2)
-L524:
+L558:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -6066,55 +6864,70 @@ L524:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L522:
+L556:
         lw      r0,9(fp)
         lc      r1,41
         ceq     r0,r1
-        brt     L558
-        la      r2,L526
+        brt     L592
+        la      r2,L560
         jmp     (r2)
-L558:
+L592:
         lw      r0,-3(fp)
-        sw      r0,-349(fp)
+        la      r1,-376
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-6(fp)
-        sw      r0,-352(fp)
+        la      r1,-379
+        add     r1,fp
+        sw      r0,0(r1)
         la      r1,_catch_depth
         lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-313(fp)
-L527:
-        lw      r0,-313(fp)
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+L561:
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
-        brf     L557
-        la      r2,L528
+        brf     L591
+        la      r2,L562
         jmp     (r2)
-L557:
+L591:
         la      r0,_catch_tags
         push    r0
-        lw      r0,-313(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         mul     r0,r1
         mov     r1,r0
         pop     r0
         add     r0,r1
         lw      r0,0(r0)
-        lw      r1,-349(fp)
+        push    r0
+        la      r1,-376
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         ceq     r0,r1
-        brt     L556
-        la      r2,L530
+        brt     L590
+        la      r2,L564
         jmp     (r2)
-L556:
-L531:
+L590:
+L565:
         la      r1,_wind_depth
         lw      r0,0(r1)
         lc      r1,0
         cls     r1,r0
-        brt     L555
-        la      r2,L532
+        brt     L589
+        la      r2,L566
         jmp     (r2)
-L555:
+L589:
         la      r0,_wind_after
         push    r0
         la      r1,_wind_depth
@@ -6127,7 +6940,9 @@ L555:
         pop     r0
         add     r0,r1
         lw      r0,0(r0)
-        sw      r0,-355(fp)
+        la      r1,-382
+        add     r1,fp
+        sw      r0,0(r1)
         la      r1,_wind_depth
         lw      r0,0(r1)
         lc      r1,1
@@ -6140,30 +6955,40 @@ L555:
         lc      r1,2
         or      r0,r1
         push    r0
-        lw      r0,-355(fp)
+        la      r1,-382
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_apply_fn
         jal     r1,(r0)
         add     sp,6
-        la      r2,L531
+        la      r2,L565
         jmp     (r2)
-L532:
+L566:
         lc      r0,1
         la      r1,_catch_throwing
         sw      r0,0(r1)
-        lw      r0,-313(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         la      r1,_catch_target
         sw      r0,0(r1)
+        la      r1,-379
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
         la      r0,_catch_vals
         push    r0
-        lw      r0,-313(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,3
         mul     r0,r1
         mov     r1,r0
         pop     r0
         add     r0,r1
         mov     r1,r0
-        lw      r0,-352(fp)
+        pop     r0
         sw      r0,0(r1)
         lc      r0,0
         lc      r1,2
@@ -6172,20 +6997,26 @@ L532:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L530:
-        lw      r0,-313(fp)
+L564:
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-313(fp)
-        la      r2,L527
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L561
         jmp     (r2)
-L528:
-        la      r0,_S30
+L562:
+        la      r0,_S31
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
-        lw      r0,-349(fp)
+        la      r1,-376
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_print_val
         jal     r1,(r0)
@@ -6202,18 +7033,22 @@ L528:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L526:
+L560:
         lw      r0,9(fp)
         lc      r1,42
         ceq     r0,r1
-        brt     L554
-        la      r2,L534
+        brt     L588
+        la      r2,L568
         jmp     (r2)
-L554:
+L588:
         lw      r0,-3(fp)
-        sw      r0,-358(fp)
+        la      r1,-385
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,-6(fp)
-        sw      r0,-361(fp)
+        la      r1,-388
+        add     r1,fp
+        sw      r0,0(r1)
         lw      r0,12(fp)
         push    r0
         la      r0,_cdr
@@ -6227,14 +7062,18 @@ L554:
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
-        sw      r0,-355(fp)
+        la      r1,-382
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
         push    r0
-        lw      r0,-358(fp)
+        la      r1,-385
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_apply_fn
         jal     r1,(r0)
@@ -6243,8 +7082,8 @@ L554:
         lw      r0,0(r1)
         lc      r1,16
         cls     r0,r1
-        brt     L536
-        la      r0,_S31
+        brt     L570
+        la      r0,_S32
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
@@ -6256,10 +7095,16 @@ L554:
         or      r0,r1
         la      r2,L316
         jmp     (r2)
-L536:
+L570:
         la      r1,_wind_depth
         lw      r0,0(r1)
-        sw      r0,-364(fp)
+        la      r1,-391
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-382
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
         la      r0,_wind_after
         push    r0
         la      r1,_wind_depth
@@ -6270,7 +7115,7 @@ L536:
         pop     r0
         add     r0,r1
         mov     r1,r0
-        lw      r0,-355(fp)
+        pop     r0
         sw      r0,0(r1)
         la      r1,_wind_depth
         lw      r0,0(r1)
@@ -6284,13 +7129,17 @@ L536:
         lc      r1,2
         or      r0,r1
         push    r0
-        lw      r0,-361(fp)
+        la      r1,-388
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_apply_fn
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-367(fp)
-        lw      r0,-364(fp)
+        sw      r0,-12(fp)
+        la      r1,-391
+        add     r1,fp
+        lw      r0,0(r1)
         la      r1,_wind_depth
         sw      r0,0(r1)
         la      r1,_catch_throwing
@@ -6298,59 +7147,78 @@ L536:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L538
+        brt     L572
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
         push    r0
-        lw      r0,-355(fp)
+        la      r1,-382
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_apply_fn
         jal     r1,(r0)
         add     sp,6
-L538:
-        lw      r0,-367(fp)
+L572:
+        lw      r0,-12(fp)
         la      r2,L316
         jmp     (r2)
-L534:
+L568:
         lw      r0,9(fp)
         lc      r1,34
         ceq     r0,r1
-        brt     L553
-        la      r2,L540
+        brt     L587
+        la      r2,L574
         jmp     (r2)
-L553:
+L587:
         lw      r0,-3(fp)
         lc      r1,2
         sra     r0,r1
-        sw      r0,-334(fp)
+        la      r1,-325
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        sw      r0,-370(fp)
-        lw      r0,-334(fp)
+        la      r1,-394
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
-        brf     L542
+        brf     L576
         lc      r0,1
-        sw      r0,-370(fp)
+        la      r1,-394
+        add     r1,fp
+        sw      r0,0(r1)
         lc      r0,0
-        lw      r1,-334(fp)
+        push    r0
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         sub     r0,r1
-        sw      r0,-334(fp)
-L542:
-        lw      r0,-334(fp)
+        la      r1,-325
+        add     r1,fp
+        sw      r0,0(r1)
+L576:
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         ceq     r0,r1
-        brf     L544
-        la      r0,-271
+        brf     L578
+        la      r0,-286
         add     r0,fp
         lc      r1,0
         add     r0,r1
         mov     r1,r0
         lc      r0,48
         sb      r0,0(r1)
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
         lc      r1,1
         add     r0,r1
@@ -6359,7 +7227,7 @@ L542:
         sb      r0,0(r1)
         lc      r0,1
         push    r0
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
         push    r0
         la      r0,_make_string
@@ -6367,20 +7235,26 @@ L542:
         add     sp,6
         la      r2,L316
         jmp     (r2)
-L544:
+L578:
         lc      r0,0
-        sw      r0,-313(fp)
-L545:
-        lw      r0,-334(fp)
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+L579:
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r1,r0
-        brt     L552
-        la      r2,L546
+        brt     L586
+        la      r2,L580
         jmp     (r2)
-L552:
+L586:
         lc      r0,48
         push    r0
-        lw      r0,-334(fp)
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,10
         push    r1
         push    r0
@@ -6391,111 +7265,189 @@ L552:
         pop     r0
         add     r0,r1
         push    r0
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
-        lw      r1,-313(fp)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
-        lw      r0,-334(fp)
+        la      r1,-325
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,10
         push    r1
         push    r0
         la      r0,__tc24r_div
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-334(fp)
-        lw      r0,-313(fp)
+        la      r1,-325
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-313(fp)
-        la      r2,L545
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L579
         jmp     (r2)
-L546:
-        lw      r0,-370(fp)
+L580:
+        la      r1,-394
+        add     r1,fp
+        lw      r0,0(r1)
         ceq     r0,z
-        brt     L548
-        la      r0,-271
+        brt     L582
+        la      r0,-286
         add     r0,fp
-        lw      r1,-313(fp)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,45
         sb      r0,0(r1)
-        lw      r0,-313(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-313(fp)
-L548:
+        la      r1,-316
+        add     r1,fp
+        sw      r0,0(r1)
+L582:
         lc      r0,0
-        sw      r0,-337(fp)
-        lw      r0,-313(fp)
+        la      r1,-331
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-340(fp)
-L549:
-        lw      r0,-337(fp)
-        lw      r1,-340(fp)
+        la      r1,-367
+        add     r1,fp
+        sw      r0,0(r1)
+L583:
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         cls     r0,r1
-        brt     L551
-        la      r2,L550
+        brt     L585
+        la      r2,L584
         jmp     (r2)
-L551:
-        la      r0,-271
+L585:
+        la      r0,-286
         add     r0,fp
-        lw      r1,-337(fp)
+        push    r0
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
-        sw      r0,-373(fp)
-        la      r0,-271
+        la      r1,-397
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r0,-286
         add     r0,fp
-        lw      r1,-340(fp)
+        push    r0
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         lbu     r0,0(r0)
         push    r0
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
-        lw      r1,-337(fp)
+        push    r0
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         pop     r0
         sb      r0,0(r1)
-        la      r0,-271
+        la      r1,-397
+        add     r1,fp
+        lw      r0,0(r1)
+        push    r0
+        la      r0,-286
         add     r0,fp
-        lw      r1,-340(fp)
+        push    r0
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
-        lw      r0,-373(fp)
+        pop     r0
         sb      r0,0(r1)
-        lw      r0,-337(fp)
+        la      r1,-331
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         add     r0,r1
-        sw      r0,-337(fp)
-        lw      r0,-340(fp)
+        la      r1,-331
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-367
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,1
         sub     r0,r1
-        sw      r0,-340(fp)
-        la      r2,L549
+        la      r1,-367
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r2,L583
         jmp     (r2)
-L550:
-        la      r0,-271
+L584:
+        la      r0,-286
         add     r0,fp
-        lw      r1,-313(fp)
+        push    r0
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
+        mov     r1,r0
+        pop     r0
         add     r0,r1
         mov     r1,r0
         lc      r0,0
         sb      r0,0(r1)
-        lw      r0,-313(fp)
+        la      r1,-316
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
-        la      r0,-271
+        la      r0,-286
         add     r0,fp
         push    r0
         la      r0,_make_string
         jal     r1,(r0)
         add     sp,6
         bra     L316
-L540:
+L574:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -6525,11 +7477,11 @@ _qq_expand:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L582
+        brt     L628
         lw      r0,9(fp)
-        la      r2,L580
+        la      r2,L626
         jmp     (r2)
-L582:
+L628:
         lw      r0,9(fp)
         push    r0
         la      r0,_car
@@ -6540,7 +7492,7 @@ L582:
         la      r1,_sym_unquote
         lw      r1,0(r1)
         ceq     r0,r1
-        brf     L584
+        brf     L630
         lw      r0,12(fp)
         push    r0
         lw      r0,9(fp)
@@ -6556,9 +7508,9 @@ L582:
         la      r0,_eval
         jal     r1,(r0)
         add     sp,6
-        la      r2,L580
+        la      r2,L626
         jmp     (r2)
-L584:
+L630:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -6573,16 +7525,16 @@ L584:
         sw      r0,-9(fp)
         lw      r0,9(fp)
         sw      r0,-12(fp)
-L585:
+L631:
         lw      r0,-12(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,1
         ceq     r0,r1
-        brt     L603
-        la      r2,L586
+        brt     L649
+        la      r2,L632
         jmp     (r2)
-L603:
+L649:
         lw      r0,-12(fp)
         push    r0
         la      r0,_car
@@ -6596,7 +7548,7 @@ L603:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L589
+        brt     L635
         lw      r0,-15(fp)
         push    r0
         la      r0,_car
@@ -6607,17 +7559,17 @@ L603:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L589
+        brt     L635
         lc      r0,1
-        bra     L590
-L589:
+        bra     L636
+L635:
         lc      r0,0
-L590:
+L636:
         ceq     r0,z
-        brf     L602
-        la      r2,L587
+        brf     L648
+        la      r2,L633
         jmp     (r2)
-L602:
+L648:
         lw      r0,12(fp)
         push    r0
         lw      r0,-15(fp)
@@ -6634,16 +7586,16 @@ L602:
         jal     r1,(r0)
         add     sp,6
         sw      r0,-18(fp)
-L591:
+L637:
         lw      r0,-18(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,1
         ceq     r0,r1
-        brt     L601
-        la      r2,L592
+        brt     L647
+        la      r2,L638
         jmp     (r2)
-L601:
+L647:
         lc      r0,0
         lc      r1,2
         shl     r0,r1
@@ -6670,11 +7622,11 @@ L601:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L593
+        brf     L639
         lw      r0,-21(fp)
         sw      r0,-6(fp)
-        bra     L594
-L593:
+        bra     L640
+L639:
         la      r0,_heap_cdr
         push    r0
         lw      r0,-9(fp)
@@ -6688,7 +7640,7 @@ L593:
         mov     r1,r0
         lw      r0,-21(fp)
         sw      r0,0(r1)
-L594:
+L640:
         lw      r0,-21(fp)
         sw      r0,-9(fp)
         lw      r0,-18(fp)
@@ -6697,12 +7649,12 @@ L594:
         jal     r1,(r0)
         add     sp,3
         sw      r0,-18(fp)
-        la      r2,L591
+        la      r2,L637
         jmp     (r2)
-L592:
-        la      r2,L588
+L638:
+        la      r2,L634
         jmp     (r2)
-L587:
+L633:
         lw      r0,12(fp)
         push    r0
         lw      r0,-15(fp)
@@ -6733,11 +7685,11 @@ L587:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L595
+        brf     L641
         lw      r0,-21(fp)
         sw      r0,-6(fp)
-        bra     L596
-L595:
+        bra     L642
+L641:
         la      r0,_heap_cdr
         push    r0
         lw      r0,-9(fp)
@@ -6751,19 +7703,19 @@ L595:
         mov     r1,r0
         lw      r0,-21(fp)
         sw      r0,0(r1)
-L596:
+L642:
         lw      r0,-21(fp)
         sw      r0,-9(fp)
-L588:
+L634:
         lw      r0,-12(fp)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
         sw      r0,-12(fp)
-        la      r2,L585
+        la      r2,L631
         jmp     (r2)
-L586:
+L632:
         lw      r0,-12(fp)
         push    r0
         lc      r0,0
@@ -6778,7 +7730,7 @@ L586:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L599
+        brt     L645
         lw      r0,-9(fp)
         push    r0
         lc      r0,0
@@ -6793,14 +7745,14 @@ L586:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L599
+        brt     L645
         lc      r0,1
-        bra     L600
-L599:
+        bra     L646
+L645:
         lc      r0,0
-L600:
+L646:
         ceq     r0,z
-        brt     L598
+        brt     L644
         lw      r0,12(fp)
         push    r0
         lw      r0,-12(fp)
@@ -6822,10 +7774,10 @@ L600:
         mov     r1,r0
         pop     r0
         sw      r0,0(r1)
-L598:
+L644:
         lw      r0,-6(fp)
-        bra     L580
-L580:
+        bra     L626
+L626:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -6839,23 +7791,23 @@ _eval:
         push    r1
         mov     fp,sp
         add     sp,-87
-L605:
+L651:
         lc      r0,1
         ceq     r0,z
-        brf     L709
-        la      r2,L606
+        brf     L755
+        la      r2,L652
         jmp     (r2)
-L709:
+L755:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,0
         ceq     r0,r1
-        brf     L608
+        brf     L654
         lw      r0,9(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L608:
+L654:
         lw      r0,9(fp)
         push    r0
         lc      r0,0
@@ -6866,11 +7818,11 @@ L608:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L610
+        brf     L656
         lw      r0,9(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L610:
+L656:
         lw      r0,9(fp)
         push    r0
         lc      r0,1
@@ -6881,27 +7833,27 @@ L610:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L612
+        brf     L658
         lw      r0,9(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L612:
+L658:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
-        brf     L614
+        brf     L660
         lw      r0,9(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L614:
+L660:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,2
         ceq     r0,r1
-        brf     L616
+        brf     L662
         lw      r0,12(fp)
         push    r0
         lw      r0,9(fp)
@@ -6909,9 +7861,9 @@ L614:
         la      r0,_env_lookup
         jal     r1,(r0)
         add     sp,6
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L616:
+L662:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
@@ -6921,11 +7873,11 @@ L616:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L618
+        brt     L664
         lw      r0,9(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L618:
+L664:
         lw      r0,9(fp)
         push    r0
         la      r0,_car
@@ -6942,20 +7894,20 @@ L618:
         la      r1,_sym_quote
         lw      r1,0(r1)
         ceq     r0,r1
-        brf     L620
+        brf     L666
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L620:
+L666:
         lw      r0,-3(fp)
         la      r1,_sym_quasiquote
         lw      r1,0(r1)
         ceq     r0,r1
-        brf     L622
+        brf     L668
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -6967,17 +7919,17 @@ L620:
         la      r0,_qq_expand
         jal     r1,(r0)
         add     sp,6
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L622:
+L668:
         lw      r0,-3(fp)
         la      r1,_sym_if
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L708
-        la      r2,L624
+        brt     L754
+        la      r2,L670
         jmp     (r2)
-L708:
+L754:
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -6993,15 +7945,15 @@ L708:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L626
+        brt     L672
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L626:
+L672:
         lw      r0,-9(fp)
         push    r0
         lc      r0,0
@@ -7016,7 +7968,7 @@ L626:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L628
+        brt     L674
         lw      r0,-6(fp)
         push    r0
         la      r0,_cdr
@@ -7027,9 +7979,9 @@ L626:
         jal     r1,(r0)
         add     sp,3
         sw      r0,9(fp)
-        la      r2,L605
+        la      r2,L651
         jmp     (r2)
-L628:
+L674:
         lw      r0,-6(fp)
         push    r0
         la      r0,_cdr
@@ -7050,32 +8002,32 @@ L628:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L630
+        brf     L676
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L630:
+L676:
         lw      r0,-12(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
         sw      r0,9(fp)
-        la      r2,L605
+        la      r2,L651
         jmp     (r2)
-L624:
+L670:
         lw      r0,-3(fp)
         la      r1,_sym_define
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L707
-        la      r2,L632
+        brt     L753
+        la      r2,L678
         jmp     (r2)
-L707:
+L753:
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
@@ -7087,10 +8039,10 @@ L707:
         and     r0,r1
         lc      r1,1
         ceq     r0,r1
-        brt     L706
-        la      r2,L634
+        brt     L752
+        la      r2,L680
         jmp     (r2)
-L706:
+L752:
         lw      r0,-15(fp)
         push    r0
         la      r0,_car
@@ -7123,15 +8075,15 @@ L706:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L635
+        brf     L681
         lw      r0,-24(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
         sw      r0,-27(fp)
-        bra     L636
-L635:
+        bra     L682
+L681:
         lw      r0,-24(fp)
         push    r0
         la      r1,_sym_begin
@@ -7141,7 +8093,7 @@ L635:
         jal     r1,(r0)
         add     sp,6
         sw      r0,-27(fp)
-L636:
+L682:
         lw      r0,12(fp)
         push    r0
         lw      r0,-27(fp)
@@ -7165,9 +8117,9 @@ L636:
         la      r1,_global_env
         sw      r0,0(r1)
         lw      r0,-30(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L634:
+L680:
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -7187,15 +8139,15 @@ L634:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L638
+        brt     L684
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L638:
+L684:
         la      r1,_global_env
         lw      r0,0(r1)
         push    r0
@@ -7209,17 +8161,17 @@ L638:
         la      r1,_global_env
         sw      r0,0(r1)
         lw      r0,-30(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L632:
+L678:
         lw      r0,-3(fp)
         la      r1,_sym_set
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L705
-        la      r2,L640
+        brt     L751
+        la      r2,L686
         jmp     (r2)
-L705:
+L751:
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
@@ -7245,18 +8197,18 @@ L705:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L642
+        brt     L688
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L642:
+L688:
         lw      r0,12(fp)
         sw      r0,-33(fp)
-L643:
+L689:
         lw      r0,-33(fp)
         push    r0
         lc      r0,0
@@ -7271,10 +8223,10 @@ L643:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brf     L704
-        la      r2,L644
+        brf     L750
+        la      r2,L690
         jmp     (r2)
-L704:
+L750:
         lw      r0,-33(fp)
         push    r0
         la      r0,_car
@@ -7288,7 +8240,7 @@ L704:
         add     sp,3
         lw      r1,-18(fp)
         ceq     r0,r1
-        brf     L646
+        brf     L692
         la      r0,_heap_cdr
         push    r0
         lw      r0,-36(fp)
@@ -7303,22 +8255,22 @@ L704:
         lw      r0,-30(fp)
         sw      r0,0(r1)
         lw      r0,-30(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L646:
+L692:
         lw      r0,-33(fp)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
         sw      r0,-33(fp)
-        la      r2,L643
+        la      r2,L689
         jmp     (r2)
-L644:
+L690:
         la      r1,_global_env
         lw      r0,0(r1)
         sw      r0,-33(fp)
-L647:
+L693:
         lw      r0,-33(fp)
         push    r0
         lc      r0,0
@@ -7333,10 +8285,10 @@ L647:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brf     L703
-        la      r2,L648
+        brf     L749
+        la      r2,L694
         jmp     (r2)
-L703:
+L749:
         lw      r0,-33(fp)
         push    r0
         la      r0,_car
@@ -7350,7 +8302,7 @@ L703:
         add     sp,3
         lw      r1,-18(fp)
         ceq     r0,r1
-        brf     L650
+        brf     L696
         la      r0,_heap_cdr
         push    r0
         lw      r0,-36(fp)
@@ -7365,19 +8317,19 @@ L703:
         lw      r0,-30(fp)
         sw      r0,0(r1)
         lw      r0,-30(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L650:
+L696:
         lw      r0,-33(fp)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
         sw      r0,-33(fp)
-        la      r2,L647
+        la      r2,L693
         jmp     (r2)
-L648:
-        la      r0,_S32
+L694:
+        la      r0,_S33
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
@@ -7397,17 +8349,17 @@ L648:
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L640:
+L686:
         lw      r0,-3(fp)
         la      r1,_sym_lambda
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L702
-        la      r2,L652
+        brt     L748
+        la      r2,L698
         jmp     (r2)
-L702:
+L748:
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
@@ -7434,15 +8386,15 @@ L702:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L653
+        brf     L699
         lw      r0,-24(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
         sw      r0,-27(fp)
-        bra     L654
-L653:
+        bra     L700
+L699:
         lw      r0,-24(fp)
         push    r0
         la      r1,_sym_begin
@@ -7452,7 +8404,7 @@ L653:
         jal     r1,(r0)
         add     sp,6
         sw      r0,-27(fp)
-L654:
+L700:
         lw      r0,12(fp)
         push    r0
         lw      r0,-27(fp)
@@ -7462,17 +8414,17 @@ L654:
         la      r0,_make_closure
         jal     r1,(r0)
         add     sp,9
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L652:
+L698:
         lw      r0,-3(fp)
         la      r1,_sym_defmacro
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L701
-        la      r2,L656
+        brt     L747
+        la      r2,L702
         jmp     (r2)
-L701:
+L747:
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
@@ -7513,15 +8465,15 @@ L701:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L657
+        brf     L703
         lw      r0,-45(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
         sw      r0,-48(fp)
-        bra     L658
-L657:
+        bra     L704
+L703:
         lw      r0,-45(fp)
         push    r0
         la      r1,_sym_begin
@@ -7531,7 +8483,7 @@ L657:
         jal     r1,(r0)
         add     sp,6
         sw      r0,-48(fp)
-L658:
+L704:
         lw      r0,12(fp)
         push    r0
         lw      r0,-48(fp)
@@ -7555,17 +8507,17 @@ L658:
         la      r1,_global_env
         sw      r0,0(r1)
         lw      r0,-51(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L656:
+L702:
         lw      r0,-3(fp)
         la      r1,_sym_catch
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L700
-        la      r2,L660
+        brt     L746
+        la      r2,L706
         jmp     (r2)
-L700:
+L746:
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -7581,21 +8533,21 @@ L700:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L662
+        brt     L708
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L662:
+L708:
         la      r1,_catch_depth
         lw      r0,0(r1)
         lc      r1,16
         cls     r0,r1
-        brt     L664
-        la      r0,_S33
+        brt     L710
+        la      r0,_S34
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
@@ -7605,9 +8557,9 @@ L662:
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L664:
+L710:
         la      r0,_catch_tags
         push    r0
         la      r1,_catch_depth
@@ -7669,21 +8621,21 @@ L664:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L667
+        brt     L713
         la      r1,_catch_target
         lw      r0,0(r1)
         lw      r1,-57(fp)
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L667
+        brt     L713
         lc      r0,1
-        bra     L668
-L667:
+        bra     L714
+L713:
         lc      r0,0
-L668:
+L714:
         ceq     r0,z
-        brt     L666
+        brt     L712
         lc      r0,0
         la      r1,_catch_throwing
         sw      r0,0(r1)
@@ -7696,33 +8648,33 @@ L668:
         pop     r0
         add     r0,r1
         lw      r0,0(r0)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L666:
+L712:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L670
+        brt     L716
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L670:
+L716:
         lw      r0,-60(fp)
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L660:
+L706:
         lw      r0,-3(fp)
         la      r1,_sym_begin
         lw      r1,0(r1)
         ceq     r0,r1
-        brt     L699
-        la      r2,L672
+        brt     L745
+        la      r2,L718
         jmp     (r2)
-L699:
+L745:
         lw      r0,-6(fp)
         push    r0
         lc      r0,0
@@ -7733,16 +8685,16 @@ L699:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L674
+        brf     L720
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L674:
-L675:
+L720:
+L721:
         lw      r0,-6(fp)
         push    r0
         la      r0,_cdr
@@ -7761,7 +8713,7 @@ L675:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L676
+        brt     L722
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -7776,33 +8728,33 @@ L675:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L678
+        brt     L724
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L678:
+L724:
         lw      r0,-6(fp)
         push    r0
         la      r0,_cdr
         jal     r1,(r0)
         add     sp,3
         sw      r0,-6(fp)
-        la      r2,L675
+        la      r2,L721
         jmp     (r2)
-L676:
+L722:
         lw      r0,-6(fp)
         push    r0
         la      r0,_car
         jal     r1,(r0)
         add     sp,3
         sw      r0,9(fp)
-        la      r2,L605
+        la      r2,L651
         jmp     (r2)
-L672:
+L718:
         lw      r0,12(fp)
         push    r0
         lw      r0,-3(fp)
@@ -7814,24 +8766,24 @@ L672:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L680
+        brt     L726
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L680:
+L726:
         lw      r0,-63(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
-        brt     L698
-        la      r2,L682
+        brt     L744
+        la      r2,L728
         jmp     (r2)
-L698:
+L744:
         lw      r0,-63(fp)
         push    r0
         la      r0,_ext_type
@@ -7846,10 +8798,10 @@ L698:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brt     L697
-        la      r2,L684
+        brt     L743
+        la      r2,L730
         jmp     (r2)
-L697:
+L743:
         lw      r0,-63(fp)
         push    r0
         la      r0,_closure_env
@@ -7883,21 +8835,21 @@ L697:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L686
+        brt     L732
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L686:
+L732:
         lw      r0,-69(fp)
         sw      r0,9(fp)
-        la      r2,L605
+        la      r2,L651
         jmp     (r2)
-L684:
-L682:
+L730:
+L728:
         lw      r0,12(fp)
         push    r0
         lw      r0,-6(fp)
@@ -7909,24 +8861,24 @@ L682:
         la      r1,_catch_throwing
         lw      r0,0(r1)
         ceq     r0,z
-        brt     L688
+        brt     L734
         lc      r0,0
         lc      r1,2
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        la      r2,L604
+        la      r2,L650
         jmp     (r2)
-L688:
+L734:
         lw      r0,-63(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
-        brt     L696
-        la      r2,L690
+        brt     L742
+        la      r2,L736
         jmp     (r2)
-L696:
+L742:
         lw      r0,-63(fp)
         push    r0
         la      r0,_ext_type
@@ -7943,10 +8895,10 @@ L696:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brt     L695
-        la      r2,L692
+        brt     L741
+        la      r2,L738
         jmp     (r2)
-L695:
+L741:
         lw      r0,-63(fp)
         push    r0
         la      r0,_closure_params
@@ -7977,9 +8929,9 @@ L695:
         sw      r0,12(fp)
         lw      r0,-81(fp)
         sw      r0,9(fp)
-        la      r2,L605
+        la      r2,L651
         jmp     (r2)
-L692:
+L738:
         lw      r0,-75(fp)
         push    r0
         lc      r0,3
@@ -7990,7 +8942,7 @@ L692:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L694
+        brf     L740
         lw      r0,-63(fp)
         push    r0
         la      r0,_ext_data
@@ -8006,10 +8958,10 @@ L692:
         la      r0,_apply_primitive
         jal     r1,(r0)
         add     sp,6
-        bra     L604
-L694:
-L690:
-        la      r0,_S34
+        bra     L650
+L740:
+L736:
+        la      r0,_S35
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
@@ -8019,11 +8971,11 @@ L690:
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        bra     L604
-        la      r2,L605
+        bra     L650
+        la      r2,L651
         jmp     (r2)
-L606:
-L604:
+L652:
+L650:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8042,10 +8994,10 @@ _apply_fn:
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
-        brt     L717
-        la      r2,L712
+        brt     L763
+        la      r2,L758
         jmp     (r2)
-L717:
+L763:
         lw      r0,9(fp)
         push    r0
         la      r0,_ext_type
@@ -8062,7 +9014,7 @@ L717:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L714
+        brf     L760
         lw      r0,9(fp)
         push    r0
         la      r0,_closure_env
@@ -8092,9 +9044,9 @@ L717:
         la      r0,_eval
         jal     r1,(r0)
         add     sp,6
-        la      r2,L710
+        la      r2,L756
         jmp     (r2)
-L714:
+L760:
         lw      r0,-3(fp)
         push    r0
         lc      r0,3
@@ -8105,7 +9057,7 @@ L714:
         mov     r1,r0
         pop     r0
         ceq     r0,r1
-        brf     L716
+        brf     L762
         lw      r0,9(fp)
         push    r0
         la      r0,_ext_data
@@ -8121,10 +9073,10 @@ L714:
         la      r0,_apply_primitive
         jal     r1,(r0)
         add     sp,6
-        bra     L710
-L716:
-L712:
-        la      r0,_S35
+        bra     L756
+L762:
+L758:
+        la      r0,_S36
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
@@ -8134,8 +9086,8 @@ L712:
         shl     r0,r1
         lc      r1,2
         or      r0,r1
-        bra     L710
-L710:
+        bra     L756
+L756:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8173,7 +9125,7 @@ _register_prim:
         add     sp,9
         la      r1,_global_env
         sw      r0,0(r1)
-L718:
+L764:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8193,82 +9145,89 @@ _eval_init:
         or      r0,r1
         la      r1,_global_env
         sw      r0,0(r1)
-        la      r0,_S36
+        la      r0,_S37
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_quote
         sw      r0,0(r1)
-        la      r0,_S37
+        la      r0,_S38
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_if
         sw      r0,0(r1)
-        la      r0,_S38
+        la      r0,_S39
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_define
         sw      r0,0(r1)
-        la      r0,_S39
+        la      r0,_S40
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_lambda
         sw      r0,0(r1)
-        la      r0,_S40
+        la      r0,_S41
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_defmacro
         sw      r0,0(r1)
-        la      r0,_S41
+        la      r0,_S42
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_begin
         sw      r0,0(r1)
-        la      r0,_S42
+        la      r0,_S43
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_quasiquote
         sw      r0,0(r1)
-        la      r0,_S43
+        la      r0,_S44
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_unquote
         sw      r0,0(r1)
-        la      r0,_S44
+        la      r0,_S45
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_unquote_splicing
         sw      r0,0(r1)
-        la      r0,_S45
+        la      r0,_S46
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_set
         sw      r0,0(r1)
-        la      r0,_S46
+        la      r0,_S47
         push    r0
         la      r0,_intern
         jal     r1,(r0)
         add     sp,3
         la      r1,_sym_catch
+        sw      r0,0(r1)
+        la      r0,_S48
+        push    r0
+        la      r0,_intern
+        jal     r1,(r0)
+        add     sp,3
+        la      r1,_sym_asm
         sw      r0,0(r1)
         lc      r0,0
         la      r1,_catch_depth
@@ -8281,322 +9240,350 @@ _eval_init:
         sw      r0,0(r1)
         lc      r0,0
         push    r0
-        la      r0,_S47
+        la      r0,_S49
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,1
         push    r0
-        la      r0,_S48
+        la      r0,_S50
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,2
         push    r0
-        la      r0,_S49
+        la      r0,_S51
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,3
         push    r0
-        la      r0,_S50
+        la      r0,_S52
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,4
         push    r0
-        la      r0,_S51
+        la      r0,_S53
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,5
         push    r0
-        la      r0,_S52
+        la      r0,_S54
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,6
         push    r0
-        la      r0,_S53
+        la      r0,_S55
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,7
         push    r0
-        la      r0,_S54
+        la      r0,_S56
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,8
         push    r0
-        la      r0,_S55
+        la      r0,_S57
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,9
         push    r0
-        la      r0,_S56
+        la      r0,_S58
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,10
         push    r0
-        la      r0,_S57
+        la      r0,_S59
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,11
         push    r0
-        la      r0,_S58
+        la      r0,_S60
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,12
         push    r0
-        la      r0,_S59
+        la      r0,_S61
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,13
         push    r0
-        la      r0,_S60
+        la      r0,_S62
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,14
         push    r0
-        la      r0,_S61
+        la      r0,_S63
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,15
         push    r0
-        la      r0,_S62
+        la      r0,_S64
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,16
         push    r0
-        la      r0,_S63
+        la      r0,_S65
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,17
         push    r0
-        la      r0,_S64
+        la      r0,_S66
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,18
         push    r0
-        la      r0,_S65
+        la      r0,_S67
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,19
         push    r0
-        la      r0,_S66
+        la      r0,_S68
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,20
         push    r0
-        la      r0,_S67
+        la      r0,_S69
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,21
         push    r0
-        la      r0,_S68
+        la      r0,_S70
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,22
         push    r0
-        la      r0,_S69
+        la      r0,_S71
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,23
         push    r0
-        la      r0,_S70
+        la      r0,_S72
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,24
         push    r0
-        la      r0,_S71
+        la      r0,_S73
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,25
         push    r0
-        la      r0,_S72
+        la      r0,_S74
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,26
         push    r0
-        la      r0,_S73
+        la      r0,_S75
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,27
         push    r0
-        la      r0,_S74
+        la      r0,_S76
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,28
         push    r0
-        la      r0,_S75
+        la      r0,_S77
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,29
         push    r0
-        la      r0,_S76
+        la      r0,_S78
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,30
         push    r0
-        la      r0,_S77
+        la      r0,_S79
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,31
         push    r0
-        la      r0,_S78
+        la      r0,_S80
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,32
         push    r0
-        la      r0,_S79
+        la      r0,_S81
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,33
         push    r0
-        la      r0,_S80
+        la      r0,_S82
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,34
         push    r0
-        la      r0,_S81
+        la      r0,_S83
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,35
         push    r0
-        la      r0,_S82
+        la      r0,_S84
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,36
         push    r0
-        la      r0,_S83
+        la      r0,_S85
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,37
         push    r0
-        la      r0,_S84
+        la      r0,_S86
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,38
         push    r0
-        la      r0,_S85
+        la      r0,_S87
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,39
         push    r0
-        la      r0,_S86
+        la      r0,_S88
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,40
         push    r0
-        la      r0,_S87
+        la      r0,_S89
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,41
         push    r0
-        la      r0,_S88
+        la      r0,_S90
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,42
         push    r0
-        la      r0,_S89
+        la      r0,_S91
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,43
         push    r0
-        la      r0,_S90
+        la      r0,_S92
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,44
         push    r0
-        la      r0,_S91
+        la      r0,_S93
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
         add     sp,6
         lc      r0,45
         push    r0
-        la      r0,_S92
+        la      r0,_S94
+        push    r0
+        la      r0,_register_prim
+        jal     r1,(r0)
+        add     sp,6
+        lc      r0,46
+        push    r0
+        la      r0,_S95
+        push    r0
+        la      r0,_register_prim
+        jal     r1,(r0)
+        add     sp,6
+        lc      r0,47
+        push    r0
+        la      r0,_S96
+        push    r0
+        la      r0,_register_prim
+        jal     r1,(r0)
+        add     sp,6
+        lc      r0,48
+        push    r0
+        la      r0,_S97
+        push    r0
+        la      r0,_register_prim
+        jal     r1,(r0)
+        add     sp,6
+        lc      r0,49
+        push    r0
+        la      r0,_S98
         push    r0
         la      r0,_register_prim
         jal     r1,(r0)
@@ -8604,7 +9591,7 @@ _eval_init:
         lc      r0,0
         la      r1,_gensym_counter
         sw      r0,0(r1)
-L719:
+L765:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8633,7 +9620,7 @@ _gc_init:
         mov r0, sp
         la r1, _gc_initial_sp
         sw r0, 0(r1)
-L720:
+L766:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8650,15 +9637,15 @@ _gc_protect:
         lw      r0,0(r1)
         la      r1,256
         cls     r0,r1
-        brt     L723
-        la      r0,_S93
+        brt     L769
+        la      r0,_S99
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
         _gcr_halt:
         bra _gcr_halt
-L723:
+L769:
         la      r0,_gc_roots
         push    r0
         la      r1,_gc_root_count
@@ -8678,8 +9665,8 @@ L723:
         la      r1,_gc_root_count
         sw      r0,0(r1)
         lw      r0,9(fp)
-        bra     L721
-L721:
+        bra     L767
+L767:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8698,7 +9685,7 @@ _gc_unprotect:
         sub     r0,r1
         la      r1,_gc_root_count
         sw      r0,0(r1)
-L724:
+L770:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8712,22 +9699,22 @@ _gc_mark_val:
         push    r1
         mov     fp,sp
         add     sp,-3
-L726:
+L772:
         lc      r0,1
         ceq     r0,z
-        brf     L738
-        la      r2,L727
+        brf     L784
+        la      r2,L773
         jmp     (r2)
-L738:
+L784:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,1
         ceq     r0,r1
-        brt     L737
-        la      r2,L728
+        brt     L783
+        la      r2,L774
         jmp     (r2)
-L737:
+L783:
         lw      r0,9(fp)
         lc      r1,2
         sra     r0,r1
@@ -8742,11 +9729,11 @@ L737:
         add     r0,r1
         lw      r0,0(r0)
         ceq     r0,z
-        brt     L731
+        brt     L777
         lc      r0,0
-        la      r2,L725
+        la      r2,L771
         jmp     (r2)
-L731:
+L777:
         la      r0,_heap_mark
         push    r0
         lw      r0,-3(fp)
@@ -8781,18 +9768,18 @@ L731:
         add     r0,r1
         lw      r0,0(r0)
         sw      r0,9(fp)
-        la      r2,L729
+        la      r2,L775
         jmp     (r2)
-L728:
+L774:
         lw      r0,9(fp)
         lc      r1,3
         and     r0,r1
         lc      r1,3
         ceq     r0,r1
-        brt     L736
-        la      r2,L732
+        brt     L782
+        la      r2,L778
         jmp     (r2)
-L736:
+L782:
         lw      r0,9(fp)
         lc      r1,2
         sra     r0,r1
@@ -8807,11 +9794,11 @@ L736:
         add     r0,r1
         lw      r0,0(r0)
         ceq     r0,z
-        brt     L735
+        brt     L781
         lc      r0,0
-        la      r2,L725
+        la      r2,L771
         jmp     (r2)
-L735:
+L781:
         la      r0,_heap_mark
         push    r0
         lw      r0,-3(fp)
@@ -8846,16 +9833,16 @@ L735:
         add     r0,r1
         lw      r0,0(r0)
         sw      r0,9(fp)
-        bra     L733
-L732:
+        bra     L779
+L778:
         lc      r0,0
-        bra     L725
-L733:
-L729:
-        la      r2,L726
+        bra     L771
+L779:
+L775:
+        la      r2,L772
         jmp     (r2)
-L727:
-L725:
+L773:
+L771:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8881,14 +9868,14 @@ _gc_sweep:
         lc      r1,1
         sub     r0,r1
         sw      r0,-3(fp)
-L740:
+L786:
         lw      r0,-3(fp)
         lc      r1,0
         cls     r0,r1
-        brf     L744
-        la      r2,L741
+        brf     L790
+        la      r2,L787
         jmp     (r2)
-L744:
+L790:
         la      r0,_heap_mark
         push    r0
         lw      r0,-3(fp)
@@ -8899,7 +9886,7 @@ L744:
         add     r0,r1
         lw      r0,0(r0)
         ceq     r0,z
-        brt     L742
+        brt     L788
         la      r0,_heap_mark
         push    r0
         lw      r0,-3(fp)
@@ -8911,9 +9898,9 @@ L744:
         mov     r1,r0
         lc      r0,0
         sw      r0,0(r1)
-        la      r2,L743
+        la      r2,L789
         jmp     (r2)
-L742:
+L788:
         la      r1,_free_list
         lw      r0,0(r1)
         push    r0
@@ -8948,15 +9935,15 @@ L742:
         lw      r0,-3(fp)
         la      r1,_free_list
         sw      r0,0(r1)
-L743:
+L789:
         lw      r0,-3(fp)
         lc      r1,1
         sub     r0,r1
         sw      r0,-3(fp)
-        la      r2,L740
+        la      r2,L786
         jmp     (r2)
-L741:
-L739:
+L787:
+L785:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -8990,14 +9977,14 @@ _gc_scan_stack:
         la      r1,_gc_scan_sp
         lw      r0,0(r1)
         sw      r0,-9(fp)
-L746:
+L792:
         lw      r0,-6(fp)
         lc      r1,0
         cls     r1,r0
-        brt     L756
-        la      r2,L747
+        brt     L802
+        la      r2,L793
         jmp     (r2)
-L756:
+L802:
         lw      r0,-9(fp)
         lw      r0,0(r0)
         sw      r0,-12(fp)
@@ -9010,20 +9997,20 @@ L756:
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brf     L750
+        brf     L796
         lw      r0,-15(fp)
         lc      r1,3
         ceq     r0,r1
         mov     r0,c
         ceq     r0,z
-        brf     L750
+        brf     L796
         lc      r0,0
-        bra     L751
-L750:
+        bra     L797
+L796:
         lc      r0,1
-L751:
+L797:
         ceq     r0,z
-        brt     L749
+        brt     L795
         lw      r0,-12(fp)
         lc      r1,2
         sra     r0,r1
@@ -9035,28 +10022,28 @@ L751:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brt     L754
+        brt     L800
         lw      r0,-18(fp)
         la      r1,_heap_next
         lw      r1,0(r1)
         cls     r0,r1
         mov     r0,c
         ceq     r0,z
-        brt     L754
+        brt     L800
         lc      r0,1
-        bra     L755
-L754:
+        bra     L801
+L800:
         lc      r0,0
-L755:
+L801:
         ceq     r0,z
-        brt     L753
+        brt     L799
         lw      r0,-12(fp)
         push    r0
         la      r0,_gc_mark_val
         jal     r1,(r0)
         add     sp,3
-L753:
-L749:
+L799:
+L795:
         lw      r0,-9(fp)
         lc      r1,3
         add     r0,r1
@@ -9065,10 +10052,10 @@ L749:
         lc      r1,1
         sub     r0,r1
         sw      r0,-6(fp)
-        la      r2,L746
+        la      r2,L792
         jmp     (r2)
-L747:
-L745:
+L793:
+L791:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9090,12 +10077,12 @@ _gc_collect:
         sw      r0,0(r1)
         lc      r0,0
         sw      r0,-3(fp)
-L758:
+L804:
         lw      r0,-3(fp)
         la      r1,_heap_next
         lw      r1,0(r1)
         cls     r0,r1
-        brf     L759
+        brf     L805
         la      r0,_heap_mark
         push    r0
         lw      r0,-3(fp)
@@ -9111,8 +10098,8 @@ L758:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        bra     L758
-L759:
+        bra     L804
+L805:
         la      r1,_global_env
         lw      r0,0(r1)
         push    r0
@@ -9121,12 +10108,12 @@ L759:
         add     sp,3
         lc      r0,0
         sw      r0,-3(fp)
-L760:
+L806:
         lw      r0,-3(fp)
         la      r1,_gc_root_count
         lw      r1,0(r1)
         cls     r0,r1
-        brf     L761
+        brf     L807
         la      r0,_gc_roots
         push    r0
         lw      r0,-3(fp)
@@ -9144,16 +10131,16 @@ L760:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        bra     L760
-L761:
+        bra     L806
+L807:
         lc      r0,0
         sw      r0,-3(fp)
-L762:
+L808:
         lw      r0,-3(fp)
         la      r1,_wind_depth
         lw      r1,0(r1)
         cls     r0,r1
-        brf     L763
+        brf     L809
         la      r0,_wind_after
         push    r0
         lw      r0,-3(fp)
@@ -9171,19 +10158,19 @@ L762:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        bra     L762
-L763:
+        bra     L808
+L809:
         lc      r0,0
         sw      r0,-3(fp)
-L764:
+L810:
         lw      r0,-3(fp)
         la      r1,_catch_depth
         lw      r1,0(r1)
         cls     r0,r1
-        brt     L766
-        la      r2,L765
+        brt     L812
+        la      r2,L811
         jmp     (r2)
-L766:
+L812:
         la      r0,_catch_tags
         push    r0
         lw      r0,-3(fp)
@@ -9214,14 +10201,14 @@ L766:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        la      r2,L764
+        la      r2,L810
         jmp     (r2)
-L765:
+L811:
         la      r0,_gc_scan_stack
         jal     r1,(r0)
         la      r0,_gc_sweep
         jal     r1,(r0)
-L757:
+L803:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9239,10 +10226,10 @@ _gc_alloc_cell:
         lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
-        brf     L776
-        la      r2,L769
+        brf     L822
+        la      r2,L815
         jmp     (r2)
-L776:
+L822:
         la      r1,_free_list
         lw      r0,0(r1)
         sw      r0,-3(fp)
@@ -9292,17 +10279,17 @@ L776:
         pop     r0
         sw      r0,0(r1)
         lw      r0,-3(fp)
-        la      r2,L767
+        la      r2,L813
         jmp     (r2)
-L769:
+L815:
         la      r1,_heap_next
         lw      r0,0(r1)
         la      r1,32768
         cls     r0,r1
-        brt     L775
-        la      r2,L771
+        brt     L821
+        la      r2,L817
         jmp     (r2)
-L775:
+L821:
         la      r1,_heap_next
         lw      r0,0(r1)
         sw      r0,-3(fp)
@@ -9347,19 +10334,19 @@ L775:
         pop     r0
         sw      r0,0(r1)
         lw      r0,-3(fp)
-        la      r2,L767
+        la      r2,L813
         jmp     (r2)
-L771:
+L817:
         la      r0,_gc_collect
         jal     r1,(r0)
         la      r1,_free_list
         lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
-        brf     L774
-        la      r2,L773
+        brf     L820
+        la      r2,L819
         jmp     (r2)
-L774:
+L820:
         la      r1,_free_list
         lw      r0,0(r1)
         sw      r0,-3(fp)
@@ -9409,9 +10396,9 @@ L774:
         pop     r0
         sw      r0,0(r1)
         lw      r0,-3(fp)
-        bra     L767
-L773:
-        la      r0,_S94
+        bra     L813
+L819:
+        la      r0,_S100
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
@@ -9422,7 +10409,7 @@ L773:
         la      r0,_print_int
         jal     r1,(r0)
         add     sp,3
-        la      r0,_S95
+        la      r0,_S101
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
@@ -9441,8 +10428,8 @@ L773:
         _oom2_halt:
         bra _oom2_halt
         lc      r0,0
-        bra     L767
-L767:
+        bra     L813
+L813:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9461,11 +10448,11 @@ _gc_count_free:
         la      r1,_free_list
         lw      r0,0(r1)
         sw      r0,-6(fp)
-L778:
+L824:
         lw      r0,-6(fp)
         lc      r1,0
         cls     r0,r1
-        brt     L779
+        brt     L825
         lw      r0,-3(fp)
         lc      r1,1
         add     r0,r1
@@ -9480,11 +10467,11 @@ L778:
         add     r0,r1
         lw      r0,0(r0)
         sw      r0,-6(fp)
-        bra     L778
-L779:
+        bra     L824
+L825:
         lw      r0,-3(fp)
-        bra     L777
-L777:
+        bra     L823
+L823:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9593,7 +10580,7 @@ _snap_hex_init:
         mov     r1,r0
         lc      r0,102
         sb      r0,0(r1)
-L780:
+L826:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9634,7 +10621,7 @@ _snap_hex_byte:
         la      r0,_putc_uart
         jal     r1,(r0)
         add     sp,3
-L781:
+L827:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9672,7 +10659,7 @@ _snap_write_int:
         la      r0,_snap_hex_byte
         jal     r1,(r0)
         add     sp,3
-L782:
+L828:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9688,11 +10675,11 @@ _snap_write_ints:
         add     sp,-3
         lc      r0,0
         sw      r0,-3(fp)
-L784:
+L830:
         lw      r0,-3(fp)
         lw      r1,12(fp)
         cls     r0,r1
-        brf     L785
+        brf     L831
         lw      r0,9(fp)
         push    r0
         lw      r0,-3(fp)
@@ -9710,9 +10697,9 @@ L784:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        bra     L784
-L785:
-L783:
+        bra     L830
+L831:
+L829:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9728,11 +10715,11 @@ _snap_write_bytes:
         add     sp,-3
         lc      r0,0
         sw      r0,-3(fp)
-L787:
+L833:
         lw      r0,-3(fp)
         lw      r1,12(fp)
         cls     r0,r1
-        brf     L788
+        brf     L834
         lw      r0,9(fp)
         lw      r1,-3(fp)
         add     r0,r1
@@ -9747,9 +10734,9 @@ L787:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        bra     L787
-L788:
-L786:
+        bra     L833
+L834:
+L832:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9927,7 +10914,7 @@ _snapshot_save:
         la      r0,_snap_write_bytes
         jal     r1,(r0)
         add     sp,6
-L789:
+L835:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9982,8 +10969,8 @@ _snap_read_int:
         la      r1,_snap_cursor
         sw      r0,0(r1)
         lw      r0,-6(fp)
-        bra     L790
-L790:
+        bra     L836
+L836:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -9999,11 +10986,11 @@ _snap_read_ints:
         add     sp,-3
         lc      r0,0
         sw      r0,-3(fp)
-L792:
+L838:
         lw      r0,-3(fp)
         lw      r1,12(fp)
         cls     r0,r1
-        brf     L793
+        brf     L839
         la      r0,_snap_read_int
         jal     r1,(r0)
         push    r0
@@ -10022,9 +11009,9 @@ L792:
         lc      r1,1
         add     r0,r1
         sw      r0,-3(fp)
-        bra     L792
-L793:
-L791:
+        bra     L838
+L839:
+L837:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10043,11 +11030,11 @@ _snap_read_bytes:
         sw      r0,-3(fp)
         lc      r0,0
         sw      r0,-6(fp)
-L795:
+L841:
         lw      r0,-6(fp)
         lw      r1,12(fp)
         cls     r0,r1
-        brf     L796
+        brf     L842
         lw      r0,-3(fp)
         lw      r1,-6(fp)
         add     r0,r1
@@ -10063,15 +11050,15 @@ L795:
         lc      r1,1
         add     r0,r1
         sw      r0,-6(fp)
-        bra     L795
-L796:
+        bra     L841
+L842:
         la      r1,_snap_cursor
         lw      r0,0(r1)
         lw      r1,12(fp)
         add     r0,r1
         la      r1,_snap_cursor
         sw      r0,0(r1)
-L794:
+L840:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10097,7 +11084,7 @@ _snapshot_restore:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brf     L802
+        brf     L848
         lw      r0,-3(fp)
         lc      r1,1
         add     r0,r1
@@ -10108,14 +11095,14 @@ _snapshot_restore:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brf     L802
+        brf     L848
         lc      r0,0
-        bra     L803
-L802:
+        bra     L849
+L848:
         lc      r0,1
-L803:
+L849:
         ceq     r0,z
-        brf     L800
+        brf     L846
         lw      r0,-3(fp)
         lc      r1,2
         add     r0,r1
@@ -10126,18 +11113,18 @@ L803:
         ceq     r0,z
         mov     r0,c
         ceq     r0,z
-        brf     L800
+        brf     L846
         lc      r0,0
-        bra     L801
-L800:
+        bra     L847
+L846:
         lc      r0,1
-L801:
+L847:
         ceq     r0,z
-        brt     L799
+        brt     L845
         lc      r0,0
-        la      r2,L797
+        la      r2,L843
         jmp     (r2)
-L799:
+L845:
         lw      r0,9(fp)
         lc      r1,3
         add     r0,r1
@@ -10274,8 +11261,8 @@ L799:
         la      r1,_wind_depth
         sw      r0,0(r1)
         lc      r0,1
-        bra     L797
-L797:
+        bra     L843
+L843:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10300,7 +11287,7 @@ _eval_str:
         la      r0,_eval
         jal     r1,(r0)
         add     sp,6
-L804:
+L850:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10313,36 +11300,6 @@ _load_prelude:
         push    r2
         push    r1
         mov     fp,sp
-        la      r0,_S96
-        push    r0
-        la      r0,_eval_str
-        jal     r1,(r0)
-        add     sp,3
-        la      r0,_S97
-        push    r0
-        la      r0,_eval_str
-        jal     r1,(r0)
-        add     sp,3
-        la      r0,_S98
-        push    r0
-        la      r0,_eval_str
-        jal     r1,(r0)
-        add     sp,3
-        la      r0,_S99
-        push    r0
-        la      r0,_eval_str
-        jal     r1,(r0)
-        add     sp,3
-        la      r0,_S100
-        push    r0
-        la      r0,_eval_str
-        jal     r1,(r0)
-        add     sp,3
-        la      r0,_S101
-        push    r0
-        la      r0,_eval_str
-        jal     r1,(r0)
-        add     sp,3
         la      r0,_S102
         push    r0
         la      r0,_eval_str
@@ -10658,7 +11615,97 @@ _load_prelude:
         la      r0,_eval_str
         jal     r1,(r0)
         add     sp,3
-L805:
+        la      r0,_S165
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S166
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S167
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S168
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S169
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S170
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S171
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S172
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S173
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S174
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S175
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S176
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S177
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S178
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S179
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S180
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S181
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+        la      r0,_S182
+        push    r0
+        la      r0,_eval_str
+        jal     r1,(r0)
+        add     sp,3
+L851:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10672,18 +11719,18 @@ _repl:
         push    r1
         mov     fp,sp
         sub     sp,1033
-        la      r0,_S165
+        la      r0,_S183
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
-L807:
+L853:
         lc      r0,1
         ceq     r0,z
-        brf     L813
-        la      r2,L808
+        brf     L862
+        la      r2,L854
         jmp     (r2)
-L813:
+L862:
         la      r0,1024
         push    r0
         la      r0,-1024
@@ -10692,48 +11739,73 @@ L813:
         la      r0,_read_line
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-1027(fp)
-        lw      r0,-1027(fp)
+        la      r1,-1027
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-1027
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         cls     r0,r1
-        brf     L810
-        la      r0,_S166
+        brf     L856
+        la      r0,_S184
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
         la      r0,_halt
         jal     r1,(r0)
-L810:
-        lw      r0,-1027(fp)
+L856:
+        la      r1,-1027
+        add     r1,fp
+        lw      r0,0(r1)
         lc      r1,0
         ceq     r0,r1
-        brf     L812
-        la      r0,_S167
+        brf     L858
+        la      r0,_S185
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
-        la      r2,L807
+        la      r2,L853
         jmp     (r2)
-L812:
+L858:
         la      r0,-1024
         add     r0,fp
-        push    r0
-        la      r0,_read_str
+        la      r1,_read_ptr
+        sw      r0,0(r1)
+        la      r0,_skip_whitespace
         jal     r1,(r0)
-        add     sp,3
-        sw      r0,-1030(fp)
+L859:
+        la      r1,_read_ptr
+        lw      r0,0(r1)
+        lbu     r0,0(r0)
+        ceq     r0,z
+        brf     L861
+        la      r2,L860
+        jmp     (r2)
+L861:
+        la      r0,_read_expr
+        jal     r1,(r0)
+        la      r1,-1030
+        add     r1,fp
+        sw      r0,0(r1)
         la      r1,_global_env
         lw      r0,0(r1)
         push    r0
-        lw      r0,-1030(fp)
+        la      r1,-1030
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_eval
         jal     r1,(r0)
         add     sp,6
-        sw      r0,-1033(fp)
-        lw      r0,-1033(fp)
+        la      r1,-1033
+        add     r1,fp
+        sw      r0,0(r1)
+        la      r1,-1033
+        add     r1,fp
+        lw      r0,0(r1)
         push    r0
         la      r0,_print_val
         jal     r1,(r0)
@@ -10743,15 +11815,20 @@ L812:
         la      r0,_putc_uart
         jal     r1,(r0)
         add     sp,3
-        la      r0,_S168
+        la      r0,_skip_whitespace
+        jal     r1,(r0)
+        la      r2,L859
+        jmp     (r2)
+L860:
+        la      r0,_S186
         push    r0
         la      r0,_puts_str
         jal     r1,(r0)
         add     sp,3
-        la      r2,L807
+        la      r2,L853
         jmp     (r2)
-L808:
-L806:
+L854:
+L852:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10780,20 +11857,20 @@ _main:
         jal     r1,(r0)
         add     sp,3
         ceq     r0,z
-        brt     L815
-        bra     L816
-L815:
+        brt     L864
+        bra     L865
+L864:
         lc      r0,1
         la      r1,_gc_enabled
         sw      r0,0(r1)
         la      r0,_load_prelude
         jal     r1,(r0)
-L816:
+L865:
         la      r0,_repl
         jal     r1,(r0)
         lc      r0,0
-        bra     L814
-L814:
+        bra     L863
+L863:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10808,14 +11885,45 @@ __tc24r_div:
         lw      r0,9(fp)
         lw      r1,12(fp)
         lc      r2,0
-__tc24r_div_lp:
+        cls     r0,z
+        brf     __td_dp
+        push    r1
+        push    r0
+        lc      r0,0
+        pop     r1
+        sub     r0,r1
+        pop     r1
+        add     r2,1
+__td_dp:
+        cls     r1,z
+        brf     __td_rp
+        push    r0
+        lc      r0,0
+        sub     r0,r1
+        mov     r1,r0
+        pop     r0
+        add     r2,1
+__td_rp:
+        push    r2
+        lc      r2,0
+__td_lp:
         cls     r0,r1
-        brt     __tc24r_div_dn
+        brt     __td_dn
         sub     r0,r1
         add     r2,1
-        bra     __tc24r_div_lp
-__tc24r_div_dn:
+        bra     __td_lp
+__td_dn:
         mov     r0,r2
+        pop     r2
+        lc      r1,1
+        and     r2,r1
+        ceq     r2,z
+        brt     __td_ret
+        push    r0
+        lc      r0,0
+        pop     r1
+        sub     r0,r1
+__td_ret:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -10828,12 +11936,40 @@ __tc24r_mod:
         mov     fp,sp
         lw      r0,9(fp)
         lw      r1,12(fp)
-__tc24r_mod_lp:
-        cls     r0,r1
-        brt     __tc24r_mod_dn
+        lc      r2,0
+        cls     r0,z
+        brf     __tm_dp
+        push    r1
+        push    r0
+        lc      r0,0
+        pop     r1
         sub     r0,r1
-        bra     __tc24r_mod_lp
-__tc24r_mod_dn:
+        pop     r1
+        lc      r2,1
+__tm_dp:
+        cls     r1,z
+        brf     __tm_rp
+        push    r0
+        lc      r0,0
+        sub     r0,r1
+        mov     r1,r0
+        pop     r0
+__tm_rp:
+        push    r2
+__tm_lp:
+        cls     r0,r1
+        brt     __tm_dn
+        sub     r0,r1
+        bra     __tm_lp
+__tm_dn:
+        pop     r2
+        ceq     r2,z
+        brt     __tm_ret
+        push    r0
+        lc      r0,0
+        pop     r1
+        sub     r0,r1
+__tm_ret:
         mov     sp,fp
         pop     r1
         pop     r2
@@ -76384,4101 +77520,1371 @@ _heap_next:
 _gc_enabled:
         .word   0
 _name_pool:
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
         .byte   0
 _name_pool_next:
         .word   0
@@ -80998,8196 +79404,2736 @@ _sym_name_off:
 _sym_count:
         .word   0
 _str_pool:
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
         .byte   0
         .byte   0
 _str_pool_next:
@@ -89217,6 +82163,8 @@ _sym_unquote_splicing:
 _sym_set:
         .word   0
 _sym_catch:
+        .word   0
+_sym_asm:
         .word   0
 _gensym_counter:
         .word   0
@@ -122316,21 +115264,11 @@ _gc_initial_sp:
 _gc_scan_sp:
         .word   0
 _hex_chars:
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
-        .byte   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
+        .word   0
         .byte   0
 _snap_cursor:
         .word   0
@@ -122383,292 +115321,328 @@ _S22:
 _S23:
         .byte   69,82,82,58,110,111,116,45,110,117,109,98,101,114,10,0
 _S24:
-        .byte   69,82,82,58,100,105,118,45,98,121,45,122,101,114,111,10,0
+        .byte   69,82,82,58,110,111,116,45,110,117,109,98,101,114,10,0
 _S25:
         .byte   69,82,82,58,100,105,118,45,98,121,45,122,101,114,111,10,0
 _S26:
-        .byte   69,82,82,58,99,97,114,45,111,102,45,110,111,110,45,112,97,105,114,10,0
+        .byte   69,82,82,58,100,105,118,45,98,121,45,122,101,114,111,10,0
 _S27:
-        .byte   69,82,82,58,99,100,114,45,111,102,45,110,111,110,45,112,97,105,114,10,0
+        .byte   69,82,82,58,99,97,114,45,111,102,45,110,111,110,45,112,97,105,114,10,0
 _S28:
-        .byte   66,121,101,46,10,0
+        .byte   69,82,82,58,99,100,114,45,111,102,45,110,111,110,45,112,97,105,114,10,0
 _S29:
-        .byte   0
+        .byte   66,121,101,46,10,0
 _S30:
-        .byte   69,82,82,58,110,111,45,99,97,116,99,104,32,0
+        .byte   0
 _S31:
-        .byte   69,82,82,58,119,105,110,100,45,111,118,101,114,102,108,111,119,10,0
+        .byte   69,82,82,58,110,111,45,99,97,116,99,104,32,0
 _S32:
-        .byte   69,82,82,58,115,101,116,33,45,117,110,98,111,117,110,100,32,0
+        .byte   69,82,82,58,119,105,110,100,45,111,118,101,114,102,108,111,119,10,0
 _S33:
-        .byte   69,82,82,58,99,97,116,99,104,45,111,118,101,114,102,108,111,119,10,0
+        .byte   69,82,82,58,115,101,116,33,45,117,110,98,111,117,110,100,32,0
 _S34:
-        .byte   69,82,82,58,110,111,116,45,102,110,10,0
+        .byte   69,82,82,58,99,97,116,99,104,45,111,118,101,114,102,108,111,119,10,0
 _S35:
         .byte   69,82,82,58,110,111,116,45,102,110,10,0
 _S36:
-        .byte   113,117,111,116,101,0
+        .byte   69,82,82,58,110,111,116,45,102,110,10,0
 _S37:
-        .byte   105,102,0
+        .byte   113,117,111,116,101,0
 _S38:
-        .byte   100,101,102,105,110,101,0
+        .byte   105,102,0
 _S39:
-        .byte   108,97,109,98,100,97,0
+        .byte   100,101,102,105,110,101,0
 _S40:
-        .byte   100,101,102,109,97,99,114,111,0
+        .byte   108,97,109,98,100,97,0
 _S41:
-        .byte   98,101,103,105,110,0
+        .byte   100,101,102,109,97,99,114,111,0
 _S42:
-        .byte   113,117,97,115,105,113,117,111,116,101,0
+        .byte   98,101,103,105,110,0
 _S43:
-        .byte   117,110,113,117,111,116,101,0
+        .byte   113,117,97,115,105,113,117,111,116,101,0
 _S44:
-        .byte   117,110,113,117,111,116,101,45,115,112,108,105,99,105,110,103,0
+        .byte   117,110,113,117,111,116,101,0
 _S45:
-        .byte   115,101,116,33,0
+        .byte   117,110,113,117,111,116,101,45,115,112,108,105,99,105,110,103,0
 _S46:
-        .byte   99,97,116,99,104,0
+        .byte   115,101,116,33,0
 _S47:
-        .byte   43,0
+        .byte   99,97,116,99,104,0
 _S48:
-        .byte   45,0
+        .byte   97,115,109,0
 _S49:
-        .byte   42,0
+        .byte   43,0
 _S50:
-        .byte   47,0
+        .byte   45,0
 _S51:
-        .byte   37,0
+        .byte   42,0
 _S52:
-        .byte   60,0
+        .byte   47,0
 _S53:
-        .byte   61,0
+        .byte   37,0
 _S54:
-        .byte   99,111,110,115,0
+        .byte   60,0
 _S55:
-        .byte   99,97,114,0
+        .byte   61,0
 _S56:
-        .byte   99,100,114,0
+        .byte   99,111,110,115,0
 _S57:
-        .byte   108,105,115,116,0
+        .byte   99,97,114,0
 _S58:
-        .byte   110,117,108,108,63,0
+        .byte   99,100,114,0
 _S59:
-        .byte   112,97,105,114,63,0
+        .byte   108,105,115,116,0
 _S60:
-        .byte   97,116,111,109,63,0
+        .byte   110,117,108,108,63,0
 _S61:
-        .byte   101,113,63,0
+        .byte   112,97,105,114,63,0
 _S62:
-        .byte   110,111,116,0
+        .byte   97,116,111,109,63,0
 _S63:
-        .byte   112,114,105,110,116,0
+        .byte   101,113,63,0
 _S64:
-        .byte   110,117,109,98,101,114,63,0
+        .byte   110,111,116,0
 _S65:
-        .byte   101,120,105,116,0
+        .byte   112,114,105,110,116,0
 _S66:
-        .byte   112,101,101,107,0
+        .byte   110,117,109,98,101,114,63,0
 _S67:
-        .byte   112,111,107,101,0
+        .byte   101,120,105,116,0
 _S68:
-        .byte   100,101,108,97,121,0
+        .byte   112,101,101,107,0
 _S69:
-        .byte   112,114,105,110,116,108,110,0
+        .byte   112,111,107,101,0
 _S70:
-        .byte   110,101,119,108,105,110,101,0
+        .byte   100,101,108,97,121,0
 _S71:
-        .byte   97,112,112,108,121,0
+        .byte   112,114,105,110,116,108,110,0
 _S72:
-        .byte   115,116,114,105,110,103,45,108,101,110,103,116,104,0
+        .byte   110,101,119,108,105,110,101,0
 _S73:
-        .byte   115,116,114,105,110,103,45,114,101,102,0
+        .byte   97,112,112,108,121,0
 _S74:
-        .byte   115,116,114,105,110,103,45,97,112,112,101,110,100,0
+        .byte   115,116,114,105,110,103,45,108,101,110,103,116,104,0
 _S75:
-        .byte   115,116,114,105,110,103,61,63,0
+        .byte   115,116,114,105,110,103,45,114,101,102,0
 _S76:
-        .byte   115,116,114,105,110,103,63,0
+        .byte   115,116,114,105,110,103,45,97,112,112,101,110,100,0
 _S77:
-        .byte   100,105,115,112,108,97,121,0
+        .byte   115,116,114,105,110,103,61,63,0
 _S78:
-        .byte   103,99,0
+        .byte   115,116,114,105,110,103,63,0
 _S79:
-        .byte   104,101,97,112,45,117,115,101,100,0
+        .byte   100,105,115,112,108,97,121,0
 _S80:
-        .byte   104,101,97,112,45,115,105,122,101,0
+        .byte   103,99,0
 _S81:
-        .byte   110,117,109,98,101,114,45,62,115,116,114,105,110,103,0
+        .byte   104,101,97,112,45,117,115,101,100,0
 _S82:
-        .byte   102,110,63,0
+        .byte   104,101,97,112,45,115,105,122,101,0
 _S83:
-        .byte   101,118,97,108,0
+        .byte   110,117,109,98,101,114,45,62,115,116,114,105,110,103,0
 _S84:
-        .byte   109,97,99,114,111,101,120,112,97,110,100,45,49,0
+        .byte   102,110,63,0
 _S85:
-        .byte   103,101,110,115,121,109,0
+        .byte   101,118,97,108,0
 _S86:
-        .byte   115,121,109,98,111,108,45,62,115,116,114,105,110,103,0
+        .byte   109,97,99,114,111,101,120,112,97,110,100,45,49,0
 _S87:
-        .byte   115,116,114,105,110,103,45,62,115,121,109,98,111,108,0
+        .byte   103,101,110,115,121,109,0
 _S88:
-        .byte   116,104,114,111,119,0
+        .byte   115,121,109,98,111,108,45,62,115,116,114,105,110,103,0
 _S89:
-        .byte   100,121,110,97,109,105,99,45,119,105,110,100,0
+        .byte   115,116,114,105,110,103,45,62,115,121,109,98,111,108,0
 _S90:
-        .byte   115,121,109,98,111,108,63,0
+        .byte   116,104,114,111,119,0
 _S91:
-        .byte   115,117,98,115,116,114,105,110,103,0
+        .byte   100,121,110,97,109,105,99,45,119,105,110,100,0
 _S92:
-        .byte   102,111,114,109,97,116,0
+        .byte   115,121,109,98,111,108,63,0
 _S93:
-        .byte   80,65,78,73,67,58,71,67,32,114,111,111,116,32,115,116,97,99,107,32,102,117,108,108,10,0
+        .byte   115,117,98,115,116,114,105,110,103,0
 _S94:
-        .byte   80,65,78,73,67,58,79,79,77,32,104,101,97,112,61,0
+        .byte   102,111,114,109,97,116,0
 _S95:
-        .byte   32,102,114,101,101,61,48,32,103,99,61,0
+        .byte   99,104,97,114,45,62,105,110,116,101,103,101,114,0
 _S96:
-        .byte   40,100,101,102,105,110,101,32,40,114,101,118,101,114,115,101,45,97,99,99,32,108,115,116,32,97,99,99,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,97,99,99,32,40,114,101,118,101,114,115,101,45,97,99,99,32,40,99,100,114,32,108,115,116,41,32,40,99,111,110,115,32,40,99,97,114,32,108,115,116,41,32,97,99,99,41,41,41,41,0
+        .byte   105,110,116,101,103,101,114,45,62,99,104,97,114,0
 _S97:
-        .byte   40,100,101,102,105,110,101,32,40,114,101,118,101,114,115,101,32,108,115,116,41,32,40,114,101,118,101,114,115,101,45,97,99,99,32,108,115,116,32,110,105,108,41,41,0
+        .byte   115,116,114,105,110,103,45,105,110,100,101,120,0
 _S98:
-        .byte   40,100,101,102,105,110,101,32,40,109,97,112,45,97,99,99,32,102,32,108,115,116,32,97,99,99,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,40,114,101,118,101,114,115,101,32,97,99,99,41,32,40,109,97,112,45,97,99,99,32,102,32,40,99,100,114,32,108,115,116,41,32,40,99,111,110,115,32,40,102,32,40,99,97,114,32,108,115,116,41,41,32,97,99,99,41,41,41,41,0
+        .byte   115,116,114,105,110,103,45,99,111,110,116,97,105,110,115,63,0
 _S99:
-        .byte   40,100,101,102,105,110,101,32,40,109,97,112,32,102,32,108,115,116,41,32,40,109,97,112,45,97,99,99,32,102,32,108,115,116,32,110,105,108,41,41,0
+        .byte   80,65,78,73,67,58,71,67,32,114,111,111,116,32,115,116,97,99,107,32,102,117,108,108,10,0
 _S100:
-        .byte   40,100,101,102,105,110,101,32,40,102,105,108,116,101,114,45,97,99,99,32,112,32,108,115,116,32,97,99,99,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,40,114,101,118,101,114,115,101,32,97,99,99,41,32,40,105,102,32,40,112,32,40,99,97,114,32,108,115,116,41,41,32,40,102,105,108,116,101,114,45,97,99,99,32,112,32,40,99,100,114,32,108,115,116,41,32,40,99,111,110,115,32,40,99,97,114,32,108,115,116,41,32,97,99,99,41,41,32,40,102,105,108,116,101,114,45,97,99,99,32,112,32,40,99,100,114,32,108,115,116,41,32,97,99,99,41,41,41,41,0
+        .byte   80,65,78,73,67,58,79,79,77,32,104,101,97,112,61,0
 _S101:
-        .byte   40,100,101,102,105,110,101,32,40,102,105,108,116,101,114,32,112,32,108,115,116,41,32,40,102,105,108,116,101,114,45,97,99,99,32,112,32,108,115,116,32,110,105,108,41,41,0
+        .byte   32,102,114,101,101,61,48,32,103,99,61,0
 _S102:
-        .byte   40,100,101,102,105,110,101,32,114,101,100,117,99,101,32,40,108,97,109,98,100,97,32,40,102,32,105,110,105,116,32,108,115,116,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,105,110,105,116,32,40,114,101,100,117,99,101,32,102,32,40,102,32,105,110,105,116,32,40,99,97,114,32,108,115,116,41,41,32,40,99,100,114,32,108,115,116,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,114,101,118,101,114,115,101,45,97,99,99,32,108,115,116,32,97,99,99,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,97,99,99,32,40,114,101,118,101,114,115,101,45,97,99,99,32,40,99,100,114,32,108,115,116,41,32,40,99,111,110,115,32,40,99,97,114,32,108,115,116,41,32,97,99,99,41,41,41,41,0
 _S103:
-        .byte   40,100,101,102,105,110,101,32,102,111,108,100,114,32,40,108,97,109,98,100,97,32,40,102,32,105,110,105,116,32,108,115,116,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,105,110,105,116,32,40,102,32,40,99,97,114,32,108,115,116,41,32,40,102,111,108,100,114,32,102,32,105,110,105,116,32,40,99,100,114,32,108,115,116,41,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,114,101,118,101,114,115,101,32,108,115,116,41,32,40,114,101,118,101,114,115,101,45,97,99,99,32,108,115,116,32,110,105,108,41,41,0
 _S104:
-        .byte   40,100,101,102,105,110,101,32,40,108,101,110,103,116,104,45,97,99,99,32,108,115,116,32,110,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,110,32,40,108,101,110,103,116,104,45,97,99,99,32,40,99,100,114,32,108,115,116,41,32,40,43,32,110,32,49,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,109,97,112,45,97,99,99,32,102,32,108,115,116,32,97,99,99,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,40,114,101,118,101,114,115,101,32,97,99,99,41,32,40,109,97,112,45,97,99,99,32,102,32,40,99,100,114,32,108,115,116,41,32,40,99,111,110,115,32,40,102,32,40,99,97,114,32,108,115,116,41,41,32,97,99,99,41,41,41,41,0
 _S105:
-        .byte   40,100,101,102,105,110,101,32,40,108,101,110,103,116,104,32,108,115,116,41,32,40,108,101,110,103,116,104,45,97,99,99,32,108,115,116,32,48,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,109,97,112,32,102,32,108,115,116,41,32,40,109,97,112,45,97,99,99,32,102,32,108,115,116,32,110,105,108,41,41,0
 _S106:
-        .byte   40,100,101,102,105,110,101,32,40,97,112,112,101,110,100,45,97,99,99,32,114,97,32,98,41,32,40,105,102,32,40,110,117,108,108,63,32,114,97,41,32,98,32,40,97,112,112,101,110,100,45,97,99,99,32,40,99,100,114,32,114,97,41,32,40,99,111,110,115,32,40,99,97,114,32,114,97,41,32,98,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,102,105,108,116,101,114,45,97,99,99,32,112,32,108,115,116,32,97,99,99,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,40,114,101,118,101,114,115,101,32,97,99,99,41,32,40,105,102,32,40,112,32,40,99,97,114,32,108,115,116,41,41,32,40,102,105,108,116,101,114,45,97,99,99,32,112,32,40,99,100,114,32,108,115,116,41,32,40,99,111,110,115,32,40,99,97,114,32,108,115,116,41,32,97,99,99,41,41,32,40,102,105,108,116,101,114,45,97,99,99,32,112,32,40,99,100,114,32,108,115,116,41,32,97,99,99,41,41,41,41,0
 _S107:
-        .byte   40,100,101,102,105,110,101,32,40,97,112,112,101,110,100,32,97,32,98,41,32,40,97,112,112,101,110,100,45,97,99,99,32,40,114,101,118,101,114,115,101,32,97,41,32,98,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,102,105,108,116,101,114,32,112,32,108,115,116,41,32,40,102,105,108,116,101,114,45,97,99,99,32,112,32,108,115,116,32,110,105,108,41,41,0
 _S108:
-        .byte   40,100,101,102,105,110,101,32,40,110,116,104,32,110,32,108,115,116,41,32,40,105,102,32,40,61,32,110,32,48,41,32,40,99,97,114,32,108,115,116,41,32,40,110,116,104,32,40,45,32,110,32,49,41,32,40,99,100,114,32,108,115,116,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,114,101,100,117,99,101,32,40,108,97,109,98,100,97,32,40,102,32,105,110,105,116,32,108,115,116,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,105,110,105,116,32,40,114,101,100,117,99,101,32,102,32,40,102,32,105,110,105,116,32,40,99,97,114,32,108,115,116,41,41,32,40,99,100,114,32,108,115,116,41,41,41,41,41,0
 _S109:
-        .byte   40,100,101,102,109,97,99,114,111,32,119,104,101,110,32,40,99,111,110,100,32,46,32,98,111,100,121,41,32,96,40,105,102,32,44,99,111,110,100,32,40,98,101,103,105,110,32,44,64,98,111,100,121,41,32,110,105,108,41,41,0
+        .byte   40,100,101,102,105,110,101,32,102,111,108,100,114,32,40,108,97,109,98,100,97,32,40,102,32,105,110,105,116,32,108,115,116,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,105,110,105,116,32,40,102,32,40,99,97,114,32,108,115,116,41,32,40,102,111,108,100,114,32,102,32,105,110,105,116,32,40,99,100,114,32,108,115,116,41,41,41,41,41,41,0
 _S110:
-        .byte   40,100,101,102,109,97,99,114,111,32,117,110,108,101,115,115,32,40,99,111,110,100,32,46,32,98,111,100,121,41,32,96,40,105,102,32,44,99,111,110,100,32,110,105,108,32,40,98,101,103,105,110,32,44,64,98,111,100,121,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,108,101,110,103,116,104,45,97,99,99,32,108,115,116,32,110,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,110,32,40,108,101,110,103,116,104,45,97,99,99,32,40,99,100,114,32,108,115,116,41,32,40,43,32,110,32,49,41,41,41,41,0
 _S111:
-        .byte   40,100,101,102,105,110,101,32,40,108,101,116,45,101,120,112,97,110,100,32,102,105,114,115,116,32,114,101,115,116,41,32,40,105,102,32,40,112,97,105,114,63,32,102,105,114,115,116,41,32,96,40,40,108,97,109,98,100,97,32,44,40,109,97,112,32,99,97,114,32,102,105,114,115,116,41,32,44,64,114,101,115,116,41,32,44,64,40,109,97,112,32,99,97,100,114,32,102,105,114,115,116,41,41,32,96,40,40,108,97,109,98,100,97,32,40,44,102,105,114,115,116,41,32,40,115,101,116,33,32,44,102,105,114,115,116,32,40,108,97,109,98,100,97,32,44,40,109,97,112,32,99,97,114,32,40,99,97,114,32,114,101,115,116,41,41,32,44,64,40,99,100,114,32,114,101,115,116,41,41,41,32,40,44,102,105,114,115,116,32,44,64,40,109,97,112,32,99,97,100,114,32,40,99,97,114,32,114,101,115,116,41,41,41,41,32,110,105,108,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,108,101,110,103,116,104,32,108,115,116,41,32,40,108,101,110,103,116,104,45,97,99,99,32,108,115,116,32,48,41,41,0
 _S112:
-        .byte   40,100,101,102,109,97,99,114,111,32,108,101,116,32,40,102,105,114,115,116,32,46,32,114,101,115,116,41,32,40,108,101,116,45,101,120,112,97,110,100,32,102,105,114,115,116,32,114,101,115,116,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,97,112,112,101,110,100,45,97,99,99,32,114,97,32,98,41,32,40,105,102,32,40,110,117,108,108,63,32,114,97,41,32,98,32,40,97,112,112,101,110,100,45,97,99,99,32,40,99,100,114,32,114,97,41,32,40,99,111,110,115,32,40,99,97,114,32,114,97,41,32,98,41,41,41,41,0
 _S113:
-        .byte   40,100,101,102,109,97,99,114,111,32,100,111,32,40,99,108,97,117,115,101,115,32,116,101,115,116,32,46,32,98,111,100,121,41,32,96,40,108,101,116,32,95,100,111,95,32,44,40,109,97,112,32,40,108,97,109,98,100,97,32,40,99,41,32,40,108,105,115,116,32,40,99,97,114,32,99,41,32,40,99,97,100,114,32,99,41,41,41,32,99,108,97,117,115,101,115,41,32,40,105,102,32,44,40,99,97,114,32,116,101,115,116,41,32,44,40,105,102,32,40,110,117,108,108,63,32,40,99,100,114,32,116,101,115,116,41,41,32,110,105,108,32,40,99,97,100,114,32,116,101,115,116,41,41,32,40,98,101,103,105,110,32,44,64,98,111,100,121,32,40,95,100,111,95,32,44,64,40,109,97,112,32,99,97,100,100,114,32,99,108,97,117,115,101,115,41,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,97,112,112,101,110,100,32,97,32,98,41,32,40,97,112,112,101,110,100,45,97,99,99,32,40,114,101,118,101,114,115,101,32,97,41,32,98,41,41,0
 _S114:
-        .byte   40,100,101,102,109,97,99,114,111,32,97,110,100,32,40,97,32,98,41,32,96,40,105,102,32,44,97,32,44,98,32,110,105,108,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,110,116,104,32,110,32,108,115,116,41,32,40,105,102,32,40,61,32,110,32,48,41,32,40,99,97,114,32,108,115,116,41,32,40,110,116,104,32,40,45,32,110,32,49,41,32,40,99,100,114,32,108,115,116,41,41,41,41,0
 _S115:
-        .byte   40,100,101,102,109,97,99,114,111,32,111,114,32,40,97,32,98,41,32,96,40,105,102,32,44,97,32,44,97,32,44,98,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,119,104,101,110,32,40,99,111,110,100,32,46,32,98,111,100,121,41,32,96,40,105,102,32,44,99,111,110,100,32,40,98,101,103,105,110,32,44,64,98,111,100,121,41,32,110,105,108,41,41,0
 _S116:
-        .byte   40,100,101,102,105,110,101,32,99,111,110,100,45,101,120,112,97,110,100,32,40,108,97,109,98,100,97,32,40,99,108,97,117,115,101,115,41,32,40,105,102,32,40,110,117,108,108,63,32,99,108,97,117,115,101,115,41,32,110,105,108,32,40,105,102,32,40,101,113,63,32,40,99,97,97,114,32,99,108,97,117,115,101,115,41,32,39,116,41,32,40,99,97,100,114,32,40,99,97,114,32,99,108,97,117,115,101,115,41,41,32,96,40,105,102,32,44,40,99,97,97,114,32,99,108,97,117,115,101,115,41,32,44,40,99,97,100,114,32,40,99,97,114,32,99,108,97,117,115,101,115,41,41,32,44,40,99,111,110,100,45,101,120,112,97,110,100,32,40,99,100,114,32,99,108,97,117,115,101,115,41,41,41,41,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,117,110,108,101,115,115,32,40,99,111,110,100,32,46,32,98,111,100,121,41,32,96,40,105,102,32,44,99,111,110,100,32,110,105,108,32,40,98,101,103,105,110,32,44,64,98,111,100,121,41,41,41,0
 _S117:
-        .byte   40,100,101,102,109,97,99,114,111,32,99,111,110,100,32,99,108,97,117,115,101,115,32,40,99,111,110,100,45,101,120,112,97,110,100,32,99,108,97,117,115,101,115,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,108,101,116,45,101,120,112,97,110,100,32,102,105,114,115,116,32,114,101,115,116,41,32,40,105,102,32,40,112,97,105,114,63,32,102,105,114,115,116,41,32,96,40,40,108,97,109,98,100,97,32,44,40,109,97,112,32,99,97,114,32,102,105,114,115,116,41,32,44,64,114,101,115,116,41,32,44,64,40,109,97,112,32,99,97,100,114,32,102,105,114,115,116,41,41,32,96,40,40,108,97,109,98,100,97,32,40,44,102,105,114,115,116,41,32,40,115,101,116,33,32,44,102,105,114,115,116,32,40,108,97,109,98,100,97,32,44,40,109,97,112,32,99,97,114,32,40,99,97,114,32,114,101,115,116,41,41,32,44,64,40,99,100,114,32,114,101,115,116,41,41,41,32,40,44,102,105,114,115,116,32,44,64,40,109,97,112,32,99,97,100,114,32,40,99,97,114,32,114,101,115,116,41,41,41,41,32,110,105,108,41,41,41,0
 _S118:
-        .byte   40,100,101,102,105,110,101,32,62,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,60,32,98,32,97,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,108,101,116,32,40,102,105,114,115,116,32,46,32,114,101,115,116,41,32,40,108,101,116,45,101,120,112,97,110,100,32,102,105,114,115,116,32,114,101,115,116,41,41,0
 _S119:
-        .byte   40,100,101,102,105,110,101,32,62,61,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,110,111,116,32,40,60,32,97,32,98,41,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,100,111,32,40,99,108,97,117,115,101,115,32,116,101,115,116,32,46,32,98,111,100,121,41,32,96,40,108,101,116,32,95,100,111,95,32,44,40,109,97,112,32,40,108,97,109,98,100,97,32,40,99,41,32,40,108,105,115,116,32,40,99,97,114,32,99,41,32,40,99,97,100,114,32,99,41,41,41,32,99,108,97,117,115,101,115,41,32,40,105,102,32,44,40,99,97,114,32,116,101,115,116,41,32,44,40,105,102,32,40,110,117,108,108,63,32,40,99,100,114,32,116,101,115,116,41,41,32,110,105,108,32,40,99,97,100,114,32,116,101,115,116,41,41,32,40,98,101,103,105,110,32,44,64,98,111,100,121,32,40,95,100,111,95,32,44,64,40,109,97,112,32,99,97,100,100,114,32,99,108,97,117,115,101,115,41,41,41,41,41,41,0
 _S120:
-        .byte   40,100,101,102,105,110,101,32,60,61,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,110,111,116,32,40,60,32,98,32,97,41,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,97,110,100,32,40,97,32,98,41,32,96,40,105,102,32,44,97,32,44,98,32,110,105,108,41,41,0
 _S121:
-        .byte   40,100,101,102,105,110,101,32,122,101,114,111,63,32,40,108,97,109,98,100,97,32,40,110,41,32,40,61,32,110,32,48,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,111,114,32,40,97,32,98,41,32,96,40,105,102,32,44,97,32,44,97,32,44,98,41,41,0
 _S122:
-        .byte   40,100,101,102,105,110,101,32,112,111,115,105,116,105,118,101,63,32,40,108,97,109,98,100,97,32,40,110,41,32,40,60,32,48,32,110,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,99,111,110,100,45,101,120,112,97,110,100,32,40,108,97,109,98,100,97,32,40,99,108,97,117,115,101,115,41,32,40,105,102,32,40,110,117,108,108,63,32,99,108,97,117,115,101,115,41,32,110,105,108,32,40,105,102,32,40,101,113,63,32,40,99,97,97,114,32,99,108,97,117,115,101,115,41,32,39,116,41,32,40,99,97,100,114,32,40,99,97,114,32,99,108,97,117,115,101,115,41,41,32,96,40,105,102,32,44,40,99,97,97,114,32,99,108,97,117,115,101,115,41,32,44,40,99,97,100,114,32,40,99,97,114,32,99,108,97,117,115,101,115,41,41,32,44,40,99,111,110,100,45,101,120,112,97,110,100,32,40,99,100,114,32,99,108,97,117,115,101,115,41,41,41,41,41,41,41,0
 _S123:
-        .byte   40,100,101,102,105,110,101,32,110,101,103,97,116,105,118,101,63,32,40,108,97,109,98,100,97,32,40,110,41,32,40,60,32,110,32,48,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,99,111,110,100,32,99,108,97,117,115,101,115,32,40,99,111,110,100,45,101,120,112,97,110,100,32,99,108,97,117,115,101,115,41,41,0
 _S124:
-        .byte   40,100,101,102,105,110,101,32,97,98,115,32,40,108,97,109,98,100,97,32,40,110,41,32,40,105,102,32,40,60,32,110,32,48,41,32,40,45,32,48,32,110,41,32,110,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,99,97,115,101,45,109,97,116,99,104,45,100,97,116,117,109,115,32,107,101,121,32,100,97,116,117,109,115,41,32,40,105,102,32,40,110,117,108,108,63,32,100,97,116,117,109,115,41,32,110,105,108,32,40,105,102,32,40,101,113,63,32,107,101,121,32,40,99,97,114,32,100,97,116,117,109,115,41,41,32,116,32,40,99,97,115,101,45,109,97,116,99,104,45,100,97,116,117,109,115,32,107,101,121,32,40,99,100,114,32,100,97,116,117,109,115,41,41,41,41,41,0
 _S125:
-        .byte   40,100,101,102,105,110,101,32,109,105,110,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,105,102,32,40,60,32,97,32,98,41,32,97,32,98,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,99,97,115,101,45,101,120,112,97,110,100,45,99,108,97,117,115,101,115,32,107,101,121,32,99,108,97,117,115,101,115,41,32,40,105,102,32,40,110,117,108,108,63,32,99,108,97,117,115,101,115,41,32,110,105,108,32,40,105,102,32,40,101,113,63,32,40,99,97,97,114,32,99,108,97,117,115,101,115,41,32,39,101,108,115,101,41,32,40,99,97,100,114,32,40,99,97,114,32,99,108,97,117,115,101,115,41,41,32,96,40,105,102,32,40,99,97,115,101,45,109,97,116,99,104,45,100,97,116,117,109,115,32,44,107,101,121,32,39,44,40,99,97,97,114,32,99,108,97,117,115,101,115,41,41,32,44,40,99,97,100,114,32,40,99,97,114,32,99,108,97,117,115,101,115,41,41,32,44,40,99,97,115,101,45,101,120,112,97,110,100,45,99,108,97,117,115,101,115,32,107,101,121,32,40,99,100,114,32,99,108,97,117,115,101,115,41,41,41,41,41,41,0
 _S126:
-        .byte   40,100,101,102,105,110,101,32,109,97,120,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,105,102,32,40,60,32,97,32,98,41,32,98,32,97,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,99,97,115,101,32,40,101,120,112,114,32,46,32,99,108,97,117,115,101,115,41,32,96,40,108,101,116,32,40,40,95,107,95,32,44,101,120,112,114,41,41,32,44,40,99,97,115,101,45,101,120,112,97,110,100,45,99,108,97,117,115,101,115,32,39,95,107,95,32,99,108,97,117,115,101,115,41,41,41,0
 _S127:
-        .byte   40,100,101,102,105,110,101,32,99,97,100,114,32,40,108,97,109,98,100,97,32,40,120,41,32,40,99,97,114,32,40,99,100,114,32,120,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,108,97,98,101,108,115,45,115,101,116,115,32,98,105,110,100,105,110,103,115,41,32,40,105,102,32,40,110,117,108,108,63,32,98,105,110,100,105,110,103,115,41,32,110,105,108,32,40,99,111,110,115,32,96,40,115,101,116,33,32,44,40,99,97,97,114,32,98,105,110,100,105,110,103,115,41,32,40,108,97,109,98,100,97,32,44,40,99,97,100,114,32,40,99,97,114,32,98,105,110,100,105,110,103,115,41,41,32,44,64,40,99,100,114,32,40,99,100,114,32,40,99,97,114,32,98,105,110,100,105,110,103,115,41,41,41,41,41,32,40,108,97,98,101,108,115,45,115,101,116,115,32,40,99,100,114,32,98,105,110,100,105,110,103,115,41,41,41,41,41,0
 _S128:
-        .byte   40,100,101,102,105,110,101,32,99,97,100,100,114,32,40,108,97,109,98,100,97,32,40,120,41,32,40,99,97,114,32,40,99,100,114,32,40,99,100,114,32,120,41,41,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,108,97,98,101,108,115,32,40,98,105,110,100,105,110,103,115,32,46,32,98,111,100,121,41,32,96,40,40,108,97,109,98,100,97,32,44,40,109,97,112,32,99,97,114,32,98,105,110,100,105,110,103,115,41,32,44,64,40,108,97,98,101,108,115,45,115,101,116,115,32,98,105,110,100,105,110,103,115,41,32,44,64,98,111,100,121,41,32,44,64,40,109,97,112,32,40,108,97,109,98,100,97,32,40,98,41,32,110,105,108,41,32,98,105,110,100,105,110,103,115,41,41,41,0
 _S129:
-        .byte   40,100,101,102,105,110,101,32,99,97,97,114,32,40,108,97,109,98,100,97,32,40,120,41,32,40,99,97,114,32,40,99,97,114,32,120,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,97,115,115,101,114,116,45,109,115,103,32,109,115,103,41,32,40,105,102,32,40,110,117,108,108,63,32,109,115,103,41,32,34,97,115,115,101,114,116,105,111,110,32,102,97,105,108,101,100,34,32,40,99,97,114,32,109,115,103,41,41,41,0
 _S130:
-        .byte   40,100,101,102,105,110,101,32,99,100,97,114,32,40,108,97,109,98,100,97,32,40,120,41,32,40,99,100,114,32,40,99,97,114,32,120,41,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,97,115,115,101,114,116,32,40,101,120,112,114,32,46,32,109,115,103,41,32,96,40,105,102,32,44,101,120,112,114,32,116,32,40,114,97,105,115,101,32,44,40,97,115,115,101,114,116,45,109,115,103,32,109,115,103,41,41,41,41,0
 _S131:
-        .byte   40,100,101,102,105,110,101,32,105,100,101,110,116,105,116,121,32,40,108,97,109,98,100,97,32,40,120,41,32,120,41,41,0
+        .byte   40,100,101,102,105,110,101,32,118,97,108,117,101,115,32,108,105,115,116,41,0
 _S132:
-        .byte   40,100,101,102,105,110,101,32,99,111,109,112,108,101,109,101,110,116,32,40,108,97,109,98,100,97,32,40,102,41,32,40,108,97,109,98,100,97,32,40,120,41,32,40,110,111,116,32,40,102,32,120,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,40,99,97,108,108,45,119,105,116,104,45,118,97,108,117,101,115,32,112,114,111,100,117,99,101,114,32,99,111,110,115,117,109,101,114,41,32,40,97,112,112,108,121,32,99,111,110,115,117,109,101,114,32,40,112,114,111,100,117,99,101,114,41,41,41,0
 _S133:
-        .byte   40,100,101,102,105,110,101,32,99,111,109,112,111,115,101,32,40,108,97,109,98,100,97,32,40,102,32,103,41,32,40,108,97,109,98,100,97,32,40,120,41,32,40,102,32,40,103,32,120,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,62,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,60,32,98,32,97,41,41,41,0
 _S134:
-        .byte   40,100,101,102,105,110,101,32,45,62,115,116,114,32,40,108,97,109,98,100,97,32,40,120,41,32,40,99,111,110,100,32,40,40,115,116,114,105,110,103,63,32,120,41,32,120,41,32,40,40,110,117,109,98,101,114,63,32,120,41,32,40,110,117,109,98,101,114,45,62,115,116,114,105,110,103,32,120,41,41,32,40,116,32,34,34,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,62,61,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,110,111,116,32,40,60,32,97,32,98,41,41,41,41,0
 _S135:
-        .byte   40,100,101,102,105,110,101,32,115,116,114,50,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,115,116,114,105,110,103,45,97,112,112,101,110,100,32,40,45,62,115,116,114,32,97,41,32,40,45,62,115,116,114,32,98,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,60,61,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,110,111,116,32,40,60,32,98,32,97,41,41,41,41,0
 _S136:
-        .byte   40,100,101,102,105,110,101,32,115,116,114,32,40,108,97,109,98,100,97,32,97,114,103,115,32,40,114,101,100,117,99,101,32,115,116,114,50,32,34,34,32,97,114,103,115,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,122,101,114,111,63,32,40,108,97,109,98,100,97,32,40,110,41,32,40,61,32,110,32,48,41,41,41,0
 _S137:
-        .byte   40,100,101,102,105,110,101,32,102,111,114,45,101,97,99,104,32,40,108,97,109,98,100,97,32,40,102,32,108,115,116,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,110,105,108,32,40,98,101,103,105,110,32,40,102,32,40,99,97,114,32,108,115,116,41,41,32,40,102,111,114,45,101,97,99,104,32,102,32,40,99,100,114,32,108,115,116,41,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,112,111,115,105,116,105,118,101,63,32,40,108,97,109,98,100,97,32,40,110,41,32,40,60,32,48,32,110,41,41,41,0
 _S138:
-        .byte   40,100,101,102,105,110,101,32,97,115,115,111,99,32,40,108,97,109,98,100,97,32,40,107,101,121,32,97,108,105,115,116,41,32,40,105,102,32,40,110,117,108,108,63,32,97,108,105,115,116,41,32,110,105,108,32,40,105,102,32,40,101,113,63,32,107,101,121,32,40,99,97,97,114,32,97,108,105,115,116,41,41,32,40,99,97,114,32,97,108,105,115,116,41,32,40,97,115,115,111,99,32,107,101,121,32,40,99,100,114,32,97,108,105,115,116,41,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,110,101,103,97,116,105,118,101,63,32,40,108,97,109,98,100,97,32,40,110,41,32,40,60,32,110,32,48,41,41,41,0
 _S139:
-        .byte   40,100,101,102,105,110,101,32,103,101,116,32,40,108,97,109,98,100,97,32,40,107,101,121,32,97,108,105,115,116,32,100,101,102,97,117,108,116,41,32,40,105,102,32,40,110,117,108,108,63,32,97,108,105,115,116,41,32,100,101,102,97,117,108,116,32,40,105,102,32,40,101,113,63,32,107,101,121,32,40,99,97,97,114,32,97,108,105,115,116,41,41,32,40,99,100,97,114,32,97,108,105,115,116,41,32,40,103,101,116,32,107,101,121,32,40,99,100,114,32,97,108,105,115,116,41,32,100,101,102,97,117,108,116,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,97,98,115,32,40,108,97,109,98,100,97,32,40,110,41,32,40,105,102,32,40,60,32,110,32,48,41,32,40,45,32,48,32,110,41,32,110,41,41,41,0
 _S140:
-        .byte   40,100,101,102,105,110,101,32,40,99,97,108,108,47,101,99,32,112,114,111,99,41,32,40,108,101,116,32,40,40,116,97,103,32,40,103,101,110,115,121,109,41,41,41,32,40,99,97,116,99,104,32,116,97,103,32,40,112,114,111,99,32,40,108,97,109,98,100,97,32,40,118,97,108,41,32,40,116,104,114,111,119,32,116,97,103,32,118,97,108,41,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,109,105,110,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,105,102,32,40,60,32,97,32,98,41,32,97,32,98,41,41,41,0
 _S141:
-        .byte   40,100,101,102,105,110,101,32,42,101,114,114,111,114,45,116,97,103,42,32,40,103,101,110,115,121,109,41,41,0
+        .byte   40,100,101,102,105,110,101,32,109,97,120,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,105,102,32,40,60,32,97,32,98,41,32,98,32,97,41,41,41,0
 _S142:
-        .byte   40,100,101,102,105,110,101,32,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,32,110,105,108,41,0
+        .byte   40,100,101,102,105,110,101,32,99,97,100,114,32,40,108,97,109,98,100,97,32,40,120,41,32,40,99,97,114,32,40,99,100,114,32,120,41,41,41,41,0
 _S143:
-        .byte   40,100,101,102,105,110,101,32,40,114,97,105,115,101,32,111,98,106,41,32,40,105,102,32,40,110,117,108,108,63,32,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,41,32,40,98,101,103,105,110,32,40,100,105,115,112,108,97,121,32,34,69,82,82,79,82,58,32,34,41,32,40,112,114,105,110,116,108,110,32,111,98,106,41,32,40,101,120,105,116,41,41,32,40,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,32,111,98,106,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,99,97,100,100,114,32,40,108,97,109,98,100,97,32,40,120,41,32,40,99,97,114,32,40,99,100,114,32,40,99,100,114,32,120,41,41,41,41,41,0
 _S144:
-        .byte   40,100,101,102,105,110,101,32,40,119,105,116,104,45,104,97,110,100,108,101,114,32,104,97,110,100,108,101,114,32,116,104,117,110,107,41,32,40,108,101,116,32,40,40,115,97,118,101,100,32,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,41,41,32,40,98,101,103,105,110,32,40,115,101,116,33,32,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,32,40,108,97,109,98,100,97,32,40,101,41,32,40,116,104,114,111,119,32,42,101,114,114,111,114,45,116,97,103,42,32,40,104,97,110,100,108,101,114,32,101,41,41,41,41,32,40,108,101,116,32,40,40,114,101,115,117,108,116,32,40,99,97,116,99,104,32,42,101,114,114,111,114,45,116,97,103,42,32,40,116,104,117,110,107,41,41,41,41,32,40,98,101,103,105,110,32,40,115,101,116,33,32,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,32,115,97,118,101,100,41,32,114,101,115,117,108,116,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,99,97,97,114,32,40,108,97,109,98,100,97,32,40,120,41,32,40,99,97,114,32,40,99,97,114,32,120,41,41,41,41,0
 _S145:
-        .byte   40,100,101,102,105,110,101,32,40,101,114,114,111,114,32,109,115,103,41,32,40,114,97,105,115,101,32,109,115,103,41,41,0
+        .byte   40,100,101,102,105,110,101,32,99,100,97,114,32,40,108,97,109,98,100,97,32,40,120,41,32,40,99,100,114,32,40,99,97,114,32,120,41,41,41,41,0
 _S146:
-        .byte   40,100,101,102,105,110,101,32,40,103,117,97,114,100,45,99,108,97,117,115,101,115,32,118,97,114,32,99,108,97,117,115,101,115,41,32,40,105,102,32,40,110,117,108,108,63,32,99,108,97,117,115,101,115,41,32,39,40,114,97,105,115,101,32,101,41,32,40,108,101,116,32,40,40,99,108,97,117,115,101,32,40,99,97,114,32,99,108,97,117,115,101,115,41,41,41,32,40,105,102,32,40,101,113,63,32,40,99,97,114,32,99,108,97,117,115,101,41,32,39,101,108,115,101,41,32,40,99,97,100,114,32,99,108,97,117,115,101,41,32,96,40,105,102,32,44,40,99,97,114,32,99,108,97,117,115,101,41,32,44,40,99,97,100,114,32,99,108,97,117,115,101,41,32,44,40,103,117,97,114,100,45,99,108,97,117,115,101,115,32,118,97,114,32,40,99,100,114,32,99,108,97,117,115,101,115,41,41,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,105,100,101,110,116,105,116,121,32,40,108,97,109,98,100,97,32,40,120,41,32,120,41,41,0
 _S147:
-        .byte   40,100,101,102,109,97,99,114,111,32,103,117,97,114,100,32,40,98,105,110,100,105,110,103,32,46,32,98,111,100,121,41,32,96,40,119,105,116,104,45,104,97,110,100,108,101,114,32,40,108,97,109,98,100,97,32,40,44,40,99,97,114,32,98,105,110,100,105,110,103,41,41,32,44,40,103,117,97,114,100,45,99,108,97,117,115,101,115,32,40,99,97,114,32,98,105,110,100,105,110,103,41,32,40,99,100,114,32,98,105,110,100,105,110,103,41,41,41,32,40,108,97,109,98,100,97,32,40,41,32,44,64,98,111,100,121,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,99,111,109,112,108,101,109,101,110,116,32,40,108,97,109,98,100,97,32,40,102,41,32,40,108,97,109,98,100,97,32,40,120,41,32,40,110,111,116,32,40,102,32,120,41,41,41,41,41,0
 _S148:
-        .byte   40,100,101,102,109,97,99,114,111,32,117,110,119,105,110,100,45,112,114,111,116,101,99,116,32,40,98,111,100,121,32,99,108,101,97,110,117,112,41,32,96,40,100,121,110,97,109,105,99,45,119,105,110,100,32,40,108,97,109,98,100,97,32,40,41,32,110,105,108,41,32,40,108,97,109,98,100,97,32,40,41,32,44,98,111,100,121,41,32,40,108,97,109,98,100,97,32,40,41,32,44,99,108,101,97,110,117,112,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,99,111,109,112,111,115,101,32,40,108,97,109,98,100,97,32,40,102,32,103,41,32,40,108,97,109,98,100,97,32,40,120,41,32,40,102,32,40,103,32,120,41,41,41,41,41,0
 _S149:
-        .byte   40,100,101,102,105,110,101,32,42,114,101,115,116,97,114,116,115,42,32,110,105,108,41,0
+        .byte   40,100,101,102,105,110,101,32,45,62,115,116,114,32,40,108,97,109,98,100,97,32,40,120,41,32,40,99,111,110,100,32,40,40,115,116,114,105,110,103,63,32,120,41,32,120,41,32,40,40,110,117,109,98,101,114,63,32,120,41,32,40,110,117,109,98,101,114,45,62,115,116,114,105,110,103,32,120,41,41,32,40,116,32,34,34,41,41,41,41,0
 _S150:
-        .byte   40,100,101,102,105,110,101,32,40,119,105,116,104,45,114,101,115,116,97,114,116,32,110,97,109,101,32,104,97,110,100,108,101,114,32,116,104,117,110,107,41,32,40,108,101,116,32,40,40,116,97,103,32,40,103,101,110,115,121,109,41,41,41,32,40,108,101,116,32,40,40,115,97,118,101,100,32,42,114,101,115,116,97,114,116,115,42,41,41,32,40,98,101,103,105,110,32,40,115,101,116,33,32,42,114,101,115,116,97,114,116,115,42,32,40,99,111,110,115,32,40,108,105,115,116,32,110,97,109,101,32,116,97,103,32,104,97,110,100,108,101,114,41,32,42,114,101,115,116,97,114,116,115,42,41,41,32,40,108,101,116,32,40,40,114,101,115,117,108,116,32,40,99,97,116,99,104,32,116,97,103,32,40,108,101,116,32,40,40,118,32,40,116,104,117,110,107,41,41,41,32,40,98,101,103,105,110,32,40,115,101,116,33,32,42,114,101,115,116,97,114,116,115,42,32,115,97,118,101,100,41,32,118,41,41,41,41,41,32,40,98,101,103,105,110,32,40,115,101,116,33,32,42,114,101,115,116,97,114,116,115,42,32,115,97,118,101,100,41,32,114,101,115,117,108,116,41,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,115,116,114,50,32,40,108,97,109,98,100,97,32,40,97,32,98,41,32,40,115,116,114,105,110,103,45,97,112,112,101,110,100,32,40,45,62,115,116,114,32,97,41,32,40,45,62,115,116,114,32,98,41,41,41,41,0
 _S151:
-        .byte   40,100,101,102,105,110,101,32,40,105,110,118,111,107,101,45,114,101,115,116,97,114,116,32,110,97,109,101,32,118,97,108,41,32,40,108,101,116,32,40,40,114,32,40,97,115,115,111,99,32,110,97,109,101,32,42,114,101,115,116,97,114,116,115,42,41,41,41,32,40,105,102,32,40,110,117,108,108,63,32,114,41,32,40,98,101,103,105,110,32,40,100,105,115,112,108,97,121,32,34,69,82,82,58,110,111,45,114,101,115,116,97,114,116,32,34,41,32,40,112,114,105,110,116,108,110,32,110,97,109,101,41,41,32,40,108,101,116,32,40,40,116,97,103,32,40,99,97,100,114,32,114,41,41,41,32,40,108,101,116,32,40,40,104,97,110,100,108,101,114,32,40,99,97,100,100,114,32,114,41,41,41,32,40,116,104,114,111,119,32,116,97,103,32,40,104,97,110,100,108,101,114,32,118,97,108,41,41,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,115,116,114,32,40,108,97,109,98,100,97,32,97,114,103,115,32,40,114,101,100,117,99,101,32,115,116,114,50,32,34,34,32,97,114,103,115,41,41,41,0
 _S152:
-        .byte   40,100,101,102,105,110,101,32,40,109,97,107,101,45,112,97,114,97,109,101,116,101,114,32,105,110,105,116,41,32,40,108,101,116,32,40,40,118,97,108,32,105,110,105,116,41,41,32,40,108,97,109,98,100,97,32,97,114,103,115,32,40,105,102,32,40,110,117,108,108,63,32,97,114,103,115,41,32,118,97,108,32,40,115,101,116,33,32,118,97,108,32,40,99,97,114,32,97,114,103,115,41,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,102,111,114,45,101,97,99,104,32,40,108,97,109,98,100,97,32,40,102,32,108,115,116,41,32,40,105,102,32,40,110,117,108,108,63,32,108,115,116,41,32,110,105,108,32,40,98,101,103,105,110,32,40,102,32,40,99,97,114,32,108,115,116,41,41,32,40,102,111,114,45,101,97,99,104,32,102,32,40,99,100,114,32,108,115,116,41,41,41,41,41,41,0
 _S153:
-        .byte   40,100,101,102,105,110,101,32,40,99,97,108,108,45,119,105,116,104,45,112,97,114,97,109,101,116,101,114,105,122,101,32,112,97,114,97,109,32,110,101,119,45,118,97,108,32,116,104,117,110,107,41,32,40,108,101,116,32,40,40,115,97,118,101,100,32,40,112,97,114,97,109,41,41,41,32,40,100,121,110,97,109,105,99,45,119,105,110,100,32,40,108,97,109,98,100,97,32,40,41,32,40,112,97,114,97,109,32,110,101,119,45,118,97,108,41,41,32,116,104,117,110,107,32,40,108,97,109,98,100,97,32,40,41,32,40,112,97,114,97,109,32,115,97,118,101,100,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,97,115,115,111,99,32,40,108,97,109,98,100,97,32,40,107,101,121,32,97,108,105,115,116,41,32,40,105,102,32,40,110,117,108,108,63,32,97,108,105,115,116,41,32,110,105,108,32,40,105,102,32,40,101,113,63,32,107,101,121,32,40,99,97,97,114,32,97,108,105,115,116,41,41,32,40,99,97,114,32,97,108,105,115,116,41,32,40,97,115,115,111,99,32,107,101,121,32,40,99,100,114,32,97,108,105,115,116,41,41,41,41,41,41,0
 _S154:
-        .byte   40,100,101,102,109,97,99,114,111,32,112,97,114,97,109,101,116,101,114,105,122,101,32,40,98,105,110,100,105,110,103,115,32,98,111,100,121,41,32,96,40,99,97,108,108,45,119,105,116,104,45,112,97,114,97,109,101,116,101,114,105,122,101,32,44,40,99,97,97,114,32,98,105,110,100,105,110,103,115,41,32,44,40,99,97,100,114,32,40,99,97,114,32,98,105,110,100,105,110,103,115,41,41,32,40,108,97,109,98,100,97,32,40,41,32,44,98,111,100,121,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,103,101,116,32,40,108,97,109,98,100,97,32,40,107,101,121,32,97,108,105,115,116,32,100,101,102,97,117,108,116,41,32,40,105,102,32,40,110,117,108,108,63,32,97,108,105,115,116,41,32,100,101,102,97,117,108,116,32,40,105,102,32,40,101,113,63,32,107,101,121,32,40,99,97,97,114,32,97,108,105,115,116,41,41,32,40,99,100,97,114,32,97,108,105,115,116,41,32,40,103,101,116,32,107,101,121,32,40,99,100,114,32,97,108,105,115,116,41,32,100,101,102,97,117,108,116,41,41,41,41,41,0
 _S155:
-        .byte   40,100,101,102,109,97,99,114,111,32,99,111,109,109,101,110,116,32,114,101,115,116,32,110,105,108,41,0
+        .byte   40,100,101,102,105,110,101,32,40,99,97,108,108,47,101,99,32,112,114,111,99,41,32,40,108,101,116,32,40,40,116,97,103,32,40,103,101,110,115,121,109,41,41,41,32,40,99,97,116,99,104,32,116,97,103,32,40,112,114,111,99,32,40,108,97,109,98,100,97,32,40,118,97,108,41,32,40,116,104,114,111,119,32,116,97,103,32,118,97,108,41,41,41,41,41,41,0
 _S156:
-        .byte   40,100,101,102,105,110,101,32,109,97,99,114,111,101,120,112,97,110,100,32,40,108,97,109,98,100,97,32,40,102,111,114,109,41,32,40,108,101,116,32,40,40,101,120,112,97,110,100,101,100,32,40,109,97,99,114,111,101,120,112,97,110,100,45,49,32,102,111,114,109,41,41,41,32,40,105,102,32,40,101,113,63,32,101,120,112,97,110,100,101,100,32,102,111,114,109,41,32,102,111,114,109,32,40,109,97,99,114,111,101,120,112,97,110,100,32,101,120,112,97,110,100,101,100,41,41,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,42,101,114,114,111,114,45,116,97,103,42,32,40,103,101,110,115,121,109,41,41,0
 _S157:
-        .byte   40,100,101,102,105,110,101,32,73,79,45,76,69,68,32,35,120,70,70,48,48,48,48,41,0
+        .byte   40,100,101,102,105,110,101,32,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,32,110,105,108,41,0
 _S158:
-        .byte   40,100,101,102,105,110,101,32,73,79,45,83,87,73,84,67,72,32,35,120,70,70,48,48,48,48,41,0
+        .byte   40,100,101,102,105,110,101,32,40,114,97,105,115,101,32,111,98,106,41,32,40,105,102,32,40,110,117,108,108,63,32,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,41,32,40,98,101,103,105,110,32,40,100,105,115,112,108,97,121,32,34,69,82,82,79,82,58,32,34,41,32,40,112,114,105,110,116,108,110,32,111,98,106,41,32,40,101,120,105,116,41,41,32,40,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,32,111,98,106,41,41,41,0
 _S159:
-        .byte   40,100,101,102,105,110,101,32,73,79,45,85,65,82,84,45,68,65,84,65,32,35,120,70,70,48,49,48,48,41,0
+        .byte   40,100,101,102,105,110,101,32,40,119,105,116,104,45,104,97,110,100,108,101,114,32,104,97,110,100,108,101,114,32,116,104,117,110,107,41,32,40,108,101,116,32,40,40,115,97,118,101,100,32,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,41,41,32,40,98,101,103,105,110,32,40,115,101,116,33,32,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,32,40,108,97,109,98,100,97,32,40,101,41,32,40,116,104,114,111,119,32,42,101,114,114,111,114,45,116,97,103,42,32,40,104,97,110,100,108,101,114,32,101,41,41,41,41,32,40,108,101,116,32,40,40,114,101,115,117,108,116,32,40,99,97,116,99,104,32,42,101,114,114,111,114,45,116,97,103,42,32,40,116,104,117,110,107,41,41,41,41,32,40,98,101,103,105,110,32,40,115,101,116,33,32,42,101,114,114,111,114,45,104,97,110,100,108,101,114,42,32,115,97,118,101,100,41,32,114,101,115,117,108,116,41,41,41,41,41,0
 _S160:
-        .byte   40,100,101,102,105,110,101,32,73,79,45,85,65,82,84,45,83,84,65,84,85,83,32,35,120,70,70,48,49,48,49,41,0
+        .byte   40,100,101,102,105,110,101,32,40,101,114,114,111,114,32,109,115,103,41,32,40,114,97,105,115,101,32,109,115,103,41,41,0
 _S161:
-        .byte   40,100,101,102,105,110,101,32,73,79,45,73,78,84,45,69,78,65,66,76,69,32,35,120,70,70,48,48,49,48,41,0
+        .byte   40,100,101,102,105,110,101,32,40,103,117,97,114,100,45,99,108,97,117,115,101,115,32,118,97,114,32,99,108,97,117,115,101,115,41,32,40,105,102,32,40,110,117,108,108,63,32,99,108,97,117,115,101,115,41,32,39,40,114,97,105,115,101,32,101,41,32,40,108,101,116,32,40,40,99,108,97,117,115,101,32,40,99,97,114,32,99,108,97,117,115,101,115,41,41,41,32,40,105,102,32,40,101,113,63,32,40,99,97,114,32,99,108,97,117,115,101,41,32,39,101,108,115,101,41,32,40,99,97,100,114,32,99,108,97,117,115,101,41,32,96,40,105,102,32,44,40,99,97,114,32,99,108,97,117,115,101,41,32,44,40,99,97,100,114,32,99,108,97,117,115,101,41,32,44,40,103,117,97,114,100,45,99,108,97,117,115,101,115,32,118,97,114,32,40,99,100,114,32,99,108,97,117,115,101,115,41,41,41,41,41,41,41,0
 _S162:
-        .byte   40,100,101,102,105,110,101,32,115,101,116,45,108,101,100,115,32,40,108,97,109,98,100,97,32,40,110,41,32,40,112,111,107,101,32,73,79,45,76,69,68,32,110,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,103,117,97,114,100,32,40,98,105,110,100,105,110,103,32,46,32,98,111,100,121,41,32,96,40,119,105,116,104,45,104,97,110,100,108,101,114,32,40,108,97,109,98,100,97,32,40,44,40,99,97,114,32,98,105,110,100,105,110,103,41,41,32,44,40,103,117,97,114,100,45,99,108,97,117,115,101,115,32,40,99,97,114,32,98,105,110,100,105,110,103,41,32,40,99,100,114,32,98,105,110,100,105,110,103,41,41,41,32,40,108,97,109,98,100,97,32,40,41,32,44,64,98,111,100,121,41,41,41,0
 _S163:
-        .byte   40,100,101,102,105,110,101,32,103,101,116,45,108,101,100,115,32,40,108,97,109,98,100,97,32,40,41,32,40,112,101,101,107,32,73,79,45,76,69,68,41,41,41,0
+        .byte   40,100,101,102,109,97,99,114,111,32,117,110,119,105,110,100,45,112,114,111,116,101,99,116,32,40,98,111,100,121,32,99,108,101,97,110,117,112,41,32,96,40,100,121,110,97,109,105,99,45,119,105,110,100,32,40,108,97,109,98,100,97,32,40,41,32,110,105,108,41,32,40,108,97,109,98,100,97,32,40,41,32,44,98,111,100,121,41,32,40,108,97,109,98,100,97,32,40,41,32,44,99,108,101,97,110,117,112,41,41,41,0
 _S164:
-        .byte   40,100,101,102,105,110,101,32,115,50,45,112,114,101,115,115,101,100,63,32,40,108,97,109,98,100,97,32,40,41,32,40,61,32,40,37,32,40,112,101,101,107,32,73,79,45,83,87,73,84,67,72,41,32,50,41,32,48,41,41,41,0
+        .byte   40,100,101,102,105,110,101,32,42,114,101,115,116,97,114,116,115,42,32,110,105,108,41,0
 _S165:
-        .byte   62,32,0
+        .byte   40,100,101,102,105,110,101,32,40,119,105,116,104,45,114,101,115,116,97,114,116,32,110,97,109,101,32,104,97,110,100,108,101,114,32,116,104,117,110,107,41,32,40,108,101,116,32,40,40,116,97,103,32,40,103,101,110,115,121,109,41,41,41,32,40,108,101,116,32,40,40,115,97,118,101,100,32,42,114,101,115,116,97,114,116,115,42,41,41,32,40,98,101,103,105,110,32,40,115,101,116,33,32,42,114,101,115,116,97,114,116,115,42,32,40,99,111,110,115,32,40,108,105,115,116,32,110,97,109,101,32,116,97,103,32,104,97,110,100,108,101,114,41,32,42,114,101,115,116,97,114,116,115,42,41,41,32,40,108,101,116,32,40,40,114,101,115,117,108,116,32,40,99,97,116,99,104,32,116,97,103,32,40,108,101,116,32,40,40,118,32,40,116,104,117,110,107,41,41,41,32,40,98,101,103,105,110,32,40,115,101,116,33,32,42,114,101,115,116,97,114,116,115,42,32,115,97,118,101,100,41,32,118,41,41,41,41,41,32,40,98,101,103,105,110,32,40,115,101,116,33,32,42,114,101,115,116,97,114,116,115,42,32,115,97,118,101,100,41,32,114,101,115,117,108,116,41,41,41,41,41,41,0
 _S166:
-        .byte   66,121,101,46,10,0
+        .byte   40,100,101,102,105,110,101,32,40,105,110,118,111,107,101,45,114,101,115,116,97,114,116,32,110,97,109,101,32,118,97,108,41,32,40,108,101,116,32,40,40,114,32,40,97,115,115,111,99,32,110,97,109,101,32,42,114,101,115,116,97,114,116,115,42,41,41,41,32,40,105,102,32,40,110,117,108,108,63,32,114,41,32,40,98,101,103,105,110,32,40,100,105,115,112,108,97,121,32,34,69,82,82,58,110,111,45,114,101,115,116,97,114,116,32,34,41,32,40,112,114,105,110,116,108,110,32,110,97,109,101,41,41,32,40,108,101,116,32,40,40,116,97,103,32,40,99,97,100,114,32,114,41,41,41,32,40,108,101,116,32,40,40,104,97,110,100,108,101,114,32,40,99,97,100,100,114,32,114,41,41,41,32,40,116,104,114,111,119,32,116,97,103,32,40,104,97,110,100,108,101,114,32,118,97,108,41,41,41,41,41,41,41,0
 _S167:
-        .byte   62,32,0
+        .byte   40,100,101,102,105,110,101,32,40,109,97,107,101,45,112,97,114,97,109,101,116,101,114,32,105,110,105,116,41,32,40,108,101,116,32,40,40,118,97,108,32,105,110,105,116,41,41,32,40,108,97,109,98,100,97,32,97,114,103,115,32,40,105,102,32,40,110,117,108,108,63,32,97,114,103,115,41,32,118,97,108,32,40,115,101,116,33,32,118,97,108,32,40,99,97,114,32,97,114,103,115,41,41,41,41,41,41,0
 _S168:
+        .byte   40,100,101,102,105,110,101,32,40,99,97,108,108,45,119,105,116,104,45,112,97,114,97,109,101,116,101,114,105,122,101,32,112,97,114,97,109,32,110,101,119,45,118,97,108,32,116,104,117,110,107,41,32,40,108,101,116,32,40,40,115,97,118,101,100,32,40,112,97,114,97,109,41,41,41,32,40,100,121,110,97,109,105,99,45,119,105,110,100,32,40,108,97,109,98,100,97,32,40,41,32,40,112,97,114,97,109,32,110,101,119,45,118,97,108,41,41,32,116,104,117,110,107,32,40,108,97,109,98,100,97,32,40,41,32,40,112,97,114,97,109,32,115,97,118,101,100,41,41,41,41,41,0
+_S169:
+        .byte   40,100,101,102,109,97,99,114,111,32,112,97,114,97,109,101,116,101,114,105,122,101,32,40,98,105,110,100,105,110,103,115,32,98,111,100,121,41,32,96,40,99,97,108,108,45,119,105,116,104,45,112,97,114,97,109,101,116,101,114,105,122,101,32,44,40,99,97,97,114,32,98,105,110,100,105,110,103,115,41,32,44,40,99,97,100,114,32,40,99,97,114,32,98,105,110,100,105,110,103,115,41,41,32,40,108,97,109,98,100,97,32,40,41,32,44,98,111,100,121,41,41,41,0
+_S170:
+        .byte   40,100,101,102,105,110,101,32,40,109,101,115,115,97,103,101,32,102,109,116,32,46,32,97,114,103,115,41,32,40,100,105,115,112,108,97,121,32,40,97,112,112,108,121,32,102,111,114,109,97,116,32,40,99,111,110,115,32,102,109,116,32,97,114,103,115,41,41,41,32,40,110,101,119,108,105,110,101,41,41,0
+_S171:
+        .byte   40,100,101,102,105,110,101,32,95,102,111,114,109,97,116,32,102,111,114,109,97,116,41,0
+_S172:
+        .byte   40,100,101,102,105,110,101,32,40,102,111,114,109,97,116,32,100,101,115,116,32,46,32,97,114,103,115,41,32,40,105,102,32,40,101,113,63,32,100,101,115,116,32,116,41,32,40,98,101,103,105,110,32,40,100,105,115,112,108,97,121,32,40,97,112,112,108,121,32,95,102,111,114,109,97,116,32,97,114,103,115,41,41,32,40,110,101,119,108,105,110,101,41,41,32,40,97,112,112,108,121,32,95,102,111,114,109,97,116,32,40,99,111,110,115,32,100,101,115,116,32,97,114,103,115,41,41,41,41,0
+_S173:
+        .byte   40,100,101,102,109,97,99,114,111,32,99,111,109,109,101,110,116,32,114,101,115,116,32,110,105,108,41,0
+_S174:
+        .byte   40,100,101,102,105,110,101,32,109,97,99,114,111,101,120,112,97,110,100,32,40,108,97,109,98,100,97,32,40,102,111,114,109,41,32,40,108,101,116,32,40,40,101,120,112,97,110,100,101,100,32,40,109,97,99,114,111,101,120,112,97,110,100,45,49,32,102,111,114,109,41,41,41,32,40,105,102,32,40,101,113,63,32,101,120,112,97,110,100,101,100,32,102,111,114,109,41,32,102,111,114,109,32,40,109,97,99,114,111,101,120,112,97,110,100,32,101,120,112,97,110,100,101,100,41,41,41,41,41,0
+_S175:
+        .byte   40,100,101,102,105,110,101,32,73,79,45,76,69,68,32,35,120,70,70,48,48,48,48,41,0
+_S176:
+        .byte   40,100,101,102,105,110,101,32,73,79,45,83,87,73,84,67,72,32,35,120,70,70,48,48,48,48,41,0
+_S177:
+        .byte   40,100,101,102,105,110,101,32,73,79,45,85,65,82,84,45,68,65,84,65,32,35,120,70,70,48,49,48,48,41,0
+_S178:
+        .byte   40,100,101,102,105,110,101,32,73,79,45,85,65,82,84,45,83,84,65,84,85,83,32,35,120,70,70,48,49,48,49,41,0
+_S179:
+        .byte   40,100,101,102,105,110,101,32,73,79,45,73,78,84,45,69,78,65,66,76,69,32,35,120,70,70,48,48,49,48,41,0
+_S180:
+        .byte   40,100,101,102,105,110,101,32,115,101,116,45,108,101,100,115,32,40,108,97,109,98,100,97,32,40,110,41,32,40,112,111,107,101,32,73,79,45,76,69,68,32,110,41,41,41,0
+_S181:
+        .byte   40,100,101,102,105,110,101,32,103,101,116,45,108,101,100,115,32,40,108,97,109,98,100,97,32,40,41,32,40,112,101,101,107,32,73,79,45,76,69,68,41,41,41,0
+_S182:
+        .byte   40,100,101,102,105,110,101,32,115,50,45,112,114,101,115,115,101,100,63,32,40,108,97,109,98,100,97,32,40,41,32,40,61,32,40,37,32,40,112,101,101,107,32,73,79,45,83,87,73,84,67,72,41,32,50,41,32,48,41,41,41,0
+_S183:
+        .byte   62,32,0
+_S184:
+        .byte   66,121,101,46,10,0
+_S185:
+        .byte   62,32,0
+_S186:
         .byte   62,32,0
