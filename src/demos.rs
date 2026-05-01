@@ -16,7 +16,7 @@ pub const DEMOS: &[Demo] = &[
         description: "Constant-stack recursion: countdown, sum, fibonacci",
         source: include_str!("../../sw-cor24-macrolisp/demos/tco.l24"),
         prelude: PreludeTier::Minimal,
-        stack: StackSize::EightKb,
+        stack: StackSize::ThreeKb,
     },
     // ── Standard prelude ─────────────────────────────────────
     Demo {

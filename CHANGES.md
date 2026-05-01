@@ -9,6 +9,9 @@
 ### Build
 - `rustfmt` cleanup in `src/repl.rs` (one wrapped method call); rebuild `pages/`. Closes #1 (Functional Toolkit stack overflow on web).
 
+### Demos
+- Tail-Call Optimization demo: drop redundant 8 KB stack override → default 3 KB. Demo source has always documented "Stack: 3 KB (default)"; the larger setting was historical caution. Dropdown loses its `[8K]` suffix as a side-effect.
+
 ## 2026-04-30
 
 ### UI
