@@ -143,7 +143,8 @@ impl Repl {
         // Pair the configured SP with matching bounds. EmulatorCore::new()
         // defaults stack_top to INITIAL_SP (0xFEEC00, the 3KB figure), so an
         // 8KB SP of 0xFF0000 would underflow on the first cycle without this.
-        self.emulator.set_stack_bounds(self.stack_size.lower_bound(), sp);
+        self.emulator
+            .set_stack_bounds(self.stack_size.lower_bound(), sp);
 
         // Load pre-compiled heap snapshot if available (10x faster startup)
         if let Some(snap) = self.prelude.snapshot() {

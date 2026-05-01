@@ -6,6 +6,9 @@
 - Regenerate `asm/repl-full.s` from sw-cor24-macrolisp@f6459e4 — picks up tail-recursive `range`, `repeat`, `take`, `zip`, `flatten`. Functional Toolkit peak C-stack drops from ~3.26 KB to ~2.24 KB (~31%) and now fits in the 3 KB EBR default. Functional Toolkit demo's default stack reverted to `ThreeKb`.
 - Rebuild `pages/` bundle.
 
+### Build
+- `rustfmt` cleanup in `src/repl.rs` (one wrapped method call); rebuild `pages/`. Closes #1 (Functional Toolkit stack overflow on web).
+
 ## 2026-04-30
 
 ### UI
