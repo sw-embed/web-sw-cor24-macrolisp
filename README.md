@@ -17,7 +17,7 @@ Part of the [Software Wrighter COR24 Tools Project](https://sw-embed.github.io/w
 - **Dual view modes**: CLI (Enter to eval, interleaved output) and Split (semi-transparent overlay for multi-line code)
 - **Configurable stack**: 3 KB (hardware default) or 8 KB (full EBR)
 - **Floating hardware panel**: LED D2, Switch S2 (clickable), with live memory gauges for heap, symbols, string pool, and stack (green/yellow/red)
-- **Pause/Resume/Reset/Clear** controls
+- **Pause/Resume/Reset/Clear** controls, plus **Load File / Save / Copy** for moving editor contents to and from `.l24` files and the clipboard
 - **COR24 emulator**: Full 24-bit RISC CPU running in WebAssembly with instant UART TX
 
 ## Provenance

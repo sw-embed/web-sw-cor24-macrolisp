@@ -1,8 +1,14 @@
 use std::collections::VecDeque;
 
-use cor24_emulator::{Assembler, EmulatorCore, StopReason};
+use cor24_assembler::Assembler;
+use cor24_emulator::{EmulatorCore, StopReason};
 use gloo::timers::callback::Timeout;
-use web_sys::{Element, HtmlInputElement, HtmlTextAreaElement, KeyboardEvent, PointerEvent};
+use wasm_bindgen::closure::Closure;
+use wasm_bindgen::{JsCast, JsValue};
+use web_sys::{
+    Element, FileList, HtmlAnchorElement, HtmlInputElement, HtmlTextAreaElement, KeyboardEvent,
+    PointerEvent,
+};
 use yew::prelude::*;
 
 use crate::config::{PreludeTier, StackSize};
@@ -46,6 +52,12 @@ pub enum Msg {
     ClearAll,
     PauseResume,
     ToggleTrace,
+    /// Copy the current editor contents to the clipboard
+    CopyInput,
+    /// Save the current editor contents to a downloaded file
+    SaveInput,
+    /// A file was chosen via the Load File picker; read it into the editor
+    FileSelected(Option<FileList>),
     /// Keydown in CLI input (Enter to eval)
     CliKeyDown(KeyboardEvent),
     /// Keydown in Split textarea (Shift-Enter to eval)
@@ -201,7 +213,7 @@ impl Repl {
                 <span class="gauge-label">{ label }</span>
                 <div class="gauge-track">
                     <div class={classes!("gauge-fill", color_class)}
-                         style={format!("width:{}%", pct)} />
+                         style={format!("width:{pct}%")} />
                 </div>
                 <span class="gauge-text">{ format!("{}/{}", used, total) }</span>
             </div>
@@ -229,7 +241,7 @@ impl Repl {
                 <span class="gauge-label">{ "CPU" }</span>
                 <div class="gauge-track">
                     <div class={classes!("gauge-fill", color_class)}
-                         style={format!("width:{}%", pct)} />
+                         style={format!("width:{pct}%")} />
                 </div>
                 <span class="gauge-text">{ label }</span>
             </div>
@@ -247,6 +259,27 @@ impl Repl {
             }
             self.uart_tx_queue.push_back(b'\n');
         }
+    }
+
+    /// Trigger a browser download of the current editor contents as `program.l24`.
+    fn save_input_to_file(&self) -> Result<(), JsValue> {
+        let window = web_sys::window().ok_or_else(|| JsValue::from_str("no window"))?;
+        let document = window
+            .document()
+            .ok_or_else(|| JsValue::from_str("no document"))?;
+
+        let parts = js_sys::Array::new();
+        parts.push(&JsValue::from_str(&self.input));
+        let blob = web_sys::Blob::new_with_str_sequence(&parts)?;
+        let url = web_sys::Url::create_object_url_with_blob(&blob)?;
+
+        let anchor: HtmlAnchorElement = document.create_element("a")?.dyn_into()?;
+        anchor.set_href(&url);
+        anchor.set_download("program.l24");
+        anchor.click();
+
+        web_sys::Url::revoke_object_url(&url)?;
+        Ok(())
     }
 }
 
@@ -422,7 +455,7 @@ impl Component for Repl {
                     }
                     StopReason::Breakpoint(addr) => {
                         self.running = false;
-                        self.status = format!("Breakpoint at 0x{:06X}", addr);
+                        self.status = format!("Breakpoint at 0x{addr:06X}");
                     }
                     StopReason::Paused => {
                         self.running = false;
@@ -430,11 +463,11 @@ impl Component for Repl {
                     }
                     StopReason::StackOverflow(addr) => {
                         self.running = false;
-                        self.status = format!("Stack overflow at 0x{:06X}", addr);
+                        self.status = format!("Stack overflow at 0x{addr:06X}");
                     }
                     StopReason::StackUnderflow(addr) => {
                         self.running = false;
-                        self.status = format!("Stack underflow at 0x{:06X}", addr);
+                        self.status = format!("Stack underflow at 0x{addr:06X}");
                     }
                 }
                 true
@@ -570,6 +603,48 @@ impl Component for Repl {
                 true
             }
 
+            Msg::CopyInput => {
+                if let Some(win) = web_sys::window() {
+                    // write_text returns a Promise we intentionally don't await;
+                    // this is a best-effort copy in a dev tool.
+                    let _ = win.navigator().clipboard().write_text(&self.input);
+                    self.status = "Copied to clipboard.".into();
+                }
+                true
+            }
+
+            Msg::SaveInput => {
+                if let Err(e) = self.save_input_to_file() {
+                    web_sys::console::error_1(&e);
+                    self.status = "Save failed (see console).".into();
+                } else {
+                    self.status = "Saved program.l24.".into();
+                }
+                true
+            }
+
+            Msg::FileSelected(files) => {
+                let Some(file) = files.and_then(|f| f.get(0)) else {
+                    return false;
+                };
+                let Ok(reader) = web_sys::FileReader::new() else {
+                    return false;
+                };
+                let link = ctx.link().clone();
+                let reader_clone = reader.clone();
+                let onload = Closure::<dyn FnMut()>::new(move || {
+                    if let Some(text) = reader_clone.result().ok().and_then(|v| v.as_string()) {
+                        link.send_message(Msg::InputChanged(text));
+                    }
+                });
+                reader.set_onload(Some(onload.as_ref().unchecked_ref()));
+                // Closure must outlive the async read; leak it (one per load).
+                onload.forget();
+                let _ = reader.read_as_text(&file);
+                self.selected_demo = None;
+                false
+            }
+
             Msg::PauseResume => {
                 if self.running {
                     // Pause
@@ -655,6 +730,15 @@ impl Component for Repl {
         let on_clear = ctx.link().callback(|_| Msg::ClearAll);
         let on_pause = ctx.link().callback(|_| Msg::PauseResume);
         let on_trace = ctx.link().callback(|_| Msg::ToggleTrace);
+        let on_copy = ctx.link().callback(|_| Msg::CopyInput);
+        let on_save = ctx.link().callback(|_| Msg::SaveInput);
+        let on_load_file = ctx.link().callback(|e: Event| {
+            let input: HtmlInputElement = e.target_unchecked_into();
+            let files = input.files();
+            // Reset the value so re-selecting the same file fires `change` again.
+            input.set_value("");
+            Msg::FileSelected(files)
+        });
 
         let on_prelude = ctx.link().callback(|e: Event| {
             let target: web_sys::HtmlSelectElement = e.target_unchecked_into();
@@ -768,6 +852,15 @@ impl Component for Repl {
                     </button>
                     <button class="toolbar-btn" onclick={on_reset}>{"Reset"}</button>
                     <button class="toolbar-btn" onclick={on_clear}>{"Clear"}</button>
+                    <label class="toolbar-btn" title="Load a .l24/.lisp file into the editor (does not run it)">
+                        {"Load File"}
+                        <input type="file" accept=".l24,.lisp,.lsp,.scm,.txt"
+                               class="file-input-hidden" onchange={on_load_file} />
+                    </label>
+                    <button class="toolbar-btn" onclick={on_save}
+                            title="Download the editor contents as program.l24">{"Save"}</button>
+                    <button class="toolbar-btn" onclick={on_copy}
+                            title="Copy the editor contents to the clipboard">{"Copy"}</button>
                     <button class={classes!("toolbar-btn", self.show_trace.then_some("toolbar-btn-active"))}
                             onclick={on_trace}>{"Trace"}</button>
                     <span class="toolbar-desc">{ self.prelude.description() }</span>
