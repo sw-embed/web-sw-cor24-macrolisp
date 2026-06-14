@@ -51,6 +51,15 @@
 .toolbar-btn:hover {
     border-color: var(--accent);
 }
+/* Native file input lives inside a <label class="toolbar-btn">; hide the
+   control itself and let the label act as the clickable button. */
+label.toolbar-btn {
+    display: inline-flex;
+    align-items: center;
+}
+.file-input-hidden {
+    display: none;
+}
 .toolbar-desc {
     font-size: 13px;
     color: var(--dim);

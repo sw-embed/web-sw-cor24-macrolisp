@@ -11,7 +11,8 @@ Web UI for Tiny Macro Lisp on COR24. Browser-based Lisp REPL running on the COR2
 `Cargo.toml` and `scripts/build-all.sh` reference these projects by **relative path** (`../<name>`), so they must be checked out as siblings of this repo:
 
 - `../sw-cor24-macrolisp` — the Lisp implementation in C. `src/demos.rs` pulls demo sources from `../../sw-cor24-macrolisp/demos/*.l24` via `include_str!`.
-- `../sw-cor24-emulator` — COR24 assembler + emulator crates (`cor24-emulator`, `cor24-isa`) used as path dependencies.
+- `../sw-cor24-emulator` — COR24 emulator crates (`cor24-emulator`, `cor24-isa`) used as path dependencies.
+- `../sw-cor24-x-assembler` — COR24 assembler crate (`cor24-assembler`), split out of the emulator. Provides `Assembler` / `AssemblyResult` used at browser startup.
 - `../sw-cor24-tinyc` — COR24 C compiler (planned rename: `sw-cor24-x-tinyc`). `build-all.sh` invokes `<tinyc>/components/cli/target/release/tc24r` to recompile the REPL variants from C to `asm/repl-*.s`. If the rename lands, update the path in `scripts/build-all.sh`.
 
 ## Build
@@ -45,7 +46,7 @@ cargo fmt --all
 
 ## Architecture
 
-**Pipeline.** `repl-<tier>.c` → (`tc24r`, at build time) → `asm/repl-<tier>.s` → (`cor24_emulator::Assembler`, at browser startup) → bytes loaded into `EmulatorCore` at address 0 → CPU runs the REPL → user Lisp flows in via UART RX, output via UART TX.
+**Pipeline.** `repl-<tier>.c` → (`tc24r`, at build time) → `asm/repl-<tier>.s` → (`cor24_assembler::Assembler`, at browser startup) → bytes loaded into `EmulatorCore` at address 0 → CPU runs the REPL → user Lisp flows in via UART RX, output via UART TX.
 
 **Prelude tiers** (`src/config.rs`). `PreludeTier::{Bare, Minimal, Standard, Full, Scheme}` maps to one of the `asm/repl-*.s` files via `include_str!`. `Standard` uses `asm/repl-snapshot.s` plus a pre-compiled heap snapshot (`snapshots/standard.snap`, loaded at `0x080000`) for ~10× faster startup — other tiers eval the prelude live.
 

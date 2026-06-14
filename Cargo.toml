@@ -11,10 +11,12 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 cor24-emulator = { path = "../sw-cor24-emulator", default-features = false }
+cor24-assembler = { path = "../sw-cor24-x-assembler" }
 cor24-isa = { path = "../sw-cor24-isa", features = ["serde"] }
 yew = { version = "0.21", features = ["csr"] }
 wasm-bindgen = "0.2"
-web-sys = { version = "0.3", features = ["console", "HtmlTextAreaElement", "HtmlInputElement", "HtmlSelectElement", "HtmlElement", "KeyboardEvent", "PointerEvent", "DomRect"] }
+web-sys = { version = "0.3", features = ["console", "HtmlTextAreaElement", "HtmlInputElement", "HtmlSelectElement", "HtmlElement", "HtmlAnchorElement", "KeyboardEvent", "PointerEvent", "DomRect", "Window", "Navigator", "Clipboard", "Document", "Element", "Event", "Blob", "BlobPropertyBag", "Url", "File", "FileList", "FileReader"] }
+js-sys = "0.3"
 gloo = "0.11"
 console_error_panic_hook = "0.1"
 

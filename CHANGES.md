@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-06-13
+
+### UI
+- Add **Load File**, **Save**, and **Copy** toolbar buttons. Load File reads a `.l24`/`.lisp` file into the editor (via `FileReader`, without running it); Save downloads the editor contents as `program.l24` (Blob + object URL); Copy writes the editor contents to the clipboard. Lets you round-trip a demo to disk/editor — e.g. drop a demo's trailing `(exit)` so its definitions stay live in the REPL afterward. Adds `js-sys` dep and several `web-sys` features (`Clipboard`, `FileReader`, `Blob`, `Url`, `HtmlAnchorElement`, …).
+
+### Build
+- Reconcile with the upstream assembler split: `Assembler` moved out of `cor24-emulator` into the new `cor24-assembler` crate (`../sw-cor24-x-assembler`). Add the path-dep and import `Assembler` from `cor24_assembler` in `src/repl.rs`; emulator/isa deps unchanged. Restores a clean `cargo check` / `clippy -D warnings` / `wasm32` build. Update `CLAUDE.md` sibling-deps + pipeline notes to match.
+- Fix 5 pre-existing `uninlined_format_args` clippy lints in `src/repl.rs` (inline the `pct`/`addr` format args) surfaced by the current clippy.
+- `build-all.sh`: resolve `tc24r` robustly — honor an explicit `$TC24R`, else the `../sw-cor24-x-tinyc` release build, else PATH (with a loud warning that a PATH `tc24r` may regenerate `asm/repl-*.s` diverging from the committed baseline). Lets the script run in clones without the tinyc sibling checked out.
+- Rebuild `pages/` bundle for the Load/Save/Copy buttons (from the committed `asm/` baseline; the asm itself is unchanged by this Rust-only feature).
+
 ## 2026-05-01
 
 ### Sync from sw-cor24-macrolisp
