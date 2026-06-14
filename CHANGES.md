@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-06-14
+
+### Build
+- `build-all.sh` (PR1 of the asm re-baseline, `dw-rebaseline-asm-tc24r`): **pin `tc24r` to the blessed `sw-cor24-x-tinyc` compiler** (md5 `c539a57b…`) and **fail loudly** when a missing or non-blessed `tc24r` is resolved — replaces the prior PATH-fallback warning, since regenerating committed asm with an unpinned compiler is exactly what drifted the baseline. **Fix the snapshot-path gap**: regenerate the *consumed* `repl-snapshot.s` (Standard tier) instead of the *unused* `repl-standard.s`, and regenerate `snapshots/standard.snap` by running macrolisp's upstream `just snapshot` recipe (dcmls-owned) against the pinned source. Script-only — no regenerated artifacts in this PR; the asm/snapshot resync (pinned to macrolisp `1a2d777`) lands in PR2.
+
 ## 2026-06-13
 
 ### UI
