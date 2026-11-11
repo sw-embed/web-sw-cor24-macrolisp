@@ -1,0 +1,16 @@
+[workspace]
+members = [
+    "crates/lisp-timeline",
+    "crates/lisp-timeline-web",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2024"
+license = "MIT"
+version = "0.1.0"
+authors = ["Michael A Wright"]
+repository = "https://github.com/sw-embed/web-sw-cor24-macrolisp"
+
+[workspace.lints.clippy]
+pedantic = "warn"

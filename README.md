@@ -4,7 +4,7 @@ Web UI for [sw-cor24-macrolisp](https://github.com/sw-embed/sw-cor24-macrolisp) 
 
 Write Lisp expressions, select a prelude tier, and evaluate — all in the browser.
 
-**[Live Demo](https://sw-embed.github.io/web-sw-cor24-macrolisp/)**
+**[Live Demo](https://sw-embed.github.io/web-sw-cor24-macrolisp/)** · **[Lisp Timeline](https://sw-embed.github.io/web-sw-cor24-macrolisp/lisp-timeline/)**: from 1958 to this Lisp, with live demos
 
 Part of the [Software Wrighter COR24 Tools Project](https://sw-embed.github.io/web-sw-cor24-demos/#/).
 
@@ -37,6 +37,7 @@ Forked from [sw-vibe-coding/web-tml24c](https://github.com/sw-vibe-coding/web-tm
 ./scripts/serve.sh              # dev server with hot reload on port 9135
 ./scripts/build-all.sh          # recompile macrolisp + build pages/ for GitHub Pages
 ./scripts/build-pages.sh        # release build to pages/ for GitHub Pages
+./scripts/build-timeline.sh     # build the Lisp timeline into pages/lisp-timeline/
 cargo clippy -- -D warnings     # lint
 cargo fmt --all                 # format
 ```
@@ -46,6 +47,7 @@ cargo fmt --all                 # format
 - Blog: [Software Wrighter Lab](https://software-wrighter-lab.github.io/)
 - Discord: [Join the community](https://discord.com/invite/Ctzk5uHggZ)
 - YouTube: [Software Wrighter](https://www.youtube.com/@SoftwareWrighter)
+- Lisp Timeline: [from 1958 to today](https://sw-embed.github.io/web-sw-cor24-macrolisp/lisp-timeline/)
 
 ## Copyright
 

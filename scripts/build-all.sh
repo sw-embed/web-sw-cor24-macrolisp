@@ -64,7 +64,8 @@ cd "$PROJECT_DIR"
 mkdir -p pages
 touch pages/.nojekyll
 trunk build --release --public-url /web-sw-cor24-macrolisp/ -d dist
-rsync -a --delete --exclude='.nojekyll' dist/ pages/
+# pages/lisp-timeline/ is not Trunk's: scripts/build-timeline.sh builds it.
+rsync -a --delete --exclude='.nojekyll' --exclude='lisp-timeline/' dist/ pages/
 
 echo "=== Done ==="
 echo "Pages built in: $PROJECT_DIR/pages/"

@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-11-11
+
+### UI
+- Add a **Lisp Timeline** page at `lisp-timeline/`, linked from the live-demo footer: a sideways-scrolling strip of Lisp history (the 1957–1968 language notes; Lisp releases, books and standards from 1958 to R7RS), with picture callouts for Lisp 1.6 on the IBM 1130 ("Future demo"), this repo's live demo, and a placeholder for Lisp in SWTOS ("Future demo"). Source in `lisp-timeline/` (Rust + Yew, its own Cargo workspace, forked from the Forth timeline, itself from sw-apl's); events in `lisp-timeline/data/timeline.json`.
+
+### Build
+- New `scripts/build-timeline.sh`: tests the timeline, then builds it with `wasm-pack` into `pages/lisp-timeline/`. `build-pages.sh` and `build-all.sh` now exclude `lisp-timeline/` from their `rsync --delete` so a Trunk rebuild leaves it in place; `.gitignore` admits its `.wasm` and ignores `lisp-timeline/target`.
+- The footer link is in `src/lib.rs` only: the main `pages/` bundle was **not** rebuilt in this change (needs the `sw-cor24-macrolisp` sibling checked out).
+
+### Docs
+- README: link the Lisp Timeline beside the Live Demo; document `build-timeline.sh`. CLAUDE.md: note the timeline and its script.
+
 ## 2026-06-14
 
 ### Build

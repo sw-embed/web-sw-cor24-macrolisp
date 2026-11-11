@@ -25,6 +25,7 @@ Edition 2024 for any Rust code. Never suppress warnings.
 ./scripts/serve.sh          # Dev server on port 9135 (Trunk.toml)
 ./scripts/build-all.sh      # Recompile macrolisp (tc24r) + build pages/
 ./scripts/build-pages.sh    # Release build to pages/ (skips tc24r recompile)
+./scripts/build-timeline.sh # Lisp timeline -> pages/lisp-timeline/ (wasm-pack, not Trunk)
 ./scripts/deploy.sh         # Rebuild if stale, commit pages/, push
 cargo clippy -- -D warnings
 cargo fmt --all
@@ -33,6 +34,8 @@ cargo fmt --all
 `build-all.sh` does two things, in order:
 1. Recompiles all 5 REPL variants (bare/minimal/standard/full/scheme) from `../sw-cor24-macrolisp/src/repl-*.c` via `tc24r`, writing `asm/repl-*.s`.
 2. Builds WASM into `dist/` (gitignored), then `rsync`s to `pages/` (the `--exclude='.nojekyll'` preserves that file across rebuilds).
+
+**Lisp timeline.** `lisp-timeline/` is a separate Cargo workspace (Rust + Yew, forked from the Forth timeline in `../sw-forth-timeline`, itself from sw-apl's): events in `lisp-timeline/data/timeline.json`, page and images in `lisp-timeline/site/`. `./scripts/build-timeline.sh` tests it and builds it into `pages/lisp-timeline/` (published at `/web-sw-cor24-macrolisp/lisp-timeline/`, linked from the footer in `src/lib.rs` and the README). `build-pages.sh` / `build-all.sh` leave that directory alone. Its tests check the data (year order, every pictured callout, no overlaps), so run the script after editing the JSON.
 
 **Before committing `pages/` changes, always run `./scripts/build-all.sh`.** The `pages/` directory is committed and deployed via GitHub Actions (`.github/workflows/pages.yml`, which just uploads the `pages/` artifact — CI does not rebuild).
 

@@ -2,5 +2,7 @@
 /dist
 *.wasm
 !pages/*.wasm
+!pages/lisp-timeline/timeline/*.wasm
+/lisp-timeline/target
 *.o
 .DS_Store
