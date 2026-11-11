@@ -7,7 +7,7 @@
 
 ### Build
 - New `scripts/build-timeline.sh`: tests the timeline, then builds it with `wasm-pack` into `pages/lisp-timeline/`. `build-pages.sh` and `build-all.sh` now exclude `lisp-timeline/` from their `rsync --delete` so a Trunk rebuild leaves it in place; `.gitignore` admits its `.wasm` and ignores `lisp-timeline/target`.
-- The footer link is in `src/lib.rs` only: the main `pages/` bundle was **not** rebuilt in this change (needs the `sw-cor24-macrolisp` sibling checked out).
+- Rebuild the main `pages/` bundle (`build-pages.sh`, against `sw-cor24-macrolisp` `1a2d777`) so the deployed footer carries the Lisp Timeline link.
 
 ### Docs
 - README: link the Lisp Timeline beside the Live Demo; document `build-timeline.sh`. CLAUDE.md: note the timeline and its script.
