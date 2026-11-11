@@ -24,6 +24,7 @@
   {"year": 1993.5, "when": "1993", "title": "On Lisp", "text": "Paul Graham, on macros.", "href": "https://paulgraham.com/onlisp.html", "kind": "note"},
   {"year": 1994.9, "when": "1994", "title": "ANSI Common Lisp", "text": "ANSI X3.226-1994.", "kind": "note"},
   {"year": 1995.3, "when": "1995", "title": "PLT Scheme", "text": "Now Racket.", "href": "https://racket-lang.org/", "kind": "note"},
+  {"year": 1996.0, "when": "1996", "title": "The Little Schemer", "text": "Friedman and Felleisen: The Little LISPer, redone in Scheme.", "kind": "note"},
   {"year": 1996.7, "when": "1996", "title": "Crash Bandicoot", "text": "Naughty Dog's game, its objects scripted in GOOL, their own Lisp.", "kind": "note"},
   {"year": 1997.5, "when": "1997", "title": "ISLISP", "text": "ISO/IEC 13816.", "kind": "note"},
   {"year": 1998.2, "when": "1998", "title": "R5RS", "text": "Scheme's fifth Revised Report.", "kind": "note"},
