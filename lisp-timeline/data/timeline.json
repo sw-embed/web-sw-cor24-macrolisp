@@ -26,6 +26,7 @@
   {"year": 1994.9, "when": "1994", "title": "ANSI Common Lisp", "text": "ANSI X3.226-1994.", "kind": "note"},
   {"year": 1995.3, "when": "1995", "title": "PLT Scheme", "text": "Now Racket.", "href": "https://racket-lang.org/", "kind": "note"},
   {"year": 1996.0, "when": "1996", "title": "The Little Schemer", "text": "Friedman and Felleisen: The Little LISPer, redone in Scheme.", "kind": "note"},
+  {"year": 1996.4, "when": "ca. 1996", "title": "Kawa", "text": "Per Bothner's Scheme for the JVM, compiled to Java bytecode.", "href": "https://www.gnu.org/software/kawa/", "kind": "note"},
   {"year": 1996.7, "when": "1996", "title": "Crash Bandicoot", "text": "Naughty Dog's game, its objects scripted in GOOL, their own Lisp.", "kind": "note"},
   {"year": 1997.02, "when": "1997", "title": "Guile 1.0", "text": "GNU's Scheme, for extending programs.", "href": "https://www.gnu.org/software/guile/", "kind": "note"},
   {"year": 1997.5, "when": "1997", "title": "ISLISP", "text": "ISO/IEC 13816.", "kind": "note"},

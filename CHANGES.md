@@ -7,6 +7,7 @@
 - Lisp Timeline: add **AutoLISP** (1986, the Lisp inside AutoCAD) and two games in Lisp, **Crash Bandicoot** (1996, GOOL) and **Jak and Daxter** (2001, GOAL).
 - Lisp Timeline: add **The Little Schemer** (1996).
 - Lisp Timeline: add **CMU Common Lisp** (ca. 1985), **Guile 1.0** (1997) and **ABCL 1.0** (2011).
+- Lisp Timeline: add **Kawa** (ca. 1996), a Scheme on the JVM.
 - Add a **Lisp Timeline** page at `lisp-timeline/`, linked from the live-demo footer: a sideways-scrolling strip of Lisp history (the 1957–1968 language notes; Lisp releases, books and standards from 1958 to R7RS), with picture callouts for Lisp 1.6 on the IBM 1130 ("Future demo"), this repo's live demo, and a placeholder for Lisp in SWTOS ("Future demo"). Source in `lisp-timeline/` (Rust + Yew, its own Cargo workspace, forked from the Forth timeline, itself from sw-apl's); events in `lisp-timeline/data/timeline.json`.
 
 ### Build
