@@ -16,6 +16,7 @@
   {"year": 1980.0, "when": "ca. 1980", "title": "Lisp machines", "text": "LMI and Symbolics, out of MIT's AI Lab.", "kind": "note"},
   {"year": 1981.5, "when": "1981", "title": "LISP", "text": "Winston and Horn's textbook.", "kind": "note"},
   {"year": 1984.5, "when": "1984", "title": "Common Lisp the Language", "text": "Guy Steele: one Lisp from many dialects.", "kind": "note"},
+  {"year": 1984.95, "when": "ca. 1985", "title": "CMU Common Lisp", "text": "Carnegie Mellon's Spice Lisp, renamed; later SBCL's parent.", "href": "https://cmucl.org/", "kind": "note"},
   {"year": 1985.2, "when": "1985", "title": "Structure and Interpretation of Computer Programs", "text": "Abelson and Sussman, in Scheme.", "kind": "note"},
   {"year": 1985.7, "when": "1985", "title": "GNU Emacs", "text": "An editor written in, and extended with, Emacs Lisp.", "href": "https://www.gnu.org/software/emacs/", "kind": "note"},
   {"year": 1986.1, "when": "1986", "title": "AutoLISP", "text": "The Lisp built into AutoCAD, for scripting it; AutoCAD itself is written in C.", "kind": "note"},
@@ -26,6 +27,7 @@
   {"year": 1995.3, "when": "1995", "title": "PLT Scheme", "text": "Now Racket.", "href": "https://racket-lang.org/", "kind": "note"},
   {"year": 1996.0, "when": "1996", "title": "The Little Schemer", "text": "Friedman and Felleisen: The Little LISPer, redone in Scheme.", "kind": "note"},
   {"year": 1996.7, "when": "1996", "title": "Crash Bandicoot", "text": "Naughty Dog's game, its objects scripted in GOOL, their own Lisp.", "kind": "note"},
+  {"year": 1997.02, "when": "1997", "title": "Guile 1.0", "text": "GNU's Scheme, for extending programs.", "href": "https://www.gnu.org/software/guile/", "kind": "note"},
   {"year": 1997.5, "when": "1997", "title": "ISLISP", "text": "ISO/IEC 13816.", "kind": "note"},
   {"year": 1998.2, "when": "1998", "title": "R5RS", "text": "Scheme's fifth Revised Report.", "kind": "note"},
   {"year": 1999.95, "when": "1999", "title": "SBCL", "text": "Steel Bank Common Lisp, forked from CMU CL.", "href": "https://www.sbcl.org/", "kind": "note"},
@@ -35,6 +37,7 @@
   {"year": 2008.5, "when": "ca. 2008", "title": "femtolisp", "text": "Jeff Bezanson's small, fast Scheme-like Lisp; later Julia's parser.", "href": "https://github.com/JeffBezanson/femtolisp", "kind": "note"},
   {"year": 2011.55, "when": "2011", "title": "ClojureScript", "text": "Clojure, compiled to JavaScript.", "href": "https://clojurescript.org/", "kind": "note"},
   {"year": 2011.8, "when": "2011", "title": "John McCarthy dies", "kind": "note"},
+  {"year": 2011.81, "when": "2011", "title": "ABCL 1.0", "text": "Armed Bear Common Lisp, on the JVM.", "href": "https://abcl.org/", "kind": "note"},
   {"year": 2013.5, "when": "2013", "title": "R7RS", "text": "Scheme's seventh report: a small language again.", "kind": "note"},
   {"year": 2029.5, "when": "2026", "title": "Tiny Macro Lisp on COR24", "text": "My Lisp for the COR24 24-bit RISC CPU, in C, with macros and five preludes. The demo runs it on a COR24 emulator, in WebAssembly.", "image": "machines/cor24-macrolisp.webp", "href": "https://sw-embed.github.io/web-sw-cor24-macrolisp/", "demo": "Live demo", "tip": "My Tiny Macro Lisp live demo", "kind": "mine"},
   {"year": 2031.5, "when": "To come", "title": "Lisp in SWTOS", "text": "A Lisp pane in the SWTOS microkernel.", "tbd": "Lisp in SWTOS", "demo": "Future demo", "tip": "Future demo", "kind": "mine"}
